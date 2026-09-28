@@ -16,7 +16,17 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
+
+# package manager & cache
+.npm-cache/
+.pnpm-debug.log*
+package-lock.json
+
+# backups and local tooling
+_gsap_backup/
+.dsh-terminal/
 
 # OS generated files
 .DS_Store
