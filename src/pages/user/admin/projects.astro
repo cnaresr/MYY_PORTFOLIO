@@ -1,0 +1,11 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { ProjectsManager } from '../../../components/admin/ProjectsManager';
+import { getProjectsData } from '../../../lib/contentStore';
+
+const projects = getProjectsData();
+---
+
+<AdminLayout title="Projects Showcase Manager" activeNav="projects" breadcrumbs="EDITORIAL / PROJECTS">
+  <ProjectsManager client:load initialProjects={projects} />
+</AdminLayout>

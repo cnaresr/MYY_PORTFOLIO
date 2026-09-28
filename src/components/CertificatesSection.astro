@@ -1,0 +1,41 @@
+---
+import { certificates } from '../data/certificates';
+import { CertificatesGrid } from './interactive/CertificatesGrid';
+
+const certList = [...certificates];
+---
+
+<section class="w-full py-16 md:py-24 relative transition-colors overflow-hidden" id="certificates">
+  <!-- Architectural Subtle Grid Pattern -->
+  <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:28px_28px] opacity-40 dark:opacity-20 pointer-events-none z-0"></div>
+
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10 section-content-flow">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-slate-200/80 dark:border-slate-800">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs mb-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-900 dark:bg-slate-100 animate-pulse"></span>
+          <span class="font-['Space_Grotesk'] text-[10px] text-slate-700 dark:text-slate-300 uppercase tracking-widest font-bold">
+            CREDENTIALS // PROOF OF EXPERTISE
+          </span>
+        </div>
+        <h2 class="font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-[46px] font-bold text-slate-950 dark:text-white tracking-tight leading-tight">
+          Certificates
+        </h2>
+        <p class="font-['Hanken_Grotesk'] text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mt-2 leading-relaxed">
+          Industry-recognized engineering accreditations cryptographically validated on public ledgers &amp; official verification registries.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 mt-4 md:mt-0">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs text-slate-800 dark:text-slate-200 font-mono text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>STATUS: {certList.length}/{certList.length} ACTIVE &amp; VERIFIED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Certificates Grid with Staggered 3D Perspective Reveal & Scramble -->
+    <CertificatesGrid client:visible certificates={certList} />
+  </div>
+</section>

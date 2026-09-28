@@ -1,0 +1,126 @@
+{
+  "languages": [
+    {
+      "id": "lang-ts",
+      "name": "TypeScript",
+      "detail": "v5.4 • Strict Typing",
+      "proof": "Strict-mode islands, typed CMS payloads, zero any in public pages.",
+      "percentage": 98,
+      "master": true,
+      "iconSlug": "typescript",
+      "order": 1
+    },
+    {
+      "id": "lang-rust",
+      "name": "Rust",
+      "detail": "Tokio • Wasm • Zero-Copy",
+      "proof": "Tokio + Wasm pipelines, zero-copy buffers on hot paths.",
+      "percentage": 95,
+      "master": true,
+      "iconSlug": "rust",
+      "order": 2
+    },
+    {
+      "id": "lang-go",
+      "name": "Go",
+      "detail": "Concurrency • Channels • Microservices",
+      "proof": "Channel-based workers for microservice fan-out.",
+      "percentage": 92,
+      "master": false,
+      "iconSlug": "go",
+      "order": 3
+    },
+    {
+      "id": "lang-py",
+      "name": "Python",
+      "detail": "AsyncIO • Data Pipelines / PyTorch",
+      "proof": "AsyncIO ETL + PyTorch jobs on scheduled pipelines.",
+      "percentage": 90,
+      "master": false,
+      "iconSlug": "python",
+      "order": 4
+    },
+    {
+      "id": "lang-cpp",
+      "name": "C++",
+      "detail": "C++20 / Memory Optimization / SIMD",
+      "proof": "C++20 SIMD kernels, tuned allocators on tight loops.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "cplusplus",
+      "order": 5
+    },
+    {
+      "id": "lang-sql",
+      "name": "SQL & PostgreSQL",
+      "detail": "pgvector / Hypertables / Tuning",
+      "proof": "pgvector + hypertables, query plans tuned under load.",
+      "percentage": 98,
+      "master": true,
+      "iconSlug": "postgresql",
+      "order": 6
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "fw-astro",
+      "name": "Astro Islands",
+      "detail": "v4.x Zero-JS Baseline",
+      "proof": "Zero-JS baseline pages, islands only where interaction lives.",
+      "percentage": 95,
+      "master": false,
+      "iconSlug": "astro",
+      "order": 1
+    },
+    {
+      "id": "fw-react",
+      "name": "React 19 & Vite",
+      "detail": "Concurrent Mode / Rolldown Engine",
+      "proof": "Concurrent islands, INP kept under 10ms on key routes.",
+      "percentage": 96,
+      "master": true,
+      "iconSlug": "react",
+      "order": 2
+    },
+    {
+      "id": "fw-next",
+      "name": "Next.js App Router",
+      "detail": "RSC Streaming / Partial Prerendering",
+      "proof": "RSC streaming + edge middleware on app-router work.",
+      "percentage": 94,
+      "master": false,
+      "iconSlug": "nextdotjs",
+      "order": 3
+    },
+    {
+      "id": "fw-tailwind",
+      "name": "Tailwind CSS v4",
+      "detail": "Token Engines / Lightning CSS",
+      "proof": "Token engines + Lightning CSS, one cascade across themes.",
+      "percentage": 96,
+      "master": true,
+      "iconSlug": "tailwindcss",
+      "order": 4
+    },
+    {
+      "id": "fw-node",
+      "name": "Node.js LTS v22",
+      "detail": "Worker Threads / V8 Isolates",
+      "proof": "Worker threads + streams for CPU-bound admin jobs.",
+      "percentage": 92,
+      "master": false,
+      "iconSlug": "nodedotjs",
+      "order": 5
+    },
+    {
+      "id": "fw-cf",
+      "name": "Cloudflare Edge",
+      "detail": "Workers KV / D1 / Durable Objects",
+      "proof": "Workers + KV/D1, sub-ms routing at the edge.",
+      "percentage": 95,
+      "master": true,
+      "iconSlug": "cloudflare",
+      "order": 6
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { SkillsStackManager } from '../../../components/admin/SkillsStackManager';
+import { getSkillsData, getTechStackData } from '../../../lib/contentStore';
+
+const skills = getSkillsData();
+const techStack = getTechStackData();
+---
+
+<AdminLayout title="Skills Matrix // Engine Config" activeNav="skills" breadcrumbs="EDITORIAL / SKILLS">
+  <SkillsStackManager client:load initialSkills={skills} initialTechStack={techStack} />
+</AdminLayout>

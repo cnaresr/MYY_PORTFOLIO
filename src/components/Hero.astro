@@ -1,0 +1,17 @@
+---
+import { siteConfig } from '../data/siteConfig';
+import { FloatingIconsHero } from './interactive/FloatingIconsHero';
+---
+
+<FloatingIconsHero
+  client:load
+  title={siteConfig.title}
+  subtitle={siteConfig.subtitle}
+  summary={siteConfig.summary}
+  avatar={siteConfig.avatar}
+  name={siteConfig.name}
+  initials={siteConfig.initials}
+  ctaText="Explore Works"
+  ctaHref="#projects"
+  cvPdf={siteConfig.cvPdf}
+/>

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "veloce",
+    "status": "published",
+    "startDate": "2023-01",
+    "endDate": "",
+    "title": "Veloce Query Fabric",
+    "description": "Distributed telemetry aggregator and sharded PostgreSQL cluster fabric with live partition rebalancing. Delivers instantaneous metric ingest for industrial IoT sensors with strict guarantees.",
+    "technologies": [
+      "PostgreSQL",
+      "Rust",
+      "Kafka",
+      "Docker"
+    ],
+    "githubUrl": "https://github.com",
+    "image": "/images/project-veloce.jpg",
+    "abstract": "Veloce Architecture Document V2.1 — Citus/Pgpool partition strategies, Rust memory pools, and zero-copy socket IO."
+  },
+  {
+    "id": "aetherlog",
+    "status": "published",
+    "startDate": "2023-07",
+    "endDate": "2024-03",
+    "title": "AetherLog Realtime Analytics",
+    "description": "Astro SSR combined with a Server-Sent Events streaming pipeline. Zero initial client-side JavaScript baseline while streaming 100,000 live event logs to an edge dashboard.",
+    "technologies": [
+      "Astro",
+      "SSE Streams",
+      "Tailwind"
+    ],
+    "githubUrl": "https://github.com",
+    "image": "/images/project-aetherlog.jpg",
+    "abstract": "AetherLog Architecture — HTTP/2 SSE streaming engine, zero-hydration Islands fallback, and sub-10ms TTFB edge caching."
+  },
+  {
+    "id": "hyperion",
+    "status": "published",
+    "startDate": "2023-01",
+    "endDate": "2023-12",
+    "title": "Hyperion Design System Engine",
+    "description": "AST-driven design token compiler written in Rust and executed in WebAssembly across multi-brand React and Vite frontends. Generates strict TypeScript types and optimized CSS in <12ms.",
+    "technologies": [
+      "Rust",
+      "Vite",
+      "React",
+      "TypeScript"
+    ],
+    "githubUrl": "https://github.com",
+    "image": "/images/project-hyperion.jpg",
+    "abstract": "Hyperion Architecture — AST token graph resolution, CSS variable emission trees, and WebAssembly memory sharing."
+  },
+  {
+    "id": "solis-mesh",
+    "status": "published",
+    "startDate": "2024-10",
+    "endDate": "2025-03",
+    "title": "Solis Distributed Mesh v2",
+    "description": "Sub-millisecond peer-to-peer telemetry gossip protocol over WebRTC data channels with state-based conflict resolution.",
+    "technologies": [
+      "Rust",
+      "WebRTC",
+      "Protobuf",
+      "Wasm"
+    ],
+    "githubUrl": "https://github.com",
+    "image": "/images/project-veloce.jpg",
+    "abstract": "Solis Distributed Mesh Architecture V2 — Multi-peer state reconciliation using CRDTs over WebRTC data channels."
+  }
+]

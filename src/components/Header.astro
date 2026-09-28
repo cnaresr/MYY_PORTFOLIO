@@ -1,0 +1,10 @@
+---
+import { siteConfig } from '../data/siteConfig';
+import { FloatingHeader } from './interactive/FloatingHeader';
+import { CommandPalette } from './interactive/CommandPalette';
+---
+
+<FloatingHeader client:load navLinks={siteConfig.navLinks} />
+
+<!-- Global Command Palette Island -->
+<CommandPalette client:idle />

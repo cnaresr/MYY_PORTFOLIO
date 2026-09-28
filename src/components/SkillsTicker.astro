@@ -1,0 +1,51 @@
+---
+import { tickerRow1, tickerRow2 } from '../data/skills';
+import { SkillsMarquee, type MarqueeItem } from '../components/interactive/SkillsMarquee';
+import { ProgressiveBlur } from '../components/core/progressive-blur';
+
+const row1: MarqueeItem[] = tickerRow1.map((item) => ({
+  name: item.name,
+  iconSlug: item.iconSlug,
+  variant: 'solid',
+}));
+
+const row2: MarqueeItem[] = tickerRow2.map((item) => ({
+  name: item.name,
+  iconSlug: item.iconSlug,
+  variant: 'muted',
+}));
+---
+
+<!-- Full-width tech marquee: Row 1 right-to-left, Row 2 left-to-right.
+     Each row gets progressive-blur masks on both edges. -->
+<section class="w-full bg-slate-100 dark:bg-slate-900/50 border-b border-slate-200/80 dark:border-slate-800 py-5 select-none overflow-hidden transition-colors" id="skills-ticker">
+  <div class="section-content-flow w-full">
+    <div class="relative w-full">
+      <SkillsMarquee client:load items={row1} reverse speed={55} speedOnHover={0} />
+      <ProgressiveBlur
+        className="top-0 left-0 h-full w-[204px]"
+        direction="left"
+        blurIntensity={8}
+      />
+      <ProgressiveBlur
+        className="top-0 right-0 h-full w-[204px]"
+        direction="right"
+        blurIntensity={8}
+      />
+    </div>
+
+    <div class="relative w-full">
+      <SkillsMarquee client:load items={row2} speed={45} speedOnHover={0} />
+      <ProgressiveBlur
+        className="top-0 left-0 h-full w-[204px]"
+        direction="left"
+        blurIntensity={8}
+      />
+      <ProgressiveBlur
+        className="top-0 right-0 h-full w-[204px]"
+        direction="right"
+        blurIntensity={8}
+      />
+    </div>
+  </div>
+</section>

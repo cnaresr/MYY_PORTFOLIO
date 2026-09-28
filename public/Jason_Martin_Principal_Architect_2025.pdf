@@ -1,0 +1,122 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 2 /Kids [6 0 R 8 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 6522 >>
+stream
+BT /F2 22 Tf 0.06 0.09 0.16 rg 52 765.89 Td (Cezar Nareswara Respati) Tj ET
+BT /F1 11.5 Tf 0.42 0.45 0.50 rg 52 747.89 Td (Lead Systems Architect & Full-Stack Engineer) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 735.89 Td (cezar.nares@gmail.com | Semarang  Asia/Jakarta | github.com/cnaresr | linkedin.com/in/cezar-nareswara-respati |) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 723.89 Td (x.com/cezarnares) Tj ET
+0.06 0.09 0.16 RG 1.2 w 52 717.89 m 543.28 717.89 l S
+BT /F2 10.5 Tf 0.06 0.09 0.16 rg 52 693.89 Td (PROFESSIONAL PROFILE) Tj ET
+0.06 0.09 0.16 RG 1.1 w 52 686.89 m 78.00 686.89 l S
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 661.89 Td (Bridging high-throughput distributed architectures, zero-hydration edge systems, and high-fidelity reactive user) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 648.89 Td (interfaces. 10+ years engineering resilient web platforms with mechanical sympathy.) Tj ET
+BT /F2 10.5 Tf 0.06 0.09 0.16 rg 52 640.89 Td (CORE COMPETENCIES) Tj ET
+0.06 0.09 0.16 RG 1.1 w 52 633.89 m 78.00 633.89 l S
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 52 608.29 Td (Language) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 105.34 608.29 Td (TypeScript \(98%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 309.64 608.29 Td (Framework) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 368.86 608.29 Td (Astro Islands \(95%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 52 594.69 Td (Language) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 105.34 594.69 Td (Rust \(95%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 309.64 594.69 Td (Framework) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 368.86 594.69 Td (React 19 & Vite \(96%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 52 581.09 Td (Language) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 105.34 581.09 Td (Go \(92%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 309.64 581.09 Td (Framework) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 368.86 581.09 Td (Next.js App Router \(94%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 52 567.49 Td (Language) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 105.34 567.49 Td (Python \(90%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 309.64 567.49 Td (Framework) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 368.86 567.49 Td (Tailwind CSS v4 \(96%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 52 553.89 Td (Language) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 105.34 553.89 Td (C++ \(88%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 309.64 553.89 Td (Framework) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 368.86 553.89 Td (Node.js LTS v22 \(92%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 52 540.29 Td (Language) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 105.34 540.29 Td (SQL & PostgreSQL \(98%\)) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 309.64 540.29 Td (Framework) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 368.86 540.29 Td (Cloudflare Edge \(95%\)) Tj ET
+BT /F2 10.5 Tf 0.06 0.09 0.16 rg 52 532.29 Td (PROFESSIONAL EXPERIENCE) Tj ET
+0.06 0.09 0.16 RG 1.1 w 52 525.29 m 78.00 525.29 l S
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 501.29 Td (Veloce Query Fabric) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 467.24 501.29 Td (Jan 2023 - Present) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 489.29 Td (PostgreSQL / Rust / Kafka / Docker) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 468.29 Td (Distributed telemetry aggregator and sharded PostgreSQL cluster fabric with live partition rebalancing. Delivers) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 455.29 Td (instantaneous metric ingest for industrial IoT sensors with strict guarantees.) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 439.79 Td (Veloce Architecture Document V2.1  Citus/Pgpool partition strategies, Rust memory pools, and zero-copy socket IO.) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 417.79 Td (AetherLog Realtime Analytics) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 463.24 417.79 Td (Jul 2023 - Mar 2024) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 405.79 Td (Astro / SSE Streams / Tailwind) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 384.79 Td (Astro SSR combined with a Server-Sent Events streaming pipeline. Zero initial client-side JavaScript baseline while) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 371.79 Td (streaming 100,000 live event logs to an edge dashboard.) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 356.29 Td (AetherLog Architecture  HTTP/2 SSE streaming engine, zero-hydration Islands fallback, and sub-10ms TTFB edge caching.) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 334.29 Td (Hyperion Design System Engine) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 459.73 334.29 Td (Jan 2023 - Dec 2023) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 322.29 Td (Rust / Vite / React / TypeScript) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 301.29 Td (AST-driven design token compiler written in Rust and executed in WebAssembly across multi-brand React and Vite) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 288.29 Td (frontends. Generates strict TypeScript types and optimized CSS in <12ms.) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 272.79 Td (Hyperion Architecture  AST token graph resolution, CSS variable emission trees, and WebAssembly memory sharing.) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 250.79 Td (Solis Distributed Mesh v2) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 460.74 250.79 Td (Oct 2024 - Mar 2025) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 238.79 Td (Rust / WebRTC / Protobuf / Wasm) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 217.79 Td (Sub-millisecond peer-to-peer telemetry gossip protocol over WebRTC data channels with state-based conflict) Tj ET
+BT /F1 9.6 Tf 0.42 0.45 0.50 rg 52 204.79 Td (resolution.) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 189.29 Td (Solis Distributed Mesh Architecture V2  Multi-peer state reconciliation using CRDTs over WebRTC data channels.) Tj ET
+BT /F2 10.5 Tf 0.06 0.09 0.16 rg 52 171.29 Td (CERTIFICATIONS) Tj ET
+0.06 0.09 0.16 RG 1.1 w 52 164.29 m 78.00 164.29 l S
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 140.29 Td (AWS Certified Solutions Architect) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 423.74 140.29 Td (Professional Level \(SAP-C02\)) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 128.29 Td (AMAZON WEB SERVICES  |  Issued 2024  |  EXPIRY 2027) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 107.29 Td (PostgreSQL Certified Enterprise DBA) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 417.22 107.29 Td (PostgreSQL 15/16 Professional) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 95.29 Td (POSTGRESQL GLOBAL  |  Issued 2023  |  VALIDATION PERPETUAL) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 74.29 Td (Certified Kubernetes Administrator) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 424.23 74.29 Td (Linux Foundation \(CKA-2401\)) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 62.29 Td (CNCF / LINUX FOUNDATION  |  Issued 2024  |  EXPIRY 2027) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 518 >>
+stream
+BT /F2 10 Tf 0.06 0.09 0.16 rg 52 777.89 Td (Meta Certified Frontend Lead) Tj ET
+BT /F1 9 Tf 0.42 0.45 0.50 rg 417.23 777.89 Td (Principal Engineering Specialist) Tj ET
+BT /F1 8.8 Tf 0.42 0.45 0.50 rg 52 765.89 Td (META OPEN SOURCE  |  Issued 2023  |  VALIDATION VERIFIED) Tj ET
+0.85 0.87 0.90 RG 0.7 w 52 742.89 m 543.28 742.89 l S
+BT /F1 8.4 Tf 0.42 0.45 0.50 rg 52 725.89 Td (Portfolio and source of truth: this CV is generated from the live content store. Contact cezar.nares@gmail.com for the full dossier.) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 7 0 R >>
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000320 00000 n 
+0000006894 00000 n 
+0000007036 00000 n 
+0000007605 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+7747
+%%EOF

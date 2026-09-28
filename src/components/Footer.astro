@@ -1,0 +1,91 @@
+---
+import { siteConfig } from '../data/siteConfig';
+---
+
+<footer class="w-full bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 transition-colors relative overflow-hidden" id="footer">
+  <!-- Architectural Subtle Grid Pattern -->
+  <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25 dark:opacity-10 pointer-events-none z-0"></div>
+
+  <div class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10 section-content-flow">
+    <!-- Brand / Monospace Terminal Status -->
+    <div class="flex flex-col items-center md:items-start gap-1">
+      <div class="flex items-center gap-2">
+        <span class="font-['Space_Grotesk'] text-[17px] text-slate-950 dark:text-white font-bold tracking-tight">
+          {siteConfig.name}
+        </span>
+        <span class="font-['Space_Grotesk'] text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold">
+          // ARCH.SYS
+        </span>
+      </div>
+
+      <!-- Monospace Terminal Line with Blinking Cursor -->
+      <div class="flex items-center gap-1.5 font-mono text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+        <span>terminal_session://root@portfolio:~$ live</span>
+        <span class="inline-block w-1.5 h-3.5 bg-slate-800 dark:bg-slate-200 animate-pulse rounded-xs"></span>
+      </div>
+
+      <p class="font-['Hanken_Grotesk'] text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+        &copy; {new Date().getFullYear()} {siteConfig.name}. Production-grade architectural systems.
+      </p>
+    </div>
+
+    <!-- Legal / Protocol Links -->
+    <div class="flex flex-wrap items-center justify-center gap-6">
+      <a
+        href="#"
+        class="font-['Hanken_Grotesk'] text-xs text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
+      >
+        Privacy Policy
+      </a>
+      <a
+        href="#"
+        class="font-['Hanken_Grotesk'] text-xs text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
+      >
+        Terms of Service
+      </a>
+      <a
+        href="#"
+        class="font-['Hanken_Grotesk'] text-xs text-slate-500 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white transition-colors"
+      >
+        Security / SLA
+      </a>
+    </div>
+
+    <!-- Right Controls: Live Network Uptime Ping + Return to Top -->
+    <div class="flex items-center gap-3">
+      <!-- Live Heartbeat / Uptime Indicator -->
+      <div class="flex items-center gap-2.5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3.5 py-1.5 rounded-lg shadow-2xs">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <div class="flex items-center gap-1.5 font-mono text-[11px] text-slate-700 dark:text-slate-300 font-semibold uppercase tracking-wider">
+          <span>SYSTEMS OPERATIONAL</span>
+          <span class="text-slate-400 dark:text-slate-500 hidden sm:inline">// 12ms</span>
+        </div>
+      </div>
+
+      <!-- Return to Top Button -->
+      <button
+        type="button"
+        id="footerScrollTop"
+        class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-all cursor-pointer shadow-2xs group"
+        title="Scroll to Top"
+        aria-label="Scroll to top"
+      >
+        <span class="material-symbols-outlined text-[16px] transition-transform group-hover:-translate-y-0.5">
+          arrow_upward
+        </span>
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const topBtn = document.getElementById('footerScrollTop');
+  if (topBtn) {
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>

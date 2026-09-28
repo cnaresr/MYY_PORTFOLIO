@@ -1,0 +1,16 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { AboutMeManager } from '../../../components/admin/AboutMeManager';
+import { getLiveAboutMe } from '../../../data/aboutMe';
+
+// Check if user is logged in
+if (!Astro.cookies.has('admin_session')) {
+  return Astro.redirect('/user/admin/login');
+}
+
+const aboutData = getLiveAboutMe();
+---
+
+<AdminLayout title="About Me - ARCH.CMS" activeNav="about" breadcrumbs="ABOUT ME">
+  <AboutMeManager client:load initialData={aboutData} />
+</AdminLayout>

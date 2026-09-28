@@ -1,0 +1,493 @@
+@import "tailwindcss";
+
+/* Tailwind v4 dark mode via class strategy (html.dark), matching next-themes
+   attribute="class" + the inline bootstrap script in Layout.astro. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-platinum: #E5E7EB;
+  --color-surface: #FFFFFF;
+  --color-midnight: #0A1128;
+  --color-ink: #090D16;
+  --color-ink-deep: #050811;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Hanken Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* ---- Admin cockpit palette (theme-switchable) ----
+     Utilities (bg-cockpit, text-cockpit-text, ...) resolve through --ck-*
+     runtime variables; html.admin-light re-maps the whole palette. */
+  --color-cockpit: var(--ck-bg);
+  --color-cockpit-raised: var(--ck-raised);
+  --color-cockpit-hover: var(--ck-hover);
+  --color-cockpit-panel: var(--ck-panel);
+  --color-cockpit-line: var(--ck-line);
+  --color-cockpit-line-strong: var(--ck-line-strong);
+  --color-cockpit-text: var(--ck-text);
+  --color-cockpit-muted: var(--ck-muted);
+  --color-cockpit-faint: var(--ck-faint);
+  --color-cockpit-accent: #38bdf8;
+
+  --animate-pulse: pulse var(--duration) ease-out infinite;
+  --animate-pulse-ripple: pulse-ripple var(--duration)
+    cubic-bezier(0.16, 1, 0.3, 1) infinite;
+
+  /* Solid ring pulse — matches Tailwind's default `pulse` utility contract
+     (0%→100% collapsed, 50% expanded), so --animate-pulse overrides cleanly. */
+  @keyframes pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 var(--pulse-color, oklch(from var(--bg) l c h / 0.5));
+    }
+    50% {
+      box-shadow: 0 0 0 var(--distance)
+        var(--pulse-color, oklch(from var(--bg) l c h / 0.5));
+    }
+  }
+
+  @keyframes pulse-ripple {
+    0% {
+      box-shadow: 0 0 0 0 oklch(from var(--pulse-color, var(--bg)) l c h / 1);
+    }
+    100% {
+      box-shadow: 0 0 0 var(--distance)
+        oklch(from var(--pulse-color, var(--bg)) l c h / 0);
+    }
+  }
+
+  --animate-border-beam: border-beam var(--duration, 6s) infinite linear;
+
+  @keyframes border-beam {
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  --animate-meteor: meteor 5s linear infinite;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: #0b1c30;
+    background-color: #f8f9ff;
+    font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  html.dark {
+    color: #e2e8f0;
+    background-color: #050811;
+  }
+
+  :root {
+    /* Cockpit palette defaults (dark). Admin light mode overrides these. */
+    --ck-bg: #060a14;
+    --ck-raised: #0b1220;
+    --ck-hover: #101a2e;
+    --ck-panel: #0a1120;
+    --ck-line: #1c2942;
+    --ck-line-strong: #2a3b5e;
+    --ck-text: #e2e8f0;
+    --ck-muted: #8fa3c0;
+    --ck-faint: #64748b;
+  }
+
+  html.admin-cockpit {
+    color: var(--ck-text);
+    background-color: var(--ck-bg);
+  }
+
+  html.admin-cockpit.dark {
+    color-scheme: dark;
+  }
+
+  html.admin-cockpit.admin-light {
+    /* Mirrors the public dashboard light palette exactly:
+       #f8f9ff page, white cards, slate borders & text (Tailwind slate scale). */
+    --ck-bg: #f8f9ff;
+    --ck-raised: #ffffff;
+    --ck-hover: #f1f5f9;
+    --ck-panel: #ffffff;
+    --ck-line: #e2e8f0;
+    --ck-line-strong: #cbd5e1;
+    --ck-text: #0f172a;
+    --ck-muted: #475569;
+    --ck-faint: #94a3b8;
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  section {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+/* Light-mode accent remap - MUST live OUTSIDE @layer base. Tailwind v4
+   emits all utilities in @layer utilities, which always beats @layer base
+   regardless of selector specificity, so these overrides were silently
+   losing while the block sat inside base. Placed at top level (no layer)
+   they win over utilities in cascade order.
+
+   The public dashboard is neutral slate (no green brand accent), so admin
+   light remaps ALL emerald/sky/amber accents to the dashboard slate
+   scale; rose stays red for destructive affordances only.
+*/
+  html.admin-cockpit.admin-light .text-emerald-300 {
+    color: #334155;
+  }
+  html.admin-cockpit.admin-light .text-emerald-400 {
+    color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .text-emerald-500 {
+    color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .text-sky-300 {
+    color: #475569;
+  }
+  html.admin-cockpit.admin-light .text-sky-400 {
+    color: #334155;
+  }
+  html.admin-cockpit.admin-light .text-sky-500 {
+    color: #334155;
+  }
+  html.admin-cockpit.admin-light .text-amber-300 {
+    color: #64748b;
+  }
+  html.admin-cockpit.admin-light .text-amber-400 {
+    color: #475569;
+  }
+  html.admin-cockpit.admin-light .text-rose-300 {
+    color: #be123c;
+  }
+  html.admin-cockpit.admin-light .text-rose-400 {
+    color: #e11d48;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-500\/15 {
+    background-color: #f1f5f9;
+  }
+  html.admin-cockpit.admin-light .hover\:bg-emerald-500\/25:hover {
+    background-color: #e2e8f0;
+  }
+  html.admin-cockpit.admin-light .ring-emerald-500\/30 {
+    --tw-ring-color: #cbd5e1;
+  }
+  html.admin-cockpit.admin-light .border-emerald-500\/30 {
+    border-color: #cbd5e1;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-500\/10 {
+    background-color: #f1f5f9;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-400\/20 {
+    background-color: #e2e8f0;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-400\/60 {
+    background-color: #64748b;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-500 {
+    background-color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-400 {
+    background-color: #334155;
+  }
+  html.admin-cockpit.admin-light .text-emerald-950 {
+    color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .text-emerald-700 {
+    color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .text-emerald-600 {
+    color: #334155;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-500\/80 {
+    background-color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-400\/10 {
+    background-color: #f1f5f9;
+  }
+  html.admin-cockpit.admin-light .ring-emerald-400\/20 {
+    --tw-ring-color: #cbd5e1;
+  }
+  html.admin-cockpit.admin-light .accent-emerald-500 {
+    accent-color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .border-emerald-500 {
+    border-color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .border-emerald-400 {
+    border-color: #334155;
+  }
+  html.admin-cockpit.admin-light .focus\:ring-emerald-500:focus {
+    --tw-ring-color: #0f172a;
+  }
+  html.admin-cockpit.admin-light .focus\:border-emerald-500\/50:focus {
+    border-color: #64748b;
+  }
+  /* bg-emerald-500 pills use text-cockpit (dark bg color as text); on the
+     slate pill that must flip to white. */
+  html.admin-cockpit.admin-light .text-cockpit {
+    color: #ffffff;
+  }
+  html.admin-cockpit.admin-light .bg-emerald-500.text-cockpit-text {
+    color: #ffffff;
+  }
+  html.admin-cockpit.admin-light .bg-sky-500\/10 {
+    background-color: #f1f5f9;
+  }
+  html.admin-cockpit.admin-light .border-sky-500\/30 {
+    border-color: #cbd5e1;
+  }
+  html.admin-cockpit.admin-light .bg-amber-500\/10 {
+    background-color: #f1f5f9;
+  }
+  html.admin-cockpit.admin-light .border-amber-500\/30 {
+    border-color: #cbd5e1;
+  }
+  html.admin-cockpit.admin-light .bg-amber-400\/15 {
+    background-color: #f1f5f9;
+  }
+  html.admin-cockpit.admin-light .border-amber-400\/40 {
+    border-color: #cbd5e1;
+  }
+  html.admin-cockpit.admin-light .bg-rose-500\/15 {
+    background-color: #ffe4e6;
+  }
+  html.admin-cockpit.admin-light .ring-rose-500\/30 {
+    --tw-ring-color: #fecdd3;
+  }
+  html.admin-cockpit.admin-light .border-rose-500\/40 {
+    border-color: #fda4af;
+  }
+  html.admin-cockpit.admin-light .hover\:bg-rose-500\/10:hover {
+    background-color: #ffe4e6;
+  }
+
+/* ---- Dark mode: emerald -> neon blue (sky) accent ----
+   Night mode should read blue, not green. All emerald-* utilities resolve
+   through var(--color-emerald-*) tokens (Tailwind v4 emits color-mix for
+   opacity variants), so remapping the token map under html.dark switches
+   every accent to the neon sky/blue scale in one place — for both the
+   public site (html.dark) and the admin cockpit (html.admin-cockpit.dark,
+   which also carries the .dark class). Light mode has no .dark and is
+   unaffected. */
+html.dark {
+  --color-emerald-50: #f0f9ff;
+  --color-emerald-100: #e0f2fe;
+  --color-emerald-200: #bae6fd;
+  --color-emerald-300: #7dd3fc;
+  --color-emerald-400: #38bdf8;
+  --color-emerald-500: #0ea5e9;
+  --color-emerald-600: #0284c7;
+  --color-emerald-700: #0369a1;
+  --color-emerald-800: #075985;
+  --color-emerald-900: #0c4a6e;
+  --color-emerald-950: #082f49;
+  --color-cockpit-accent: #38bdf8;
+}
+
+/* ---- Custom smooth cursor colour ----
+   Default (light) renders a black arrow. In dark mode the black fill is
+   invisible on the dark cockpit/page, so flip it to white via a token that
+   the SmoothCursor inline style reads. The white SVG stroke is unchanged. */
+:root {
+  --smooth-cursor-color: #000000;
+}
+html.dark {
+  --smooth-cursor-color: #ffffff;
+}
+
+/* Dual-layer Marquee Animation — seamless infinite loop */
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Track: single flex row sized to its (duplicated) content. */
+.marquee-track-left,
+.marquee-track-right {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  flex-wrap: nowrap;
+}
+
+.marquee-track-left {
+  animation: marqueeLeft 28s linear infinite;
+}
+
+.marquee-track-right {
+  animation: marqueeRight 32s linear infinite;
+}
+
+/* A duplicated set inside the track. Keeps a consistent 12px gap at the seam. */
+.marquee-set {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 0.75rem;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+}
+
+.marquee-container:hover .marquee-track-left,
+.marquee-container:hover .marquee-track-right {
+  animation-play-state: paused;
+}
+
+/* Wifi-off icon: diagonal slash fades out and back in a loop, as if the
+   signal keeps trying to reconnect. */
+@keyframes wifi-off-slash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .marquee-track-left,
+  .marquee-track-right {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Material Symbols Font Rule */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Animated theme toggler — View Transitions API reveal.
+   Disables the default root cross-fade so the JS clip-path animation
+   (::view-transition-new(root)) drives the reveal cleanly. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Firefox: pin the collapsed clip-path until the JS animation starts,
+   so the new theme never paints unclipped between snapshot and ready. */
+html[data-magicui-theme-vt='active']::view-transition-new(root) {
+  clip-path: var(--magicui-theme-vt-clip-from);
+}
+
+/* ---- Admin sidebar collapse (shadcn-style offcanvas port) ----
+   body[data-sidebar-state] drives the geometry via plain CSS (Tailwind
+   arbitrary variants can't express `body[data-attr] ancestor` selectors).
+   Expanded: sidebar w-64, header/main ml-64. Collapsed: w-16 rail. */
+@media (min-width: 1024px) {
+  body[data-sidebar-state='collapsed'] .admin-sidebar {
+    width: 4rem;
+  }
+
+  body[data-sidebar-state='collapsed'] .admin-sidebar .admin-sidebar-inner {
+    width: 4rem;
+  }
+
+  body[data-sidebar-state='collapsed'] .admin-header {
+    left: 4rem;
+  }
+
+  body[data-sidebar-state='collapsed'] .admin-main {
+    margin-left: 4rem;
+  }
+
+  body[data-sidebar-state='collapsed'] #adminSidebar [data-sidebar-label] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Hide in-sidebar hamburger when collapsed (expand via header trigger) */
+  body[data-sidebar-state='collapsed'] #adminMobileToggle {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Show header expand trigger when collapsed */
+  body[data-sidebar-state='collapsed'] #adminSidebarExpand {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  body[data-sidebar-state='collapsed'] #adminSidebar nav {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  /* TreeNav: hide group headers, rail ornaments, labels when collapsed */
+  body[data-sidebar-state='collapsed'] #adminSidebar nav [data-treenav-header],
+  body[data-sidebar-state='collapsed'] #adminSidebar nav ul li span.absolute,
+  body[data-sidebar-state='collapsed'] #adminSidebar nav ul.relative > span.absolute,
+  body[data-sidebar-state='collapsed'] #adminSidebar nav a .truncate {
+    display: none;
+  }
+
+  /* Kill the vertical rail's left padding when collapsed */
+  body[data-sidebar-state='collapsed'] #adminSidebar nav ul {
+    padding-left: 0.25rem;
+  }
+
+  /* Center the icon inside the button when collapsed */
+  body[data-sidebar-state='collapsed'] #adminSidebar nav a {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

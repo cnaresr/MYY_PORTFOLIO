@@ -1,0 +1,119 @@
+{
+  "loopDuration": 35,
+  "track1": [
+    {
+      "id": "b-ts",
+      "name": "TypeScript 5.4",
+      "category": "lang",
+      "iconSlug": "typescript",
+      "enabled": true
+    },
+    {
+      "id": "b-rust",
+      "name": "Rust 2024",
+      "category": "lang",
+      "iconSlug": "rust",
+      "enabled": true
+    },
+    {
+      "id": "b-go",
+      "name": "Go 1.22",
+      "category": "lang",
+      "iconSlug": "go",
+      "enabled": true
+    },
+    {
+      "id": "b-py",
+      "name": "Python 3.12",
+      "category": "lang",
+      "iconSlug": "python",
+      "enabled": true
+    },
+    {
+      "id": "b-cpp",
+      "name": "C++ 20",
+      "category": "lang",
+      "iconSlug": "cplusplus",
+      "enabled": true
+    },
+    {
+      "id": "b-pg",
+      "name": "PostgreSQL 16",
+      "category": "db",
+      "iconSlug": "postgresql",
+      "enabled": true
+    },
+    {
+      "id": "b-bash",
+      "name": "Bash & POSIX",
+      "category": "cli",
+      "iconSlug": "gnubash",
+      "enabled": true
+    },
+    {
+      "id": "b-graphql",
+      "name": "GraphQL & gRPC",
+      "category": "api",
+      "iconSlug": "graphql",
+      "enabled": true
+    }
+  ],
+  "track2": [
+    {
+      "id": "b-astro",
+      "name": "Astro 4.x Islands",
+      "category": "framework",
+      "iconSlug": "astro",
+      "enabled": true
+    },
+    {
+      "id": "b-react",
+      "name": "React 19 RC",
+      "category": "framework",
+      "iconSlug": "react",
+      "enabled": true
+    },
+    {
+      "id": "b-next",
+      "name": "Next.js App Router",
+      "category": "framework",
+      "iconSlug": "nextdotjs",
+      "enabled": true
+    },
+    {
+      "id": "b-vite",
+      "name": "Vite 6 Engine",
+      "category": "tool",
+      "iconSlug": "vite",
+      "enabled": true
+    },
+    {
+      "id": "b-node",
+      "name": "Node.js 22 LTS",
+      "category": "runtime",
+      "iconSlug": "nodedotjs",
+      "enabled": true
+    },
+    {
+      "id": "b-tailwind",
+      "name": "Tailwind CSS v4",
+      "category": "styling",
+      "iconSlug": "tailwindcss",
+      "enabled": true
+    },
+    {
+      "id": "b-redis",
+      "name": "Redis Sentinel",
+      "category": "db",
+      "iconSlug": "redis",
+      "enabled": true
+    },
+    {
+      "id": "b-docker",
+      "name": "Docker & K8s",
+      "category": "infra",
+      "iconSlug": "docker",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { ProfileManager } from '../../../components/admin/ProfileManager';
+import { getProfileData } from '../../../lib/contentStore';
+
+// Fall back to sensible defaults when profile.json is missing or wiped,
+// so the admin form never renders completely empty.
+const DEFAULT_PROFILE = {
+  name: 'Cezar nareswara respati',
+  initials: 'CNR',
+  role: 'Full-Stack Architect',
+  title: 'CEZAR NARESWARA RESPATI',
+  subtitle: 'Lead Systems Architect & Full-Stack Engineer',
+  summary:
+    'Bridging high-throughput distributed architectures, zero-hydration edge systems, and high-fidelity reactive user interfaces. 10+ years engineering resilient web platforms with mechanical sympathy.',
+  email: 'cezar.nares@gmail.com',
+  country: 'Indonesia',
+  officeAddress: '',
+  homeAddress: '',
+  avatar: '/images/foto-pp-385190-087084-cropped-119042.png',
+  cvPdf: '',
+  socialLinks: [],
+};
+
+let profile: any;
+try {
+  const raw = getProfileData();
+  profile = raw && Object.keys(raw).length > 0 ? { ...DEFAULT_PROFILE, ...raw } : DEFAULT_PROFILE;
+} catch {
+  profile = DEFAULT_PROFILE;
+}
+---
+
+<AdminLayout title="Profile & Hero // Root Spec" activeNav="profile" breadcrumbs="PLATFORM / PROFILE">
+  <ProfileManager client:load initialProfile={profile} />
+</AdminLayout>

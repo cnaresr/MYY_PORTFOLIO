@@ -1,0 +1,209 @@
+---
+import '../../../styles/global.css';
+import { AdminThemeToggle } from '../../../components/admin/AdminThemeToggle';
+
+export const prerender = false;
+---
+
+<!doctype html>
+<html lang="en" class="admin-cockpit">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARCH.CMS — Sign in</title>
+    <!-- Theme bootstrap: mirrors AdminLayout (localStorage "theme", dark default). -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolved =
+            stored === 'light' ? 'light'
+            : stored === 'dark' ? 'dark'
+            : stored === 'system' ? (sysDark ? 'dark' : 'light')
+            : 'dark';
+          var root = document.documentElement;
+          root.classList.add(resolved === 'dark' ? 'dark' : 'admin-light');
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-cockpit text-cockpit-text font-['Hanken_Grotesk'] antialiased min-h-screen flex items-center justify-center p-4">
+    <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-b from-emerald-500/10 via-sky-500/5 to-transparent blur-3xl pointer-events-none rounded-full"></div>
+
+    <div class="w-full max-w-md bg-cockpit-panel border border-cockpit-line-strong rounded-2xl shadow-xl overflow-hidden relative z-10">
+      <div class="px-5 py-3.5 bg-cockpit-raised text-cockpit-text flex items-center justify-between border-b border-cockpit-line select-none">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-cockpit-line-strong"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-cockpit-line-strong"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-cockpit-line-strong"></span>
+          <span class="font-mono text-xs text-cockpit-muted ml-2">ARCH.CMS</span>
+        </div>
+        <span class="px-2 py-0.5 rounded bg-emerald-500/15 text-[10px] font-mono text-emerald-300 font-semibold ring-1 ring-emerald-500/30">
+          Sign in
+        </span>
+        <AdminThemeToggle client:only="react" className="ml-2" />
+      </div>
+
+      <div class="p-6 sm:p-8 space-y-6">
+        <div class="space-y-1.5">
+          <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-cockpit-hover border border-cockpit-line text-cockpit-muted font-mono text-[10px] uppercase tracking-wider font-semibold mb-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            Operator access
+          </div>
+          <h1 class="font-['Space_Grotesk'] text-2xl sm:text-3xl font-bold text-cockpit-text tracking-tight">
+            ARCH.CMS Sign In
+          </h1>
+          <p class="text-xs sm:text-sm text-cockpit-muted leading-relaxed">
+            Sign in to manage the portfolio content store.
+          </p>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label for="username" class="block font-['Space_Grotesk'] text-xs font-bold text-cockpit-muted uppercase tracking-wider mb-1.5">
+              Operator Username
+            </label>
+            <div class="relative">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                required
+                autocomplete="username"
+                placeholder="admin"
+                class="w-full pl-10 pr-3.5 py-2.5 rounded-lg bg-cockpit border border-cockpit-line text-cockpit-text text-sm font-mono placeholder:text-cockpit-faint focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500/50 transition-all"
+              />
+              <span class="material-symbols-outlined text-[18px] text-cockpit-faint absolute left-3 top-2.5 pointer-events-none">
+                person
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <label for="password" class="block font-['Space_Grotesk'] text-xs font-bold text-cockpit-muted uppercase tracking-wider mb-1.5">
+              Password
+            </label>
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                autocomplete="current-password"
+                placeholder="••••••••••••"
+                class="w-full pl-10 pr-10 py-2.5 rounded-lg bg-cockpit border border-cockpit-line text-cockpit-text text-sm font-mono placeholder:text-cockpit-faint focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500/50 transition-all"
+              />
+              <span class="material-symbols-outlined text-[18px] text-cockpit-faint absolute left-3 top-2.5 pointer-events-none">
+                key
+              </span>
+              <button
+                type="button"
+                id="togglePwd"
+                class="absolute right-3 top-2.5 text-cockpit-faint hover:text-cockpit-text cursor-pointer"
+                title="Toggle password visibility"
+              >
+                <span class="material-symbols-outlined text-[18px]">visibility</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="errorBanner" class="hidden p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-mono flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px] shrink-0">error</span>
+            <span id="errorMessage">Invalid username or password.</span>
+          </div>
+
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30 hover:bg-emerald-500/25 font-['Space_Grotesk'] text-sm font-bold transition-all cursor-pointer active:scale-[0.99]"
+          >
+            <span class="material-symbols-outlined text-[18px]">lock_open</span>
+            <span>Authenticate Session</span>
+          </button>
+        </form>
+
+        <div class="p-3 rounded-xl bg-cockpit-raised border border-cockpit-line text-cockpit-muted font-mono text-[11px] space-y-1">
+          <div class="text-[10px] uppercase tracking-wider text-cockpit-faint font-bold">
+            Development Session Credentials:
+          </div>
+          <div class="flex items-center justify-between text-cockpit-text">
+            <span>User: <strong class="text-emerald-300">admin</strong></span>
+            <span>Pass: <strong class="text-emerald-300">admin123</strong></span>
+          </div>
+        </div>
+
+        <div class="text-center pt-1 border-t border-cockpit-line">
+          <a
+            href="/"
+            class="inline-flex items-center gap-1.5 text-xs font-mono text-cockpit-muted hover:text-cockpit-text transition-colors"
+          >
+            <span class="material-symbols-outlined text-[14px]">arrow_back</span>
+            <span>Return to Public Portfolio</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('loginForm') as HTMLFormElement | null;
+      const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement | null;
+      const errorBanner = document.getElementById('errorBanner');
+      const errorMessage = document.getElementById('errorMessage');
+      const togglePwd = document.getElementById('togglePwd');
+      const pwdInput = document.getElementById('password') as HTMLInputElement | null;
+
+      togglePwd?.addEventListener('click', () => {
+        if (pwdInput) {
+          const isPwd = pwdInput.type === 'password';
+          pwdInput.type = isPwd ? 'text' : 'password';
+        }
+      });
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorBanner?.classList.add('hidden');
+
+        const username = (document.getElementById('username') as HTMLInputElement).value;
+        const password = (document.getElementById('password') as HTMLInputElement).value;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>Authenticating...</span>';
+        }
+
+        try {
+          const res = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+          });
+
+          const data = await res.json();
+
+          if (!res.ok || !data.success) {
+            throw new Error(data.error || 'Authentication failed');
+          }
+
+          window.location.href = data.redirect || '/user/admin/overview';
+        } catch (err: any) {
+          if (errorMessage) errorMessage.innerText = err.message || 'Login failed';
+          errorBanner?.classList.remove('hidden');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">lock_open</span><span>Authenticate Session</span>';
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

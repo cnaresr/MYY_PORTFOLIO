@@ -1,0 +1,23 @@
+# build output
+dist/
+dist_app/
+dist_old/
+.astro/
+.vite_cache/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,191 @@
+---
+import { siteConfig } from '../data/siteConfig';
+import { ContactForm } from './interactive/ContactForm';
+---
+
+<section class="w-full py-16 md:py-24 bg-slate-100 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800 relative transition-colors overflow-hidden" id="contact">
+  <!-- Architectural Subtle Grid Pattern -->
+  <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:28px_28px] opacity-40 dark:opacity-20 pointer-events-none z-0"></div>
+
+  <div class="max-w-[1200px] mx-auto px-6 relative z-10 section-content-flow">
+    <div class="contact-grid grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <!-- Left Column: Direct Connect Details -->
+      <div class="contact-wing-left lg:col-span-5 flex flex-col justify-between">
+        <div>
+          <span class="font-['Space_Grotesk'] text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold block mb-1">
+            CHANNELS // DIRECT DISPATCH
+          </span>
+          <h2 class="font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-[44px] font-bold text-slate-950 dark:text-white mb-3 tracking-tight leading-tight">
+            Want to collaborate?
+          </h2>
+          <p class="font-['Hanken_Grotesk'] text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+            Open for fractional systems advisory, technical due diligence for early-stage funds, and principal greenfield architecture contracts.
+            <span class="block mt-2 font-semibold text-slate-800 dark:text-slate-200">Contact me at:</span>
+          </p>
+
+          <!-- Direct Email Badge with Copy Action -->
+          <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 mb-4 shadow-xs">
+            <div class="flex items-center gap-2 font-['Space_Grotesk'] text-[11px] text-slate-600 dark:text-slate-400 uppercase tracking-wider font-bold mb-2">
+              <svg class="w-4 h-4 text-slate-700 dark:text-slate-300 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Email me</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-sm sm:text-[15px] text-slate-950 dark:text-white select-all font-semibold" id="emailText">
+                {siteConfig.email}
+              </span>
+              <button
+                type="button"
+                id="copyEmailBtn"
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-mono font-semibold transition-colors cursor-pointer"
+                title="Copy email to clipboard"
+              >
+                <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                <span id="copyBtnLabel">Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Office Address (only when filled in admin) -->
+          {siteConfig.officeAddress && (
+            <div class="flex items-center gap-3 p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 mb-4 shadow-xs">
+              <span class="material-symbols-outlined text-slate-700 dark:text-slate-300 text-[22px]">business</span>
+              <div>
+                <span class="font-['Space_Grotesk'] text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block">
+                  OFFICE
+                </span>
+                <span class="font-['Hanken_Grotesk'] text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium whitespace-pre-line">
+                  {siteConfig.officeAddress}
+                </span>
+              </div>
+            </div>
+          )}
+
+          <!-- Home / Residence Address (only when filled in admin) -->
+          {siteConfig.homeAddress && (
+            <div class="flex items-center gap-3 p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 mb-4 shadow-xs">
+              <span class="material-symbols-outlined text-slate-700 dark:text-slate-300 text-[22px]">home</span>
+              <div>
+                <span class="font-['Space_Grotesk'] text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold block">
+                  HOME
+                </span>
+                <span class="font-['Hanken_Grotesk'] text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium whitespace-pre-line">
+                  {siteConfig.homeAddress}
+                </span>
+              </div>
+            </div>
+          )}
+
+          <!-- Quick Connect Links -->
+          <div class="space-y-2">
+            <span class="font-['Space_Grotesk'] text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold block">
+              DIRECT FAST-CONNECTS
+            </span>
+            <div class="flex flex-wrap gap-2">
+              {siteConfig.socialLinks.map((social) => (
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-black dark:hover:text-white font-mono text-xs font-semibold shadow-2xs transition-colors"
+                >
+                  <span>{social.name}</span>
+                  <span class="material-symbols-outlined text-[14px]">{social.icon}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Inquiry Console -->
+      <div class="contact-wing-right lg:col-span-7">
+        <ContactForm
+          client:load
+          title="SECURE TRANSMISSION CONSOLE"
+          subtitle="Outline technical objectives, timeline constraints, and scope."
+          successTitle="Message Received"
+          siteName={siteConfig.name.split(' ')[0]}
+          fallbackEmail={siteConfig.email}
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap, ScrollTrigger } from '../lib/gsap';
+
+  // Dual-Wing Lateral Entry Animation
+  function initContactWings() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const leftWing = document.querySelector('.contact-wing-left');
+    const rightWing = document.querySelector('.contact-wing-right');
+    const container = document.querySelector('.contact-grid');
+
+    if (leftWing && rightWing && container) {
+      gsap.fromTo(
+        leftWing,
+        { x: -36, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.75,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        rightWing,
+        { x: 36, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.75,
+          delay: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }
+  }
+
+  initContactWings();
+
+  // Copy email micro-interaction
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const copyLabel = document.getElementById('copyBtnLabel');
+  const emailText = document.getElementById('emailText');
+
+  if (copyBtn && copyLabel && emailText) {
+    copyBtn.addEventListener('click', async () => {
+      const email = emailText.innerText.trim();
+      try {
+        await navigator.clipboard.writeText(email);
+        copyLabel.innerText = 'Copied!';
+        copyBtn.classList.add('bg-slate-900', 'text-white');
+        setTimeout(() => {
+          copyLabel.innerText = 'Copy';
+          copyBtn.classList.remove('bg-slate-900', 'text-white');
+        }, 2200);
+      } catch (err) {
+        copyLabel.innerText = 'Copied!';
+        setTimeout(() => {
+          copyLabel.innerText = 'Copy';
+        }, 1500);
+      }
+    });
+  }
+</script>

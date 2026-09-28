@@ -1,0 +1,31 @@
+{
+  "name": "Cezar nareswara respati",
+  "initials": "CNR",
+  "role": "Full-Stack Architect",
+  "title": "CEZAR NARESWARA RESPATI",
+  "subtitle": "Code with Passion, Build with Purpose",
+  "summary": "Di mana ada kemauan, di situ ada jalan. Teruslah melangkah, berkarya, dan berinovasi tanpa henti.",
+  "email": "cezar.nares@gmail.com",
+  "country": "Indonesia",
+  "officeAddress": "POLINES",
+  "homeAddress": "Semarang, Tembalang, Jawa Tengah",
+  "avatar": "/images/foto-pp-385190-087084-cropped-119042.png",
+  "cvPdf": "/Jason_Martin_Principal_Architect_2025.pdf",
+  "socialLinks": [
+    {
+      "name": "GitHub",
+      "href": "https://github.com/cnaresr",
+      "icon": "code"
+    },
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/cezar-nareswara-respati-8b8a55327/",
+      "icon": "arrow_outward"
+    },
+    {
+      "name": "Instagram",
+      "href": "https://www.instagram.com/czr_nr/",
+      "icon": "arrow_outward"
+    }
+  ]
+}

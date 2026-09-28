@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "on-secondary": "#ffffff", "on-surface-variant": "#44474a", "surface-container-low": "#eff4ff", "background": "#f8f9ff", "tertiary-container": "#e2e6ff", "on-secondary-container": "#616363", "secondary-fixed": "#e2e2e2", "on-secondary-fixed-variant": "#454747", "on-secondary-fixed": "#1a1c1c", "surface-dim": "#cbdbf5", "on-primary-fixed": "#191c1f", "on-primary-container": "#64676b", "surface-variant": "#d3e4fe", "primary": "#5c5f62", "on-surface": "#0b1c30", "surface": "#f8f9ff", "primary-fixed-dim": "#c4c7ca", "error-container": "#ffdad6", "on-tertiary-container": "#606681", "surface-bright": "#f8f9ff", "primary-container": "#e5e7eb", "surface-container-highest": "#d3e4fe", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#141a32", "on-error": "#ffffff", "on-tertiary-fixed-variant": "#3f465f", "on-tertiary": "#ffffff", "surface-container-lowest": "#ffffff", "secondary-container": "#dfe0e0", "on-primary-fixed-variant": "#44474a", "error": "#ba1a1a", "on-background": "#0b1c30", "surface-container": "#e5eeff", "tertiary": "#575d78", "primary-fixed": "#e0e2e6", "inverse-on-surface": "#eaf1ff", "inverse-surface": "#213145", "tertiary-fixed-dim": "#bfc5e4", "secondary": "#5d5f5f", "outline": "#75777a", "outline-variant": "#c5c6ca", "on-primary": "#ffffff", "tertiary-fixed": "#dce1ff", "inverse-primary": "#c4c7ca", "surface-tint": "#5c5f62", "secondary-fixed-dim": "#c6c6c7" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1.5rem", "space-lg": "1.75rem", "space-md": "1rem", "space-sm": "0.5rem", "space-xl": "3rem", "margin": "2rem", "space-xs": "0.25rem" }, "fontFamily": { "label-code": [ "JetBrains Mono" ], "headline-md": [ "Space Grotesk" ], "body-lg": [ "Hanken Grotesk" ], "body-sm": [ "Hanken Grotesk" ], "headline-lg-mobile": [ "Space Grotesk" ], "headline-lg": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "label-caps": [ "Space Grotesk" ], "display-hero": [ "Space Grotesk" ], "body-md": [ "Hanken Grotesk" ], "display-hero-mobile": [ "Space Grotesk" ] }, "fontSize": { "label-code": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-md": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "500" } ], "body-lg": [ "18px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-lg-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "500" } ], "headline-lg": [ "44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "500" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-caps": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" } ], "display-hero": [ "72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "600" } ], "body-md": [ "15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" } ], "display-hero-mobile": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 bg-inverse-surface rounded flex items-center justify-center"><span class="material-symbols-outlined text-inverse-on-surface text-[16px]">terminal</span></div><div class="flex flex-col"><span class="font-label-code text-label-code text-on-surface font-bold">ARCH.CMS</span><span class="font-label-caps text-label-caps text-on-surface-variant">v2.4 // PROD</span></div></div><span class="font-label-code text-[10px] px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant uppercase">SSR</span></div><div class="px-gutter py-space-sm"><div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-code text-[11px] text-on-surface">Jason Martin</span></div><span class="font-label-code text-[10px] text-on-surface-variant uppercase">Architect</span></div></div><nav class="flex flex-col gap-1 px-space-sm mt-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded"><div class="px-space-sm pt-space-xs pb-1"><span class="font-label-caps text-label-caps text-outline uppercase">Platform Core</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="overview-analytics" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-sm text-body-sm">Overview &amp; Analytics</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="profile-hero" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-body-sm text-body-sm">Profile &amp; Hero</span></a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-caps text-label-caps text-outline uppercase">Editorial &amp; Assets</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="projects-showcase" href="#"><span class="material-symbols-outlined text-[18px]">architecture</span><span class="font-body-sm text-body-sm">Projects Showcase</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="tech-stack-marquee" href="#"><span class="material-symbols-outlined text-[18px]">dataset</span><span class="font-body-sm text-body-sm">Tech Stack &amp; Marquee</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-primary-container text-on-primary-container font-bold rounded" data-path="skills-matrix" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-sm text-body-sm">Skills Matrix</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="certificates-credentials" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-sm text-body-sm">Credentials</span></a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-caps text-label-caps text-outline uppercase">Dispatch</span></div><a class="flex items-center justify-between px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="inquiries-messages" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">alternate_email</span><span class="font-body-sm text-body-sm">Inquiries</span></div><span class="font-label-code text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface">03</span></a></nav></div><div class="p-gutter flex flex-col gap-space-sm bg-surface-container-lowest"><div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps text-on-surface-variant">DB CLUSTER</span><span class="font-label-code text-[11px] text-on-surface">Postgres v16</span></div><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span class="font-label-code text-[11px] text-on-surface-variant">Synced (42ms)</span></div></div><a class="flex items-center justify-center gap-space-xs py-2 px-space-sm rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors" href="#" target="_blank"><span class="font-label-code text-label-code uppercase tracking-wider">Live Portfolio</span><span class="material-symbols-outlined text-[16px]">arrow_outward</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant"><span class="text-on-surface">ARCH.CMS</span><span>/</span><span>WORKSPACE</span><span>/</span><span class="text-on-surface font-semibold">OVERVIEW</span></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-code text-[11px] text-on-surface">Production: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs text-on-surface-variant font-label-code text-[11px]"><span class="material-symbols-outlined text-[16px]">cloud_done</span><span>Astro SSR Node</span></div><div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface cursor-pointer hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">notifications</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 pt-16 bg-surface w-full px-margin py-space-lg"><div class="flex flex-col w-full">
+<!-- SECTION HEADER & ACTIONS -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-code text-label-code">
+<span>RUNTIME_REGISTRY</span>
+<span>//</span>
+<span class="text-on-surface font-semibold">ENGINE_MATRIX_v4.2</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Skills &amp; Tech Stack Manager</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Configure runtime proficiency bars, core syntax ratings, framework tags, and continuous marquee ticker items. Synchronizes automatically with the portfolio edge worker runtime.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button class="group flex items-center gap-space-xs px-space-md py-2.5 rounded bg-surface-container-low text-on-surface hover:bg-surface-container transition-all" id="revert-btn" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:rotate-[-45deg] transition-transform">history</span>
+<span class="font-label-code text-label-code uppercase tracking-wider">Revert Commit</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-lg py-2.5 rounded bg-inverse-surface text-inverse-on-surface shadow-md hover:bg-primary transition-all active:scale-[0.98]" id="save-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+<span class="font-label-code text-label-code uppercase tracking-wider font-semibold">Save Changes</span>
+</button>
+</div>
+</div>
+<!-- CONTROL TABS BAR -->
+<div class="w-full bg-surface-container-lowest rounded shadow-sm p-1.5 flex items-center justify-between mb-space-lg">
+<div class="flex items-center gap-1" id="tab-controls">
+<button class="tab-btn active-tab flex items-center gap-space-xs px-space-md py-2 rounded bg-primary-container text-on-primary-container font-label-code text-label-code transition-all" data-target="matrix-section" type="button">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>SKILLS MATRIX (DUAL-COL)</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface font-bold text-[10px]">12 Active</span>
+</button>
+<button class="tab-btn flex items-center gap-space-xs px-space-md py-2 rounded text-on-surface-variant hover:bg-surface-container-low transition-all font-label-code text-label-code" data-target="marquee-section" type="button">
+<span class="material-symbols-outlined text-[16px]">view_timeline</span>
+<span>CONTINUOUS MARQUEE ENGINE</span>
+<span class="px-1.5 py-0.2 rounded bg-surface-container-low text-on-surface-variant text-[10px]">16 Badges</span>
+</button>
+</div>
+<div class="hidden sm:flex items-center gap-space-sm pr-space-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-code text-label-code text-on-surface-variant">HOT_RELOAD // ENABLED</span>
+</div>
+</div>
+<!-- SECTION 1: SKILLS MATRIX PROFICIENCIES -->
+<div class="flex flex-col gap-space-lg w-full" id="matrix-section">
+<!-- Grid Columns -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg w-full">
+<!-- COLUMN A: LANGUAGE EXPERTISE -->
+<div class="lg:col-span-6 flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded shadow-sm">
+<div class="flex items-center justify-between pb-space-sm border-b-0">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-none">Language Expertise</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Core Syntax &amp; Memory Models</span>
+</div>
+</div>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-on-surface">06 Modules</span>
+</div>
+<!-- Language Items List -->
+<div class="flex flex-col gap-space-sm" id="languages-list">
+<!-- Item 1: TypeScript -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">TypeScript</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">v5.4 • Strict Typing</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">98%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="98"/>
+</div>
+</div>
+<!-- Item 2: Rust -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Rust</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Tokio / Wasm / Zero-Copy</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">95%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="95"/>
+</div>
+</div>
+<!-- Item 3: Go -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Go</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Concurrency / Channels / Microservices</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">92%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="92"/>
+</div>
+</div>
+<!-- Item 4: Python -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Python</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">AsyncIO / Data Pipelines / PyTorch</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">90%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="90"/>
+</div>
+</div>
+<!-- Item 5: C++ -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">C++</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">C++20 / Memory Optimization / SIMD</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">88%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="88"/>
+</div>
+</div>
+<!-- Item 6: SQL & PostgreSQL -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">SQL &amp; PostgreSQL</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">pgvector / Hypertables / Tuning</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">98%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="98"/>
+</div>
+</div>
+</div>
+<button class="mt-space-sm w-full py-2.5 rounded bg-surface-container-low hover:bg-surface-container text-on-surface flex items-center justify-center gap-space-xs font-label-code text-label-code uppercase transition-all" id="add-lang-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Add Language Entry</span>
+</button>
+</div>
+<!-- COLUMN B: FRAMEWORK & ENGINE EXPERTISE -->
+<div class="lg:col-span-6 flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded shadow-sm">
+<div class="flex items-center justify-between pb-space-sm border-b-0">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">developer_board</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface leading-none">Framework &amp; Engine Expertise</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Platforms, Compilers &amp; Edge Runtimes</span>
+</div>
+</div>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-high text-on-surface">06 Modules</span>
+</div>
+<!-- Framework Items List -->
+<div class="flex flex-col gap-space-sm" id="frameworks-list">
+<!-- Item 1: Astro Islands -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Astro Islands</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">v4.x Zero-JS Baseline</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">98%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="98"/>
+</div>
+</div>
+<!-- Item 2: React 19 & Vite -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">React 19 &amp; Vite</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Concurrent Mode / Rolldown Engine</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">96%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="96"/>
+</div>
+</div>
+<!-- Item 3: Next.js App Router -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Next.js App Router</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">RSC Streaming / Partial Prerendering</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">94%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="94"/>
+</div>
+</div>
+<!-- Item 4: Tailwind CSS v4 -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Tailwind CSS v4</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Token Engines / Lightning CSS</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">96%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="96"/>
+</div>
+</div>
+<!-- Item 5: Node.js LTS v22 -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Node.js LTS v22</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Worker Threads / V8 Isolates</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">92%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="92"/>
+</div>
+</div>
+<!-- Item 6: Cloudflare Edge -->
+<div class="group flex flex-col gap-space-xs p-space-md rounded bg-surface-container-low hover:bg-surface-container transition-all">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[18px] cursor-grab active:cursor-grabbing">drag_indicator</span>
+<span class="font-headline-sm text-[16px] text-on-surface">Cloudflare Edge</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container-lowest text-on-surface-variant">Workers KV / D1 / Durable Objects</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-label-code font-bold text-on-surface value-display">95%</span>
+<button class="text-outline hover:text-error transition-colors p-1" title="Delete" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-space-md mt-1">
+<input class="w-full accent-inverse-surface cursor-pointer range-slider" max="100" min="0" type="range" value="95"/>
+</div>
+</div>
+</div>
+<button class="mt-space-sm w-full py-2.5 rounded bg-surface-container-low hover:bg-surface-container text-on-surface flex items-center justify-center gap-space-xs font-label-code text-label-code uppercase transition-all" id="add-framework-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Add Framework / Platform</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: CONTINUOUS MARQUEE TICKER CONFIGURATION -->
+<div class="flex flex-col gap-space-lg w-full mt-space-lg" id="marquee-section">
+<!-- Ticker Control Console -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col gap-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded bg-primary"></span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Continuous Marquee Ticker Engine</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Dual-channel hardware-accelerated ticker ribbons for the public portfolio homepage. Rendered using CSS <code class="font-label-code text-[11px] px-1 bg-surface-container rounded">translate3d</code> transformations.
+          </p>
+</div>
+<!-- Global Speed Controls -->
+<div class="flex items-center gap-space-md bg-surface-container-low p-space-sm rounded">
+<div class="flex flex-col">
+<span class="font-label-caps text-[10px] text-on-surface-variant">LOOP DURATION</span>
+<span class="font-label-code text-label-code font-bold text-on-surface" id="speed-label">35s Smooth Loop</span>
+</div>
+<input class="accent-inverse-surface w-32 cursor-pointer" id="global-speed-slider" max="60" min="15" type="range" value="35"/>
+</div>
+</div>
+<!-- Marquee Channels Setup -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Track 1 Box -->
+<div class="p-space-md rounded bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface">arrow_forward</span>
+<span class="font-label-code text-label-code font-bold text-on-surface uppercase">Track 01 (Right-to-Left)</span>
+</div>
+<span class="font-label-code text-[11px] text-on-surface-variant">Normal Flow</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+            Direct high-priority languages and database runtimes. Staggered with an 8px architectural gap.
+          </p>
+<div class="flex items-center gap-2 pt-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-code text-[11px] text-on-surface">08 Active Items</span>
+</div>
+</div>
+<!-- Track 2 Box -->
+<div class="p-space-md rounded bg-surface-container-low flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface">arrow_back</span>
+<span class="font-label-code text-label-code font-bold text-on-surface uppercase">Track 02 (Left-to-Right)</span>
+</div>
+<span class="font-label-code text-[11px] text-on-surface-variant">Inverted Flow</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
+            Secondary tools, frameworks, and deployment nodes. Runs counter-cyclical for balanced visual motion.
+          </p>
+<div class="flex items-center gap-2 pt-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-code text-[11px] text-on-surface">08 Active Items</span>
+</div>
+</div>
+</div>
+<!-- Active Badge Items Manager Grid -->
+<div class="flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Badge Repository &amp; State Toggles (16 Total)</span>
+<button class="flex items-center gap-1 font-label-code text-label-code text-on-surface hover:underline" id="custom-svg-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+<span>Upload SVG Icon</span>
+</button>
+</div>
+<!-- 16 Badges Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-space-sm" id="badge-items-grid">
+<!-- Badge 1 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">code</span>
+<span class="font-label-code text-label-code text-on-surface truncate">TypeScript 5.4</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 2 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">memory</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Rust 2024</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 3 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">bolt</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Go 1.22</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 4 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">integration_instructions</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Python 3.12</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 5 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">data_object</span>
+<span class="font-label-code text-label-code text-on-surface truncate">C++ 20</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 6 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">database</span>
+<span class="font-label-code text-label-code text-on-surface truncate">PostgreSQL 16</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 7 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">terminal</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Bash &amp; POSIX</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 8 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">hub</span>
+<span class="font-label-code text-label-code text-on-surface truncate">GraphQL &amp; gRPC</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 9 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">rocket_launch</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Astro 4.x Islands</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 10 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">sync</span>
+<span class="font-label-code text-label-code text-on-surface truncate">React 19 RC</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 11 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">splitscreen</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Next.js App Router</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 12 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">flash_on</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Vite 6 Engine</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 13 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">token</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Node.js 22 LTS</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 14 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">brush</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Tailwind CSS v4</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 15 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">layers</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Redis Sentinel</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+<!-- Badge 16 -->
+<div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between hover:bg-surface-container transition-all">
+<div class="flex items-center gap-space-xs truncate">
+<span class="material-symbols-outlined text-[16px] text-on-surface">deployed_code</span>
+<span class="font-label-code text-label-code text-on-surface truncate">Docker &amp; K8s</span>
+</div>
+<input checked="" class="accent-inverse-surface w-4 h-4 cursor-pointer" type="checkbox"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: LIVE VIEWPORT TELEMETRY PREVIEW (HAUTE ARCHITECTURAL DISCIPLINE) -->
+<div class="mt-space-xl flex flex-col gap-space-md w-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface">monitor</span>
+<span class="font-label-code text-label-code font-bold text-on-surface uppercase">Live Portfolio Viewport Simulation</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-code text-[11px] text-on-surface-variant">Client Edge Node: 1440px Container</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+</div>
+</div>
+<!-- The Inverted Dark Structural Console Frame -->
+<div class="w-full bg-inverse-surface text-inverse-on-surface rounded p-space-lg shadow-xl overflow-hidden relative">
+<div class="flex items-center justify-between border-b-0 pb-space-md opacity-70">
+<span class="font-label-code text-[11px] tracking-widest uppercase text-tertiary-fixed">MODULE // ARCH.PORTFOLIO.SKILLS_AND_STACK</span>
+<span class="font-label-code text-[11px] text-tertiary-fixed">LATENCY: 0.04ms</span>
+</div>
+<!-- Live Dual-Column Render Simulation -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg my-space-md">
+<!-- Live Column A -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim uppercase tracking-wider">LANGUAGES (SIMULATION)</span>
+<div class="flex flex-col gap-3">
+<div>
+<div class="flex justify-between font-label-code text-[11px] text-inverse-on-surface mb-1">
+<span>TypeScript 5.4</span>
+<span class="text-tertiary-fixed">98%</span>
+</div>
+<div class="w-full h-1 bg-surface-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[98%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-code text-[11px] text-inverse-on-surface mb-1">
+<span>Rust &amp; Wasm</span>
+<span class="text-tertiary-fixed">95%</span>
+</div>
+<div class="w-full h-1 bg-surface-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[95%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-code text-[11px] text-inverse-on-surface mb-1">
+<span>Go Concurrency</span>
+<span class="text-tertiary-fixed">92%</span>
+</div>
+<div class="w-full h-1 bg-surface-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[92%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Column B -->
+<div class="flex flex-col gap-space-sm">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim uppercase tracking-wider">PLATFORMS &amp; RUNTIMES</span>
+<div class="flex flex-col gap-3">
+<div>
+<div class="flex justify-between font-label-code text-[11px] text-inverse-on-surface mb-1">
+<span>Astro Islands 4.x</span>
+<span class="text-tertiary-fixed">98%</span>
+</div>
+<div class="w-full h-1 bg-surface-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[98%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-code text-[11px] text-inverse-on-surface mb-1">
+<span>React 19 &amp; Vite</span>
+<span class="text-tertiary-fixed">96%</span>
+</div>
+<div class="w-full h-1 bg-surface-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[96%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-code text-[11px] text-inverse-on-surface mb-1">
+<span>Cloudflare Edge Workers</span>
+<span class="text-tertiary-fixed">95%</span>
+</div>
+<div class="w-full h-1 bg-surface-container/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[95%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Marquee Track Simulation (Animated Visual Showcase) -->
+<div class="mt-space-lg flex flex-col gap-space-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim uppercase tracking-wider">Live Continuous Ticker Feed</span>
+<span class="font-label-code text-[10px] text-tertiary-fixed">CSS Transform3D @ 60FPS</span>
+</div>
+<div class="flex flex-col gap-2 overflow-hidden py-space-sm">
+<!-- Marquee Track A (Mock Loop) -->
+<div class="flex items-center gap-space-sm whitespace-nowrap opacity-90 overflow-x-hidden select-none">
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> TypeScript 5.4
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Rust 2024
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Go 1.22
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Python 3.12
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> PostgreSQL 16
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Bash &amp; POSIX
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> GraphQL &amp; gRPC
+            </span>
+</div>
+<!-- Marquee Track B (Mock Loop Inverted) -->
+<div class="flex items-center gap-space-sm whitespace-nowrap opacity-75 overflow-x-hidden select-none -ml-12">
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Astro 4.x Islands
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> React 19 RC
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Next.js App Router
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Vite 6 Engine
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Tailwind CSS v4
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Redis Sentinel
+            </span>
+<span class="px-3 py-1 bg-surface-container/10 rounded font-label-code text-[11px] text-tertiary-fixed flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Docker &amp; Kubernetes
+            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- INLINE CLIENT SCRIPT FOR DYNAMIC INTERACTIVITY -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sliders sync with display percentage values
+      const sliders = document.querySelectorAll('.range-slider');
+      sliders.forEach(slider => {
+        slider.addEventListener('input', (e) => {
+          const container = e.target.closest('.group');
+          const display = container.querySelector('.value-display');
+          if (display) {
+            display.textContent = `${e.target.value}%`;
+          }
+        });
+      });
+
+      // Global marquee speed slider sync
+      const speedSlider = document.getElementById('global-speed-slider');
+      const speedLabel = document.getElementById('speed-label');
+      if (speedSlider && speedLabel) {
+        speedSlider.addEventListener('input', (e) => {
+          speedLabel.textContent = `${e.target.value}s Smooth Loop`;
+        });
+      }
+
+      // Save notification feedback
+      const saveBtn = document.getElementById('save-btn');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          const originalText = saveBtn.innerHTML;
+          saveBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[18px] animate-spin">sync</span>
+            <span class="font-label-code text-label-code uppercase tracking-wider font-semibold">Committing...</span>
+          `;
+          setTimeout(() => {
+            saveBtn.innerHTML = `
+              <span class="material-symbols-outlined text-[18px]">check</span>
+              <span class="font-label-code text-label-code uppercase tracking-wider font-semibold">Synced!</span>
+            `;
+            setTimeout(() => {
+              saveBtn.innerHTML = originalText;
+            }, 1500);
+          }, 600);
+        });
+      }
+
+      // Tab switcher interaction
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabBtns.forEach(b => {
+            b.classList.remove('active-tab', 'bg-primary-container', 'text-on-primary-container');
+            b.classList.add('text-on-surface-variant');
+          });
+          btn.classList.add('active-tab', 'bg-primary-container', 'text-on-primary-container');
+          btn.classList.remove('text-on-surface-variant');
+
+          const targetId = btn.getAttribute('data-target');
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] py-space-md px-margin"><div class="w-full flex flex-col md:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-lg font-label-code text-[11px] text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>System Uptime: 99.98%</span></div><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>PostgreSQL: Healthy</span></div><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>Astro Edge: Stockholm-1</span></div></div><div class="font-label-code text-[11px] text-outline">© 2024 JASON MARTIN STUDIO // ARCHITECTURAL CMS</div></div></footer></div></body></html>

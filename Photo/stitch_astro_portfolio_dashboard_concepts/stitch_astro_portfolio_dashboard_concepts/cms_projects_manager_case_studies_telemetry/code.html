@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Space+Grotesk:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-error-container": "#93000a", "on-secondary": "#ffffff", "on-surface-variant": "#44474a", "surface-container-low": "#eff4ff", "background": "#f8f9ff", "tertiary-container": "#e2e6ff", "on-secondary-container": "#616363", "secondary-fixed": "#e2e2e2", "on-secondary-fixed-variant": "#454747", "on-secondary-fixed": "#1a1c1c", "surface-dim": "#cbdbf5", "on-primary-fixed": "#191c1f", "on-primary-container": "#64676b", "surface-variant": "#d3e4fe", "primary": "#5c5f62", "on-surface": "#0b1c30", "surface": "#f8f9ff", "primary-fixed-dim": "#c4c7ca", "error-container": "#ffdad6", "on-tertiary-container": "#606681", "surface-bright": "#f8f9ff", "primary-container": "#e5e7eb", "surface-container-highest": "#d3e4fe", "surface-container-high": "#dce9ff", "on-tertiary-fixed": "#141a32", "on-error": "#ffffff", "on-tertiary-fixed-variant": "#3f465f", "on-tertiary": "#ffffff", "surface-container-lowest": "#ffffff", "secondary-container": "#dfe0e0", "on-primary-fixed-variant": "#44474a", "error": "#ba1a1a", "on-background": "#0b1c30", "surface-container": "#e5eeff", "tertiary": "#575d78", "primary-fixed": "#e0e2e6", "inverse-on-surface": "#eaf1ff", "inverse-surface": "#213145", "tertiary-fixed-dim": "#bfc5e4", "secondary": "#5d5f5f", "outline": "#75777a", "outline-variant": "#c5c6ca", "on-primary": "#ffffff", "tertiary-fixed": "#dce1ff", "inverse-primary": "#c4c7ca", "surface-tint": "#5c5f62", "secondary-fixed-dim": "#c6c6c7" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1.5rem", "space-lg": "1.75rem", "space-md": "1rem", "space-sm": "0.5rem", "space-xl": "3rem", "margin": "2rem", "space-xs": "0.25rem" }, "fontFamily": { "label-code": [ "JetBrains Mono" ], "headline-md": [ "Space Grotesk" ], "body-lg": [ "Hanken Grotesk" ], "body-sm": [ "Hanken Grotesk" ], "headline-lg-mobile": [ "Space Grotesk" ], "headline-lg": [ "Space Grotesk" ], "headline-sm": [ "Space Grotesk" ], "label-caps": [ "Space Grotesk" ], "display-hero": [ "Space Grotesk" ], "body-md": [ "Hanken Grotesk" ], "display-hero-mobile": [ "Space Grotesk" ] }, "fontSize": { "label-code": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-md": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "500" } ], "body-lg": [ "18px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-lg-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "500" } ], "headline-lg": [ "44px", { "lineHeight": "52px", "letterSpacing": "-0.03em", "fontWeight": "500" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-caps": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.12em", "fontWeight": "700" } ], "display-hero": [ "72px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "600" } ], "body-md": [ "15px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" } ], "display-hero-mobile": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col"><div class="h-16 px-gutter flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 bg-inverse-surface rounded flex items-center justify-center"><span class="material-symbols-outlined text-inverse-on-surface text-[16px]">terminal</span></div><div class="flex flex-col"><span class="font-label-code text-label-code text-on-surface font-bold">ARCH.CMS</span><span class="font-label-caps text-label-caps text-on-surface-variant">v2.4 // PROD</span></div></div><span class="font-label-code text-[10px] px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant uppercase">SSR</span></div><div class="px-gutter py-space-sm"><div class="p-space-sm rounded bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-code text-[11px] text-on-surface">Jason Martin</span></div><span class="font-label-code text-[10px] text-on-surface-variant uppercase">Architect</span></div></div><nav class="flex flex-col gap-1 px-space-sm mt-space-sm" data-active-classes="bg-primary-container text-on-primary-container font-bold rounded"><div class="px-space-sm pt-space-xs pb-1"><span class="font-label-caps text-label-caps text-outline uppercase">Platform Core</span></div><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="overview-analytics" href="#"><span class="material-symbols-outlined text-[18px]">space_dashboard</span><span class="font-body-sm text-body-sm">Overview &amp; Analytics</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="profile-hero" href="#"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-body-sm text-body-sm">Profile &amp; Hero</span></a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-caps text-label-caps text-outline uppercase">Editorial &amp; Assets</span></div><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-2 transition-colors bg-primary-container text-on-primary-container font-bold rounded" data-path="projects-showcase" href="#"><span class="material-symbols-outlined text-[18px]">architecture</span><span class="font-body-sm text-body-sm">Projects Showcase</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="tech-stack-marquee" href="#"><span class="material-symbols-outlined text-[18px]">dataset</span><span class="font-body-sm text-body-sm">Tech Stack &amp; Marquee</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="skills-matrix" href="#"><span class="material-symbols-outlined text-[18px]">hub</span><span class="font-body-sm text-body-sm">Skills Matrix</span></a><a class="flex items-center gap-space-sm px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="certificates-credentials" href="#"><span class="material-symbols-outlined text-[18px]">verified</span><span class="font-body-sm text-body-sm">Credentials</span></a><div class="px-space-sm pt-space-md pb-1"><span class="font-label-caps text-label-caps text-outline uppercase">Dispatch</span></div><a class="flex items-center justify-between px-space-sm py-2 rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="inquiries-messages" href="#"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-[18px]">alternate_email</span><span class="font-body-sm text-body-sm">Inquiries</span></div><span class="font-label-code text-[11px] px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface">03</span></a></nav></div><div class="p-gutter flex flex-col gap-space-sm bg-surface-container-lowest"><div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1"><div class="flex items-center justify-between"><span class="font-label-caps text-label-caps text-on-surface-variant">DB CLUSTER</span><span class="font-label-code text-[11px] text-on-surface">Postgres v16</span></div><div class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span class="font-label-code text-[11px] text-on-surface-variant">Synced (42ms)</span></div></div><a class="flex items-center justify-center gap-space-xs py-2 px-space-sm rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors" href="#" target="_blank"><span class="font-label-code text-label-code uppercase tracking-wider">Live Portfolio</span><span class="material-symbols-outlined text-[16px]">arrow_outward</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs font-label-code text-label-code text-on-surface-variant"><span class="text-on-surface">ARCH.CMS</span><span>/</span><span>WORKSPACE</span><span>/</span><span class="text-on-surface font-semibold">OVERVIEW</span></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-code text-[11px] text-on-surface">Production: Synced</span></div></div><div class="flex items-center gap-space-md"><div class="hidden md:flex items-center gap-space-xs text-on-surface-variant font-label-code text-[11px]"><span class="material-symbols-outlined text-[16px]">cloud_done</span><span>Astro SSR Node</span></div><div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-on-surface cursor-pointer hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[18px]">notifications</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 pt-16 bg-surface w-full px-margin py-space-lg"><div class="flex flex-col w-full">
+<!-- Dynamic Notification / Sync Toast Banner -->
+<div class="hidden mb-space-md p-space-sm bg-inverse-surface text-inverse-on-surface rounded flex items-center justify-between shadow-md" id="syncNotification">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">sync</span>
+<span class="font-label-code text-label-code">GitHub API sync finished: 3 branches verified. SHA-90fa72 cached.</span>
+</div>
+<button class="text-inverse-on-surface/80 hover:text-inverse-on-surface" onclick="document.getElementById('syncNotification').classList.add('hidden')">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Page Header & Action Bar -->
+<header class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<div class="flex items-center gap-space-xs font-label-code text-label-code text-tertiary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="uppercase tracking-widest">Workspace Index / 03 Production Nodes</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Projects Showcase Manager</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Manage high-throughput case studies, telemetry window previews, architecture specs, and live metrics displayed on the public portfolio.
+      </p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors shadow-sm" id="syncGithubBtn">
+<span class="material-symbols-outlined text-[18px]">sync_alt</span>
+<span class="font-label-code text-label-code uppercase tracking-wider">Sync GitHub API</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">drag_indicator</span>
+<span class="font-label-code text-label-code uppercase tracking-wider">Reorder Display</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2.5 rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors shadow-md" onclick="openDrawer('Veloce Query Fabric')">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="font-label-code text-label-code uppercase tracking-wider">Add New Project</span>
+</button>
+</div>
+</header>
+<!-- Live Showcase Performance Banner & Telemetry Counters -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-space-md mb-space-lg">
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Showcase Edge CDN</span>
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-md text-headline-md text-on-surface font-semibold">99.99<span class="text-tertiary text-body-sm">%</span></div>
+<p class="font-label-code text-[11px] text-tertiary mt-1">Astro SSR Cache Invalidation: 18ms</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Active Case Studies</span>
+<span class="material-symbols-outlined text-[18px]">view_quilt</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-md text-headline-md text-on-surface font-semibold">03 <span class="text-on-surface-variant font-normal text-headline-sm">/ 03 Active</span></div>
+<p class="font-label-code text-[11px] text-tertiary mt-1">All telemetry feeds streaming live</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Aggregate Latency</span>
+<span class="material-symbols-outlined text-[18px]">speed</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-md text-headline-md text-on-surface font-semibold">&lt; 1.4<span class="text-tertiary text-body-sm">ms</span></div>
+<p class="font-label-code text-[11px] text-tertiary mt-1">Mean p99 telemetry ping</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-caps text-label-caps uppercase">Astro Static Engine</span>
+<span class="material-symbols-outlined text-[18px]">memory</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-headline-md text-headline-md text-on-surface font-semibold">Zero-JS<span class="text-tertiary text-body-sm"> Base</span></div>
+<p class="font-label-code text-[11px] text-tertiary mt-1">Partial hydration on interaction</p>
+</div>
+</div>
+</section>
+<!-- Filter, Search, and Facet Controls -->
+<section class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex-1 flex flex-col sm:flex-row items-center gap-space-sm">
+<div class="w-full sm:w-80 relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full pl-9 pr-space-md py-2 bg-surface-container-low text-on-surface placeholder-on-surface-variant font-body-sm text-body-sm rounded outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" id="projectSearchInput" placeholder="Filter projects by title, stack, or tag..." type="text"/>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded w-full sm:w-auto overflow-x-auto">
+<button class="filter-status-btn px- space-sm py-1 px-3 rounded font-label-code text-[11px] bg-inverse-surface text-inverse-on-surface">ALL (3)</button>
+<button class="filter-status-btn px- space-sm py-1 px-3 rounded font-label-code text-[11px] text-on-surface-variant hover:bg-surface-container">PUBLISHED (3)</button>
+<button class="filter-status-btn px- space-sm py-1 px-3 rounded font-label-code text-[11px] text-on-surface-variant hover:bg-surface-container">DRAFT (0)</button>
+<button class="filter-status-btn px- space-sm py-1 px-3 rounded font-label-code text-[11px] text-on-surface-variant hover:bg-surface-container">ARCHIVED (0)</button>
+</div>
+</div>
+<div class="flex items-center gap-space-sm overflow-x-auto">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase whitespace-nowrap">Stack Filter:</span>
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="px-2.5 py-1 rounded bg-surface-container-low font-label-code text-[11px] text-on-surface hover:bg-surface-container-high transition-colors">PostgreSQL</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low font-label-code text-[11px] text-on-surface hover:bg-surface-container-high transition-colors">Rust</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low font-label-code text-[11px] text-on-surface hover:bg-surface-container-high transition-colors">Astro</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low font-label-code text-[11px] text-on-surface hover:bg-surface-container-high transition-colors">Vite</button>
+<button class="px-2.5 py-1 rounded bg-surface-container-low font-label-code text-[11px] text-on-surface hover:bg-surface-container-high transition-colors">Kafka</button>
+</div>
+</div>
+</section>
+<!-- Interactive Projects Showcase Cards -->
+<div class="flex flex-col gap-space-lg mb-space-xl" id="projectsContainer">
+<!-- PROJECT 1: Veloce Query Fabric -->
+<article class="project-item bg-surface-container-lowest rounded p-gutter shadow-sm flex flex-col gap-space-md transition-all duration-200 hover:shadow-md" data-stack="PostgreSQL Rust Kafka Docker" data-title="Veloce Query Fabric">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-semibold">SYS 01</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">PROD // SHIPPED</span>
+<span class="font-label-code text-[11px] text-on-surface-variant">Release: Q3 2024</span>
+<span class="flex items-center gap-1 font-label-code text-[11px] text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+              Live Telemetry Linked
+            </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight mt-1">Veloce Query Fabric</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Distributed telemetry aggregator and sharded PostgreSQL cluster fabric with live partition rebalancing.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs self-start">
+<button class="p-2 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" onclick="toggleVisibility('veloce-badge')" title="Toggle Visibility">
+<span class="material-symbols-outlined text-[18px]" id="veloce-badge">visibility</span>
+</button>
+<a class="p-2 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" href="https://github.com" target="_blank" title="View GitHub Repo">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</a>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors" onclick="openDrawer('Veloce Query Fabric')">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span class="font-label-code text-label-code uppercase">Edit Specs</span>
+</button>
+</div>
+</div>
+<!-- Metrics and Telemetry Row -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md pt-space-sm">
+<!-- Technical Metric Badges -->
+<div class="lg:col-span-4 flex flex-col gap-space-sm justify-between">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider">Verified Live Telemetry</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">Write Latency</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">&lt; 1.8ms</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">Throughput</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">450k TPS</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">Nodes</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">64 Units</span>
+</div>
+</div>
+</div>
+<!-- Stack Tags -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Technology Taxonomy</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">PostgreSQL</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Rust</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Kafka</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Docker</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Frame Preview & Architecture Artifact -->
+<div class="lg:col-span-8 bg-surface-container-low rounded p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-code text-[11px]">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>veloce-telemetry-cluster.sys // P99 Latency Monitor</span>
+</div>
+<span class="text-tertiary">Sampling Rate: 100ms</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md items-center">
+<!-- Inline SVG Sparkline / Telemetry Graph -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex flex-col justify-between h-36">
+<div class="flex items-center justify-between text-[11px] font-label-code text-on-surface-variant">
+<span>Ingest Buffer</span>
+<span class="text-primary font-bold">1.42ms AVG</span>
+</div>
+<svg class="w-full h-20 text-on-surface" fill="none" preserveaspectratio="none" viewbox="0 0 300 80">
+<path d="M0,60 Q20,30 50,55 T100,40 T150,20 T200,45 T250,15 T300,30 L300,80 L0,80 Z" fill="currentColor" fill-opacity="0.06"></path>
+<path d="M0,60 Q20,30 50,55 T100,40 T150,20 T200,45 T250,15 T300,30" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+<circle cx="250" cy="15" fill="currentColor" r="3"></circle>
+</svg>
+<div class="flex justify-between font-label-code text-[9px] text-tertiary">
+<span>T-60s</span>
+<span>T-30s</span>
+<span>NOW</span>
+</div>
+</div>
+<!-- Architectural Topology Preview -->
+<div class="relative h-36 rounded overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover grayscale opacity-90 hover:opacity-100 transition-opacity" data-alt="High-contrast technical blueprint of distributed server topology, sharded database nodes in clean monochrome lines, blueprint aesthetic with midnight dark blue styling and sharp precision graphics, studio lighting for architectural monograph." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaNFF2hcHSTuFeH355wVoDNGBNGfcl1HodHp3rKzJJDCaB9jT06d_1_IzkGkxduRXw-_AcOd_SVcke6UigKQ3nXIjl9BV4_1t-JhCSyd8Ni3QTdGevthYamTM53Uy1CG226bAPP9sK2ySKYOYzj_F70juAdOG4Jp2w2mNt1shVMKYXyNMCs66IJCeQu_Ex2yvoC4-xQDKQuvNj7TWg-CzpUAf3qrZx1u9UA98L5v081MVQNC25Fs4_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-2.5">
+<span class="font-label-code text-[10px] text-inverse-on-surface">Sharded Partition Matrix v4.2</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- PROJECT 2: AetherLog Realtime Analytics -->
+<article class="project-item bg-surface-container-lowest rounded p-gutter shadow-sm flex flex-col gap-space-md transition-all duration-200 hover:shadow-md" data-stack="Astro SSE Streams Cloudflare Tailwind" data-title="AetherLog Realtime Analytics">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-semibold">SYS 02</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">PROD // SHIPPED</span>
+<span class="font-label-code text-[11px] text-on-surface-variant">Release: Q1 2024</span>
+<span class="flex items-center gap-1 font-label-code text-[11px] text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Edge Stream Online
+            </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight mt-1">AetherLog Realtime Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Astro SSR combined with Server-Sent Events telemetry pipeline. Achieves zero initial client-side JavaScript baseline.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs self-start">
+<button class="p-2 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" onclick="toggleVisibility('aether-badge')" title="Toggle Visibility">
+<span class="material-symbols-outlined text-[18px]" id="aether-badge">visibility</span>
+</button>
+<a class="p-2 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" href="https://github.com" target="_blank" title="View GitHub Repo">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</a>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors" onclick="openDrawer('AetherLog Realtime Analytics')">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span class="font-label-code text-label-code uppercase">Edit Specs</span>
+</button>
+</div>
+</div>
+<!-- Metrics and Telemetry Row -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md pt-space-sm">
+<!-- Technical Metric Badges -->
+<div class="lg:col-span-4 flex flex-col gap-space-sm justify-between">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider">Benchmark Indices</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">JS Baseline</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">0.0 KB Base</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">Lighthouse</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">100 / 100</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">SSE Uptime</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">99.998%</span>
+</div>
+</div>
+</div>
+<!-- Stack Tags -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Technology Taxonomy</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Astro 4 SSR</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">SSE Streams</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Cloudflare Workers</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Tailwind</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Frame Preview: Edge Terminal Snapshot -->
+<div class="lg:col-span-8 bg-surface-container-low rounded p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-code text-[11px]">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>edge-stream.aetherlog.io // Terminal Snapshot</span>
+</div>
+<span class="text-tertiary">Node: STO-01</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md items-center">
+<!-- Simulated Terminal Log Feed -->
+<div class="bg-inverse-surface text-inverse-on-surface p-space-sm rounded shadow-sm font-label-code text-[10px] h-36 flex flex-col justify-between overflow-hidden">
+<div class="flex items-center justify-between text-tertiary-fixed pb-1">
+<span>aether-sse-daemon</span>
+<span class="text-[9px]">LIVE STDIN</span>
+</div>
+<div class="space-y-1 text-surface-dim">
+<p>&gt; CONNECT worker.sto-01:443 [OK]</p>
+<p>&gt; FLUSH chunk_size=256b latency=0.21ms</p>
+<p>&gt; BROADCAST clients=41,802 payload=3.1kb</p>
+<p class="text-primary-fixed">&gt; ASTRO_ISLANDS hydrated: 0 (Pure HTML stream)</p>
+</div>
+<div class="text-[9px] text-tertiary-fixed-dim">STATUS: 200 OK | COMPRESS: Brotli-11</div>
+</div>
+<!-- Visual Screenshot of SSE Pipeline -->
+<div class="relative h-36 rounded overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover grayscale opacity-90 hover:opacity-100 transition-opacity" data-alt="Editorial close-up photograph of a minimalist monochrome computer monitor displaying a streaming telemetry terminal interface, clean desk setting with soft diffused studio morning light, typography in high contrast white on midnight charcoal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUnm3rhuabtwjHPhfzF6GM_op-JXdNtQ7Y-rOX5B0yAx1Zlq79MxZklZxQRuRvlvcQVjTBnN14DTvzAXuQUgQ33ZwYRoMA47CNpL-dfeQLDKQJnhKnEc2SU60Gvya9nH3Yq3FufBln1AhrEsD7CHscAa_Z8TQRxcKWVsKsWMFjib3HEPUHNQBjwVxYXtD3gNn2c8lRP7MQoYPmMzyf_pnmaBIYvnCRcpAmKOBQHYgZBuKnEGwCMt37"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-2.5">
+<span class="font-label-code text-[10px] text-inverse-on-surface">AetherLog Edge Node Inspection</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- PROJECT 3: Hyperion Design System Engine -->
+<article class="project-item bg-surface-container-lowest rounded p-gutter shadow-sm flex flex-col gap-space-md transition-all duration-200 hover:shadow-md" data-stack="Rust Wasm Vite React TypeScript" data-title="Hyperion Design System Engine">
+<div class="flex flex-col lg:flex-row lg:items-start justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-inverse-surface text-inverse-on-surface font-semibold">SYS 03</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">PROD // SHIPPED</span>
+<span class="font-label-code text-[11px] text-on-surface-variant">Release: Q4 2023</span>
+<span class="flex items-center gap-1 font-label-code text-[11px] text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              WASM Engine Synchronized
+            </span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight mt-1">Hyperion Design System Engine</h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            AST-driven design token compiler written in Rust and executed in WebAssembly across multi-brand React and Vite frontend ecosystems.
+          </p>
+</div>
+<div class="flex items-center gap-space-xs self-start">
+<button class="p-2 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" onclick="toggleVisibility('hyperion-badge')" title="Toggle Visibility">
+<span class="material-symbols-outlined text-[18px]" id="hyperion-badge">visibility</span>
+</button>
+<a class="p-2 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors" href="https://github.com" target="_blank" title="View GitHub Repo">
+<span class="material-symbols-outlined text-[18px]">code</span>
+</a>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors" onclick="openDrawer('Hyperion Design System Engine')">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span class="font-label-code text-label-code uppercase">Edit Specs</span>
+</button>
+</div>
+</div>
+<!-- Metrics and Telemetry Row -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md pt-space-sm">
+<!-- Technical Metric Badges -->
+<div class="lg:col-span-4 flex flex-col gap-space-sm justify-between">
+<div class="flex flex-col gap-2">
+<span class="font-label-caps text-label-caps text-tertiary uppercase tracking-wider">Compiler Throughput</span>
+<div class="grid grid-cols-3 gap-2">
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">Token Parse</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">&lt; 12ms</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">WASM Gzip</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">48 KB</span>
+</div>
+<div class="p-space-sm bg-surface-container-low rounded flex flex-col">
+<span class="font-label-code text-[10px] text-on-surface-variant uppercase">Adoption</span>
+<span class="font-label-code text-label-code font-bold text-on-surface mt-1">18 Apps</span>
+</div>
+</div>
+</div>
+<!-- Stack Tags -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Technology Taxonomy</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Rust / Wasm</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">Vite Plugin</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">React 19</span>
+<span class="font-label-code text-[11px] px-2 py-0.5 rounded bg-surface-container text-on-surface">TypeScript AST</span>
+</div>
+</div>
+</div>
+<!-- Telemetry Frame Preview: WASM Compiler Isolate Viewer -->
+<div class="lg:col-span-8 bg-surface-container-low rounded p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between font-label-code text-[11px]">
+<div class="flex items-center gap-space-xs text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span>wasm-compiler.hyperion.dev // Token Pipeline Isolate</span>
+</div>
+<span class="text-tertiary">AST Depth: 12 tiers</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md items-center">
+<!-- Inline Radial Parser Performance Diagram -->
+<div class="bg-surface-container-lowest p-space-sm rounded shadow-sm flex items-center justify-between h-36 px-4">
+<div class="flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">AST Memory Alloc</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold">1.8 MB</span>
+<span class="font-label-code text-[10px] text-tertiary">Zero garbage-collection churn</span>
+</div>
+<div class="relative w-20 h-20 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-on-surface" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="88, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute font-label-code text-[10px] font-bold text-on-surface">88%</span>
+</div>
+</div>
+<!-- Architectural Artifact Preview -->
+<div class="relative h-36 rounded overflow-hidden shadow-inner">
+<img class="w-full h-full object-cover grayscale opacity-90 hover:opacity-100 transition-opacity" data-alt="Abstract structural design token tree rendering in dark slate and porcelain white, typographic matrix hierarchy visualized as technical wireframes, architectural portfolio imagery with high contrast clarity and Scandinavian minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC1h-Vh7OuFVEH7YWaUiwjGrHNscRk_DuGKN-ddXAjZaJLqply9dPXTg_Odf1-r3TLJ5k4tz-qJyXxB-nXpRE5o9m3BthSjE6Cf1fRfproK7sFJUce9yz_nscD8e9j3uVFRRAjBc5U8IAVkQUzmieWFIyxqMIZx-q4fDU3xkeOt0rXHHRLkVQWxcj26BVUKv2ICERGWo9UyoMFukpQHKtbmwbx2aKsrdLVi_LHBsuRIzLIRAX9xr86"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent flex items-end p-2.5">
+<span class="font-label-code text-[10px] text-inverse-on-surface">Compiler AST Pass Visualization</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Slide-over Drawer / Modal for Project Spec & Metadata Editor -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-50 hidden transition-opacity" id="editorDrawerBackdrop">
+<div class="fixed inset-y-0 right-0 w-full max-w-2xl bg-surface-container-lowest shadow-2xl flex flex-col justify-between overflow-y-auto">
+<!-- Drawer Top Bar -->
+<div class="p-gutter flex items-center justify-between bg-surface-container-lowest sticky top-0 z-10 shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Showcase Editor</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="drawerProjectTitle">Edit Project Metadata</h2>
+</div>
+<button class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center text-on-surface hover:bg-surface-container-high transition-colors" onclick="closeDrawer()">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Drawer Form Fields -->
+<form class="p-gutter flex flex-col gap-space-md flex-1" id="projectEditForm" onsubmit="handleFormSubmit(event)">
+<!-- Basic Taxonomy Group -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="flex flex-col gap-1 sm:col-span-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Case Study Title</label>
+<input class="w-full p-2.5 bg-surface-container-low text-on-surface rounded font-body-sm text-body-sm outline-none focus:bg-surface-container-lowest shadow-inner" id="fieldTitle" type="text" value="Veloce Query Fabric"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">System Identifier</label>
+<input class="w-full p-2.5 bg-surface-container-low text-on-surface rounded font-label-code text-label-code outline-none focus:bg-surface-container-lowest shadow-inner" id="fieldSysId" type="text" value="SYS 01"/>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Release Quarter</label>
+<input class="w-full p-2.5 bg-surface-container-low text-on-surface rounded font-body-sm text-body-sm outline-none focus:bg-surface-container-lowest shadow-inner" id="fieldRelease" type="text" value="Q3 2024"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Lifecycle Status</label>
+<select class="w-full p-2.5 bg-surface-container-low text-on-surface rounded font-label-code text-[12px] outline-none shadow-inner cursor-pointer">
+<option>PROD // SHIPPED</option>
+<option>STAGE // VERIFICATION</option>
+<option>INTERNAL ARCHIVE</option>
+</select>
+</div>
+</div>
+<!-- Short Pitch Description -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Short Pitch / Architectural Summary</label>
+<textarea class="w-full p-2.5 bg-surface-container-low text-on-surface rounded font-body-sm text-body-sm outline-none focus:bg-surface-container-lowest shadow-inner leading-relaxed" id="fieldDescription" rows="3">Distributed telemetry aggregator and sharded PostgreSQL cluster fabric with live partition rebalancing.</textarea>
+</div>
+<!-- Telemetry Metrics Editor (Key/Value Grid) -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Portfolio Live Metrics (3 KPIs)</label>
+<span class="font-label-code text-[11px] text-tertiary">Rendered on Case Hero</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1 shadow-inner">
+<span class="font-label-caps text-[10px] text-tertiary uppercase">Metric 1 Label</span>
+<input class="bg-transparent font-label-code text-[11px] text-on-surface outline-none" type="text" value="Write Latency"/>
+<span class="font-label-caps text-[10px] text-tertiary uppercase mt-1">Value</span>
+<input class="bg-surface-container-lowest px-1.5 py-1 rounded font-label-code text-label-code font-bold text-on-surface outline-none" type="text" value="&lt; 1.8ms"/>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1 shadow-inner">
+<span class="font-label-caps text-[10px] text-tertiary uppercase">Metric 2 Label</span>
+<input class="bg-transparent font-label-code text-[11px] text-on-surface outline-none" type="text" value="Throughput"/>
+<span class="font-label-caps text-[10px] text-tertiary uppercase mt-1">Value</span>
+<input class="bg-surface-container-lowest px-1.5 py-1 rounded font-label-code text-label-code font-bold text-on-surface outline-none" type="text" value="450k TPS"/>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex flex-col gap-1 shadow-inner">
+<span class="font-label-caps text-[10px] text-tertiary uppercase">Metric 3 Label</span>
+<input class="bg-transparent font-label-code text-[11px] text-on-surface outline-none" type="text" value="Sharded Units"/>
+<span class="font-label-caps text-[10px] text-tertiary uppercase mt-1">Value</span>
+<input class="bg-surface-container-lowest px-1.5 py-1 rounded font-label-code text-label-code font-bold text-on-surface outline-none" type="text" value="64 Nodes"/>
+</div>
+</div>
+</div>
+<!-- Markdown Architecture Specification Notes -->
+<div class="flex flex-col gap-1 pt-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Deep-Dive Specification (Markdown)</label>
+<span class="font-label-code text-[10px] text-outline">Supports LaTeX math &amp; AST code</span>
+</div>
+<textarea class="w-full p-space-sm bg-surface-container-low text-on-surface font-label-code text-label-code rounded outline-none focus:bg-surface-container-lowest shadow-inner" rows="6">### System Partition Blueprint
+- Partition hash: `crc32(entity_id) % 64`
+- Consensus algorithm: Raft with 3-way cluster quorum
+- Ingestion buffer: Kafka v3.4 zero-copy log consumer
+- Storage tier: Sharded NVMe PostgreSQL tablespace with Citus engine</textarea>
+</div>
+<!-- Telemetry Graphic Uploader / Asset Selector -->
+<div class="flex flex-col gap-1">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Telemetry Graphic Preview &amp; Vector Asset</label>
+<div class="p-space-sm bg-surface-container-low rounded flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">image</span>
+<div class="flex flex-col">
+<span class="font-label-code text-[11px] text-on-surface">blueprint-cluster-matrix.svg</span>
+<span class="font-label-code text-[10px] text-tertiary">38.4 KB // Inline SVG Vector</span>
+</div>
+</div>
+<button class="px-2.5 py-1 bg-surface-container-lowest rounded font-label-code text-[11px] text-on-surface hover:bg-surface-container transition-colors" type="button">Replace Asset</button>
+</div>
+</div>
+</form>
+<!-- Drawer Footer Actions -->
+<div class="p-gutter bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-sm sticky bottom-0 z-10 shadow-lg">
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded text-on-surface hover:bg-surface-container-low transition-colors font-label-code text-label-code uppercase" onclick="closeDrawer()" type="button">
+          Discard Changes
+        </button>
+<div class="w-full sm:w-auto flex items-center gap-space-sm">
+<a class="w-full sm:w-auto px-space-md py-2.5 rounded bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors font-label-code text-label-code uppercase text-center" href="#" target="_blank">
+            Portfolio Preview
+          </a>
+<button class="w-full sm:w-auto px-space-md py-2.5 rounded bg-inverse-surface text-inverse-on-surface hover:bg-primary transition-colors font-label-code text-label-code uppercase flex items-center justify-center gap-space-xs" onclick="saveAndRebuild()" type="button">
+<span class="material-symbols-outlined text-[16px]">rocket_launch</span>
+<span>Save &amp; Rebuild Astro</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Rebuild Progress Overlay / Notification Modal -->
+<div class="fixed inset-0 bg-inverse-surface/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-space-md" id="rebuildDialog">
+<div class="bg-surface-container-lowest p-gutter rounded max-w-md w-full shadow-2xl flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-[24px] animate-spin text-primary">progress_activity</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-semibold">Deploying Changes</span>
+<span class="font-label-code text-label-code text-on-surface-variant">Astro SSR Edge Cache Flush</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+        Static routes re-synthesizing for Stockholm-1 edge node. Changes will be live across the public portfolio in ~450ms.
+      </p>
+<div class="w-full bg-surface-container-low h-2 rounded overflow-hidden">
+<div class="h-full bg-inverse-surface w-0 transition-all duration-700" id="rebuildProgressBar"></div>
+</div>
+<div class="flex justify-end">
+<span class="font-label-code text-[11px] text-tertiary" id="rebuildStatusText">Compiling Astro Islands...</span>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Logic -->
+<script>
+    function openDrawer(projectTitle) {
+      const drawer = document.getElementById('editorDrawerBackdrop');
+      const titleElem = document.getElementById('drawerProjectTitle');
+      const inputTitle = document.getElementById('fieldTitle');
+      if (drawer) {
+        drawer.classList.remove('hidden');
+        if (titleElem && projectTitle) {
+          titleElem.textContent = 'Edit: ' + projectTitle;
+        }
+        if (inputTitle && projectTitle) {
+          inputTitle.value = projectTitle;
+        }
+      }
+    }
+
+    function closeDrawer() {
+      const drawer = document.getElementById('editorDrawerBackdrop');
+      if (drawer) {
+        drawer.classList.add('hidden');
+      }
+    }
+
+    function toggleVisibility(badgeId) {
+      const icon = document.getElementById(badgeId);
+      if (icon) {
+        if (icon.textContent === 'visibility') {
+          icon.textContent = 'visibility_off';
+          icon.classList.add('text-outline');
+        } else {
+          icon.textContent = 'visibility';
+          icon.classList.remove('text-outline');
+        }
+      }
+    }
+
+    function saveAndRebuild() {
+      closeDrawer();
+      const dialog = document.getElementById('rebuildDialog');
+      const bar = document.getElementById('rebuildProgressBar');
+      const statusText = document.getElementById('rebuildStatusText');
+
+      if (dialog && bar) {
+        dialog.classList.remove('hidden');
+        bar.style.width = '30%';
+
+        setTimeout(() => {
+          bar.style.width = '75%';
+          if (statusText) statusText.textContent = 'Purging Cloudflare Edge Cache...';
+        }, 300);
+
+        setTimeout(() => {
+          bar.style.width = '100%';
+          if (statusText) statusText.textContent = 'Astro build synced (218ms)';
+        }, 700);
+
+        setTimeout(() => {
+          dialog.classList.add('hidden');
+          bar.style.width = '0%';
+          const toast = document.getElementById('syncNotification');
+          if (toast) {
+            toast.classList.remove('hidden');
+            toast.querySelector('span.font-label-code').textContent = 'Production Rebuilt: Showcase changes are now live.';
+          }
+        }, 1100);
+      }
+    }
+
+    // GitHub Sync handler
+    const syncBtn = document.getElementById('syncGithubBtn');
+    if (syncBtn) {
+      syncBtn.addEventListener('click', () => {
+        const toast = document.getElementById('syncNotification');
+        if (toast) {
+          toast.classList.remove('hidden');
+          toast.querySelector('span.font-label-code').textContent = 'Syncing repository metadata from github.com/jasonmartin... Done (42ms).';
+        }
+      });
+    }
+
+    // Live search filter implementation
+    const searchInput = document.getElementById('projectSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('.project-item');
+        items.forEach(item => {
+          const title = (item.getAttribute('data-title') || '').toLowerCase();
+          const stack = (item.getAttribute('data-stack') || '').toLowerCase();
+          if (title.includes(query) || stack.includes(query)) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] py-space-md px-margin"><div class="w-full flex flex-col md:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-lg font-label-code text-[11px] text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>System Uptime: 99.98%</span></div><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>PostgreSQL: Healthy</span></div><div class="flex items-center gap-space-xs"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><span>Astro Edge: Stockholm-1</span></div></div><div class="font-label-code text-[11px] text-outline">© 2024 JASON MARTIN STUDIO // ARCHITECTURAL CMS</div></div></footer></div></body></html>

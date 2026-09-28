@@ -1,0 +1,62 @@
+[
+  {
+    "id": "aws-sap",
+    "title": "AWS Certified Solutions Architect",
+    "level": "Professional Level (SAP-C02)",
+    "issuer": "AMAZON WEB SERVICES",
+    "icon": "cloud_done",
+    "status": "ACTIVE",
+    "issued": "2024",
+    "validityLabel": "EXPIRY",
+    "validityValue": "2027",
+    "hash": "8f9b..41cd7a",
+    "verifyUrl": "https://aws.amazon.com/verification",
+    "verifyButtonText": "Verify AWS Ledger",
+    "order": 1
+  },
+  {
+    "id": "pg-dba",
+    "title": "PostgreSQL Certified Enterprise DBA",
+    "level": "PostgreSQL 15/16 Professional",
+    "issuer": "POSTGRESQL GLOBAL",
+    "icon": "database",
+    "status": "ACTIVE",
+    "issued": "2023",
+    "validityLabel": "VALIDATION",
+    "validityValue": "PERPETUAL",
+    "hash": "4e21..90ad31",
+    "verifyUrl": "https://www.postgresql.org",
+    "verifyButtonText": "Verify PG Credential",
+    "order": 2
+  },
+  {
+    "id": "cka",
+    "title": "Certified Kubernetes Administrator",
+    "level": "Linux Foundation (CKA-2401)",
+    "issuer": "CNCF / LINUX FOUNDATION",
+    "icon": "view_in_ar",
+    "status": "ACTIVE",
+    "issued": "2024",
+    "validityLabel": "EXPIRY",
+    "validityValue": "2027",
+    "hash": "11c3..aa049f",
+    "verifyUrl": "https://www.cncf.io/certification/cka/",
+    "verifyButtonText": "Verify Linux Found.",
+    "order": 3
+  },
+  {
+    "id": "meta-frontend",
+    "title": "Meta Certified Frontend Lead",
+    "level": "Principal Engineering Specialist",
+    "issuer": "META OPEN SOURCE",
+    "icon": "code_blocks",
+    "status": "ACTIVE",
+    "issued": "2023",
+    "validityLabel": "VALIDATION",
+    "validityValue": "VERIFIED",
+    "hash": "902f..77b022",
+    "verifyUrl": "https://www.coursera.org",
+    "verifyButtonText": "Verify Meta Badge",
+    "order": 4
+  }
+]

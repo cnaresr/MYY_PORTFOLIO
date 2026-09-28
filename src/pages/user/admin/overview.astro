@@ -1,0 +1,63 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { OverviewManager } from '../../../components/admin/OverviewManager';
+import {
+  getProjectsData,
+  getInquiriesData,
+  getSkillsData,
+  getCertificatesData,
+  getProfileData,
+  getTechStackData,
+} from '../../../lib/contentStore';
+
+const safeRead = (fn: () => any, fallback: any) => {
+  try {
+    const v = fn();
+    return v ?? fallback;
+  } catch {
+    return fallback;
+  }
+};
+
+const profile = safeRead(() => getProfileData(), {});
+const projects = safeRead(() => getProjectsData(), []);
+const inquiries = safeRead(() => getInquiriesData(), []);
+const skills = safeRead(() => getSkillsData(), { languages: [], frameworks: [] });
+const certificates = safeRead(() => getCertificatesData(), []);
+const techStack = safeRead(() => getTechStackData(), { loopDuration: 0, track1: [], track2: [] });
+
+const totalSkills =
+  (skills.languages?.length || 0) +
+  (skills.frameworks?.length || 0);
+
+const publishedProjects = projects.filter(
+  (p: any) => p.status === 'published' || p.status === 'LIVE'
+);
+
+const stats = {
+  publishedProjects: publishedProjects.length,
+  draftProjects: projects.filter((p: any) => p.status === 'draft').length,
+  inProgressProjects: projects.filter((p: any) => p.status === 'inprogress').length,
+  totalProjects: projects.length,
+  inquiriesCount: inquiries.length,
+  unreadInquiries: inquiries.filter((i: any) => i.unread).length,
+  certsCount: certificates.length,
+  skillsCount: totalSkills,
+  techBadgeCount:
+    (techStack.track1?.filter((b: any) => b.enabled).length || 0) +
+    (techStack.track2?.filter((b: any) => b.enabled).length || 0),
+};
+---
+
+<AdminLayout title="Overview & Analytics" activeNav="overview" breadcrumbs="OVERVIEW">
+  <OverviewManager
+    client:load
+    stats={stats}
+    projects={projects}
+    inquiries={inquiries}
+    profile={profile}
+    skills={skills}
+    certificates={certificates}
+    techStack={techStack}
+  />
+</AdminLayout>

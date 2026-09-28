@@ -1,0 +1,39 @@
+---
+import { projects } from '../data/projects';
+import { BentoProjectGrid } from './interactive/BentoProjectGrid';
+---
+
+<section
+  class="relative w-full py-16 md:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-200/80 dark:border-slate-800 transition-colors overflow-hidden"
+  id="projects"
+>
+  <!-- Architectural Subtle Grid Pattern -->
+  <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:28px_28px] opacity-35 dark:opacity-20 pointer-events-none z-0"></div>
+
+  <!-- Ambient backdrop radials -->
+  <div class="absolute -top-24 right-0 w-[520px] h-[360px] bg-gradient-to-bl from-slate-300/30 dark:from-slate-700/20 via-transparent to-transparent blur-3xl pointer-events-none rounded-full" />
+  <div class="absolute bottom-10 -left-16 w-[420px] h-[320px] bg-gradient-to-tr from-slate-200/30 dark:from-slate-800/25 via-transparent to-transparent blur-3xl pointer-events-none rounded-full" />
+
+  <div class="relative max-w-[1200px] mx-auto px-6 z-10 section-content-flow">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-slate-200/80 dark:border-slate-800">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs mb-2.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-900 dark:bg-slate-100 animate-pulse"></span>
+          <span class="font-['Space_Grotesk'] text-[10px] text-slate-700 dark:text-slate-300 uppercase tracking-widest font-bold">
+            SELECTED CASE STUDIES // ARCHITECTURE &amp; PRODUCTION
+          </span>
+        </div>
+        <h2 class="font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-[46px] font-bold text-slate-950 dark:text-white tracking-tight leading-tight">
+          Featured Systems Architecture
+        </h2>
+      </div>
+      <p class="font-['Hanken_Grotesk'] text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md mt-3 md:mt-0 leading-relaxed">
+        Production-grade distributed platforms, low-latency telemetry fabrics, and compiler engines engineered with strict SLA guarantees.
+      </p>
+    </div>
+
+    <!-- Bento Grid with laptop-open scroll animation -->
+    <BentoProjectGrid client:visible projects={[...projects]} />
+  </div>
+</section>
