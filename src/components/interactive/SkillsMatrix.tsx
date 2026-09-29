@@ -51,7 +51,8 @@ const SkillRow = ({ skill }: { skill: MatrixSkill }) => {
         scrollTrigger: {
           trigger: rowRef.current,
           start: "top 88%",
-          toggleActions: "play none none none",
+          end: "bottom 15%",
+          toggleActions: "play reverse play reverse",
         },
         onUpdate: () => {
           if (pctRef.current) {
@@ -72,7 +73,8 @@ const SkillRow = ({ skill }: { skill: MatrixSkill }) => {
           scrollTrigger: {
             trigger: rowRef.current,
             start: "top 88%",
-            toggleActions: "play none none none",
+            end: "bottom 15%",
+            toggleActions: "play reverse play reverse",
           },
         }
       );

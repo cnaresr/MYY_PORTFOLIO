@@ -1,0 +1,96 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 1 /Kids [6 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Length 6472 >>
+stream
+BT /F2 21 Tf 0.06 0.09 0.16 rg 42 779.89 Td (Cezar Nareswara Respati) Tj ET
+BT /F1 10.5 Tf 0.34 0.38 0.44 rg 42 764.89 Td (Full-Stack Developer  |  Software & Systems Architect) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 42 751.89 Td (cezar.nares@gmail.com   |   Semarang, Indonesia   |   github.com/cnaresr   |   linkedin.com/in/cezar-nareswara-respati-8b8a55327) Tj ET
+0.06 0.09 0.16 RG 1 w 42 745.89 m 553.28 745.89 l S
+BT /F2 10 Tf 0.06 0.09 0.16 rg 42 717.89 Td (PROFESSIONAL SUMMARY) Tj ET
+0.06 0.09 0.16 RG 0.8 w 42 713.89 m 553.28 713.89 l S
+BT /F1 8.8 Tf 0.34 0.38 0.44 rg 42.00 690.49 Td (Full-Stack Developer and Software Architect specializing in high-performance backend systems, distributed architectures, and) Tj ET
+BT /F1 8.8 Tf 0.34 0.38 0.44 rg 42.00 678.09 Td (database engineering. Experienced in architecting low-latency microservices, real-time event streaming pipelines, and type-safe) Tj ET
+BT /F1 8.8 Tf 0.34 0.38 0.44 rg 42.00 665.69 Td (web applications using TypeScript, Rust, Node.js, and SQL/NoSQL databases. Passionate about system reliability, edge) Tj ET
+BT /F1 8.8 Tf 0.34 0.38 0.44 rg 42.00 653.29 Td (computing, and clean software architecture.) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 42 622.29 Td (TECHNICAL COMPETENCIES) Tj ET
+0.06 0.09 0.16 RG 0.8 w 42 618.29 m 553.28 618.29 l S
+BT /F2 8.7 Tf 0.06 0.09 0.16 rg 42 593.29 Td (Languages & Core:) Tj ET
+BT /F1 8.7 Tf 0.34 0.38 0.44 rg 127.76 593.29 Td (TypeScript, Rust, Go, Python, C++, SQL & PostgreSQL) Tj ET
+BT /F2 8.7 Tf 0.06 0.09 0.16 rg 42 579.29 Td (Frameworks & Runtimes:) Tj ET
+BT /F1 8.7 Tf 0.34 0.38 0.44 rg 152.90 579.29 Td (Astro Islands, React 19 & Vite, Next.js App Router, Tailwind CSS v4, Node.js LTS v22, Cloudflare Edge) Tj ET
+BT /F2 8.7 Tf 0.06 0.09 0.16 rg 42 565.29 Td (Systems & Infrastructure:) Tj ET
+BT /F1 8.7 Tf 0.34 0.38 0.44 rg 154.36 565.29 Td (PostgreSQL \(Citus / Pgpool\), Redis Sentinel, Apache Kafka, Docker, Kubernetes, Cloudflare Edge, WebRTC, Wasm) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 42 534.29 Td (FEATURED ENGINEERING PROJECTS) Tj ET
+0.06 0.09 0.16 RG 0.8 w 42 530.29 m 553.28 530.29 l S
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 42 507.69 Td (Veloce Query Fabric) Tj ET
+BT /F1 9 Tf 0.34 0.38 0.44 rg 477.24 507.69 Td (Jan 2023 - Present) Tj ET
+BT /F2 8.1 Tf 0.06 0.09 0.16 rg 50.00 496.69 Td (Tech: PostgreSQL · Rust · Kafka · Docker) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 483.29 Td (- Distributed telemetry aggregator and sharded PostgreSQL cluster fabric with live partition rebalancing. Delivers instantaneous metric) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 471.89 Td (ingest for industrial IoT sensors with strict guarantees.) Tj ET
+BT /F1 8.2 Tf 0.34 0.38 0.44 rg 50.00 460.89 Td (- Architecture: Veloce Architecture Document V2.1  -  Citus/Pgpool partition strategies, Rust memory pools, and zero-copy socket IO.) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 42 441.29 Td (AetherLog Realtime Analytics) Tj ET
+BT /F1 9 Tf 0.34 0.38 0.44 rg 473.24 441.29 Td (Jul 2023 - Mar 2024) Tj ET
+BT /F2 8.1 Tf 0.06 0.09 0.16 rg 50.00 430.29 Td (Tech: Astro · SSE Streams · Tailwind) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 416.89 Td (- Astro SSR combined with a Server-Sent Events streaming pipeline. Zero initial client-side JavaScript baseline while streaming) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 405.49 Td (100,000 live event logs to an edge dashboard.) Tj ET
+BT /F1 8.2 Tf 0.34 0.38 0.44 rg 50.00 394.49 Td (- Architecture: AetherLog Architecture  -  HTTP/2 SSE streaming engine, zero-hydration Islands fallback, and sub-10ms TTFB edge) Tj ET
+BT /F1 8.2 Tf 0.34 0.38 0.44 rg 50.00 383.49 Td (caching.) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 42 363.89 Td (Hyperion Design System Engine) Tj ET
+BT /F1 9 Tf 0.34 0.38 0.44 rg 469.73 363.89 Td (Jan 2023 - Dec 2023) Tj ET
+BT /F2 8.1 Tf 0.06 0.09 0.16 rg 50.00 352.89 Td (Tech: Rust · Vite · React · TypeScript) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 339.49 Td (- AST-driven design token compiler written in Rust and executed in WebAssembly across multi-brand React and Vite frontends.) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 328.09 Td (Generates strict TypeScript types and optimized CSS in <12ms.) Tj ET
+BT /F1 8.2 Tf 0.34 0.38 0.44 rg 50.00 317.09 Td (- Architecture: Hyperion Architecture  -  AST token graph resolution, CSS variable emission trees, and WebAssembly memory sharing.) Tj ET
+BT /F2 9.6 Tf 0.06 0.09 0.16 rg 42 297.49 Td (Solis Distributed Mesh v2) Tj ET
+BT /F1 9 Tf 0.34 0.38 0.44 rg 470.74 297.49 Td (Oct 2024 - Mar 2025) Tj ET
+BT /F2 8.1 Tf 0.06 0.09 0.16 rg 50.00 286.49 Td (Tech: Rust · WebRTC · Protobuf · Wasm) Tj ET
+BT /F1 8.5 Tf 0.34 0.38 0.44 rg 50.00 273.09 Td (- Sub-millisecond peer-to-peer telemetry gossip protocol over WebRTC data channels with state-based conflict resolution.) Tj ET
+BT /F1 8.2 Tf 0.34 0.38 0.44 rg 50.00 262.09 Td (- Architecture: Solis Distributed Mesh Architecture V2  -  Multi-peer state reconciliation using CRDTs over WebRTC data channels.) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 42 228.09 Td (CERTIFICATIONS & CREDENTIALS) Tj ET
+0.06 0.09 0.16 RG 0.8 w 42 224.09 m 553.28 224.09 l S
+BT /F2 9 Tf 0.06 0.09 0.16 rg 42 202.09 Td (AWS Certified Solutions Architect) Tj ET
+BT /F1 8.4 Tf 0.34 0.38 0.44 rg 380.70 202.09 Td (AMAZON WEB SERVICES   |   EXPIRY: 2027) Tj ET
+BT /F2 9 Tf 0.06 0.09 0.16 rg 42 187.09 Td (PostgreSQL Certified Enterprise DBA) Tj ET
+BT /F1 8.4 Tf 0.34 0.38 0.44 rg 338.69 187.09 Td (POSTGRESQL GLOBAL   |   VALIDATION: PERPETUAL) Tj ET
+BT /F2 9 Tf 0.06 0.09 0.16 rg 42 172.09 Td (Certified Kubernetes Administrator) Tj ET
+BT /F1 8.4 Tf 0.34 0.38 0.44 rg 369.98 172.09 Td (CNCF / LINUX FOUNDATION   |   EXPIRY: 2027) Tj ET
+BT /F2 9 Tf 0.06 0.09 0.16 rg 42 157.09 Td (Meta Certified Frontend Lead) Tj ET
+BT /F1 8.4 Tf 0.34 0.38 0.44 rg 355.98 157.09 Td (META OPEN SOURCE   |   VALIDATION: VERIFIED) Tj ET
+BT /F2 10 Tf 0.06 0.09 0.16 rg 42 127.09 Td (EDUCATION) Tj ET
+0.06 0.09 0.16 RG 0.8 w 42 123.09 m 553.28 123.09 l S
+BT /F2 9.3 Tf 0.06 0.09 0.16 rg 42 100.79 Td (Politeknik Negeri Semarang \(POLINES\)) Tj ET
+BT /F1 8.700000000000001 Tf 0.34 0.38 0.44 rg 470.59 100.79 Td (Semarang, Indonesia) Tj ET
+BT /F1 8.6 Tf 0.34 0.38 0.44 rg 50.00 88.79 Td (Diploma Degree in Informatics / Computer Engineering) Tj ET
+0.80 0.83 0.86 RG 0.5 w 42 70.79 m 553.28 70.79 l S
+BT /F1 7.6 Tf 0.34 0.38 0.44 rg 42.00 55.19 Td (Portfolio & verified dossier: https://github.com/cnaresr | Generated from verified platform repository) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 5 0 R >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000212 00000 n 
+0000000314 00000 n 
+0000006838 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+6980
+%%EOF

@@ -1,11 +1,16 @@
 /**
  * One-off CV generator — writes a formal, print-ready PDF straight from the
  * site content store (content/profile.json + skills.json + projects.json +
- * certificates.json), so the downloaded CV never drifts from the live data.
+ * certificates.json + about-me.json).
  *
- * No PDF library is installed in this project, so this emits a minimal,
- * spec-valid PDF 1.4 by hand: standard Helvetica base-14 fonts, one content
- * stream per page, and a correct xref table.
+ * Adheres to standard software engineering / architect CV guidelines:
+ * - Professional contact header & clear title
+ * - Technical summary (objective, factual, no proverbs/fluff)
+ * - Categorized technical skills (Languages, Frameworks, Systems/Infra)
+ * - Featured engineering projects with architectural specs & metrics
+ * - Verified certifications & credentials
+ * - Education
+ * - Spacious vertical rhythm that is relaxed and comfortable for HR readers
  *
  * Usage: node scripts/generate-cv.mjs
  */
@@ -24,17 +29,18 @@ const certs = read('content/certificates.json');
 /* ---------- page geometry (A4 portrait, 72dpi units) ---------- */
 const PAGE_W = 595.28;
 const PAGE_H = 841.89;
-const MARGIN = 52;
+const MARGIN = 42; // Generous margins (no cramped edges)
 const CONTENT_W = PAGE_W - MARGIN * 2;
 
-/* ---------- colour ---------- */
-const INK = '0.06 0.09 0.16'; // slate-950-ish
-const MUTED = '0.42 0.45 0.50';
-const RULE = '0.85 0.87 0.90';
+/* ---------- colour palette ---------- */
+const INK = '0.06 0.09 0.16'; // Deep slate-950
+const MUTED = '0.34 0.38 0.44'; // Refined secondary slate
+const RULE = '0.80 0.83 0.86'; // Clean hairline rule
 
 /* ---------- PDF string escaping ---------- */
 const esc = (s) =>
   String(s)
+    .replace(/[—–]/g, ' - ')
     .replace(/\\/g, '\\\\')
     .replace(/\(/g, '\\(')
     .replace(/\)/g, '\\)')
@@ -57,7 +63,6 @@ const HELV = {
   '{': 334, '|': 260, '}': 334, '~': 584,
 };
 const HELV_B = { ...HELV };
-// Helvetica-Bold widths differ from regular for these glyphs.
 Object.assign(HELV_B, {
   ' ': 278, '!': 333, '"': 474, '#': 556, $: 556, '%': 889, '&': 722, "'": 238,
   '(': 333, ')': 333, '*': 389, '+': 584, ',': 278, '-': 333, '.': 278, '/': 278,
@@ -92,24 +97,24 @@ const need = (space) => {
   if (y - space < MARGIN) newPage();
 };
 
-const rule = (gapBefore = 6, gapAfter = 10) => {
+const rule = (gapBefore = 10, gapAfter = 8) => {
   need(gapBefore + gapAfter);
   y -= gapBefore;
-  ops.push(`${RULE} RG 0.7 w ${MARGIN} ${y.toFixed(2)} m ${(PAGE_W - MARGIN).toFixed(2)} ${y.toFixed(2)} l S`);
+  ops.push(`${RULE} RG 0.5 w ${MARGIN} ${y.toFixed(2)} m ${(PAGE_W - MARGIN).toFixed(2)} ${y.toFixed(2)} l S`);
   y -= gapAfter;
 };
 
-/** Section heading: small caps-ish label with a hairline rule and letter spacing. */
+/** Section heading: spacious, clean uppercase title with full-width underline. */
 const section = (label) => {
-  need(46);
-  y -= 8;
-  ops.push(`BT /F2 10.5 Tf ${INK} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(label)}) Tj ET`);
-  y -= 7;
-  ops.push(`${INK} RG 1.1 w ${MARGIN} ${y.toFixed(2)} m ${(MARGIN + 26).toFixed(2)} ${y.toFixed(2)} l S`);
-  y -= 12;
+  need(38);
+  y -= 26; // Generous space before section heading (~18pt visual gap)
+  ops.push(`BT /F2 10 Tf ${INK} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(label)}) Tj ET`);
+  y -= 4; // Space between text and rule
+  ops.push(`${INK} RG 0.8 w ${MARGIN} ${y.toFixed(2)} m ${(PAGE_W - MARGIN).toFixed(2)} ${y.toFixed(2)} l S`);
+  y -= 11; // Space after rule before section content
 };
 
-/** Greedy word wrap to CONTENT_W. */
+/** Word wrap helper. */
 const wrap = (str, size, bold = false, width = CONTENT_W) => {
   const words = String(str).split(/\s+/).filter(Boolean);
   const lines = [];
@@ -127,84 +132,100 @@ const wrap = (str, size, bold = false, width = CONTENT_W) => {
   return lines.length ? lines : [''];
 };
 
-const paragraph = (str, { size = 9.6, color = MUTED, leading = 13 } = {}) => {
-  for (const line of wrap(str, size)) {
+const paragraph = (str, { size = 8.8, color = MUTED, leading = 12.5, bold = false, indent = 0 } = {}) => {
+  const effW = CONTENT_W - indent;
+  for (const line of wrap(str, size, bold, effW)) {
     need(leading);
     y -= leading;
-    ops.push(`BT /F1 ${size} Tf ${color} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(line)}) Tj ET`);
+    ops.push(`BT /${bold ? 'F2' : 'F1'} ${size} Tf ${color} rg ${(MARGIN + indent).toFixed(2)} ${y.toFixed(2)} Td (${esc(line)}) Tj ET`);
   }
 };
 
-/** Left label + right-aligned meta on the same baseline (dates, locations). */
-const splitLine = (left, right, { size = 10, boldLeft = true } = {}) => {
+/** Split line: Left text + right aligned text on same baseline. */
+const splitLine = (left, right, { size = 9.5, boldLeft = true } = {}) => {
   need(size + 6);
   y -= size + 2;
   ops.push(
     `BT /${boldLeft ? 'F2' : 'F1'} ${size} Tf ${INK} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(left)}) Tj ET`
   );
   if (right) {
-    const w = textWidth(right, size - 1, false);
+    const w = textWidth(right, size - 0.6, false);
     ops.push(
-      `BT /F1 ${size - 1} Tf ${MUTED} rg ${(PAGE_W - MARGIN - w).toFixed(2)} ${y.toFixed(2)} Td (${esc(right)}) Tj ET`
+      `BT /F1 ${size - 0.6} Tf ${MUTED} rg ${(PAGE_W - MARGIN - w).toFixed(2)} ${y.toFixed(2)} Td (${esc(right)}) Tj ET`
     );
   }
 };
 
-/** Two-column "Label   values" row used for the skills matrix. */
-const twoCol = (leftLabel, leftValue, rightLabel, rightValue) => {
-  const size = 9.6;
-  need(size + 12);
-  y -= size + 4;
-  const colW = (CONTENT_W - 24) / 2;
-  const rightX = MARGIN + colW + 24;
-  ops.push(`BT /F2 ${size} Tf ${INK} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(leftLabel)}) Tj ET`);
-  ops.push(`BT /F1 ${size} Tf ${MUTED} rg ${(MARGIN + textWidth(leftLabel, size, true) + 8).toFixed(2)} ${y.toFixed(2)} Td (${esc(leftValue)}) Tj ET`);
-  if (rightLabel) {
-    ops.push(`BT /F2 ${size} Tf ${INK} rg ${rightX.toFixed(2)} ${y.toFixed(2)} Td (${esc(rightLabel)}) Tj ET`);
-    ops.push(`BT /F1 ${size} Tf ${MUTED} rg ${(rightX + textWidth(rightLabel, size, true) + 8).toFixed(2)} ${y.toFixed(2)} Td (${esc(rightValue)}) Tj ET`);
-  }
-};
+/* ==========================================================================
+   DOCUMENT BODY
+   ========================================================================== */
 
-/* ---------- document body ---------- */
-// Masthead
-ops.push(`BT /F2 22 Tf ${INK} rg ${MARGIN} ${(y - 24).toFixed(2)} Td (${esc(profile.name)}) Tj ET`);
-y -= 24;
-ops.push(`BT /F1 11.5 Tf ${MUTED} rg ${MARGIN} ${(y - 18).toFixed(2)} Td (${esc(profile.subtitle || profile.role)}) Tj ET`);
-y -= 18;
+// 1. MASTHEAD: Name & Professional Title
+need(54);
+const fullName = (profile.name || 'Cezar Nareswara Respati')
+  .split(' ')
+  .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+  .join(' ');
 
-const contactBits = [
-  profile.email,
-  profile.timezone || profile.country,
-  ...(profile.socialLinks || []).map((s) => String(s.href).replace(/^https?:\/\/(www\.)?/, '')),
-].filter(Boolean);
-for (const line of wrap(contactBits.join('   |   '), 8.8)) {
-  y -= 12;
-  ops.push(`BT /F1 8.8 Tf ${MUTED} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(line)}) Tj ET`);
-}
+y -= 20;
+ops.push(`BT /F2 21 Tf ${INK} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(fullName)}) Tj ET`);
+
+y -= 15;
+const titleStr = 'Full-Stack Developer  |  Software & Systems Architect';
+ops.push(`BT /F1 10.5 Tf ${MUTED} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(titleStr)}) Tj ET`);
+
+// Contact Bar
+y -= 13;
+const contactParts = [
+  profile.email || 'cezar.nares@gmail.com',
+  'Semarang, Indonesia',
+  'github.com/cnaresr',
+  'linkedin.com/in/cezar-nareswara-respati-8b8a55327',
+];
+ops.push(`BT /F1 8.5 Tf ${MUTED} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(contactParts.join('   |   '))}) Tj ET`);
+
 y -= 6;
-ops.push(`${INK} RG 1.2 w ${MARGIN} ${y.toFixed(2)} m ${(PAGE_W - MARGIN).toFixed(2)} ${y.toFixed(2)} l S`);
-y -= 16;
+ops.push(`${INK} RG 1 w ${MARGIN} ${y.toFixed(2)} m ${(PAGE_W - MARGIN).toFixed(2)} ${y.toFixed(2)} l S`);
+y -= 2;
 
-// Profile
-section('PROFESSIONAL PROFILE');
-paragraph(profile.summary || '');
+// 2. PROFESSIONAL SUMMARY (Objective, technical, no proverbs)
+section('PROFESSIONAL SUMMARY');
+const summaryText =
+  'Full-Stack Developer and Software Architect specializing in high-performance backend systems, distributed architectures, and database engineering. Experienced in architecting low-latency microservices, real-time event streaming pipelines, and type-safe web applications using TypeScript, Rust, Node.js, and SQL/NoSQL databases. Passionate about system reliability, edge computing, and clean software architecture.';
+paragraph(summaryText, { size: 8.8, leading: 12.4 });
+y -= 5;
 
-// Core competencies (from the live skills matrix)
-section('CORE COMPETENCIES');
-const topLanguages = (skills.languages || [])
-  .slice()
-  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-  .map((s) => `${s.name} (${s.percentage}%)`);
-const topFrameworks = (skills.frameworks || [])
-  .slice()
-  .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
-  .map((s) => `${s.name} (${s.percentage}%)`);
-for (let i = 0; i < Math.max(topLanguages.length, topFrameworks.length); i += 1) {
-  twoCol('Language', topLanguages[i] ?? '', 'Framework', topFrameworks[i] ?? '');
+// 3. TECHNICAL COMPETENCIES
+section('TECHNICAL COMPETENCIES');
+const langList = (skills.languages || []).map((s) => s.name).join(', ') || 'TypeScript, Rust, Go, Python, C++, SQL & PostgreSQL';
+const fwList = (skills.frameworks || []).map((s) => s.name).join(', ') || 'React 19, Astro Islands, Next.js, Node.js, Vite, Tailwind CSS';
+
+const skillCategories = [
+  {
+    category: 'Languages & Core:',
+    items: langList,
+  },
+  {
+    category: 'Frameworks & Runtimes:',
+    items: fwList,
+  },
+  {
+    category: 'Systems & Infrastructure:',
+    items: 'PostgreSQL (Citus / Pgpool), Redis Sentinel, Apache Kafka, Docker, Kubernetes, Cloudflare Edge, WebRTC, Wasm',
+  },
+];
+
+for (const sc of skillCategories) {
+  need(16);
+  y -= 14;
+  ops.push(`BT /F2 8.7 Tf ${INK} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(sc.category)}) Tj ET`);
+  const catWidth = textWidth(sc.category, 8.7, true) + 6;
+  ops.push(`BT /F1 8.7 Tf ${MUTED} rg ${(MARGIN + catWidth).toFixed(2)} ${y.toFixed(2)} Td (${esc(sc.items)}) Tj ET`);
 }
+y -= 5;
 
-// Experience
-section('PROFESSIONAL EXPERIENCE');
+// 4. FEATURED ENGINEERING PROJECTS
+section('FEATURED ENGINEERING PROJECTS');
 const fmtRange = (start, end) => {
   const pretty = (v) => {
     if (!v) return 'Present';
@@ -215,39 +236,51 @@ const fmtRange = (start, end) => {
   };
   return `${pretty(start)} - ${pretty(end)}`;
 };
+
 for (const p of projects) {
-  const tech = (p.technologies || []).join(' / ');
-  splitLine(p.title, fmtRange(p.startDate, p.endDate));
+  const tech = (p.technologies || []).join(' · ');
+  splitLine(p.title, fmtRange(p.startDate, p.endDate), { size: 9.6 });
+
   if (tech) {
     need(12);
-    y -= 12;
-    ops.push(`BT /F1 8.8 Tf ${MUTED} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(tech)}) Tj ET`);
+    y -= 11;
+    ops.push(`BT /F2 8.1 Tf ${INK} rg ${(MARGIN + 8).toFixed(2)} ${y.toFixed(2)} Td (Tech: ${esc(tech)}) Tj ET`);
   }
-  y -= 8;
-  paragraph(p.description || '');
+
+  y -= 2;
+  // Bullet 1: Description
+  paragraph(`-  ${p.description}`, { size: 8.5, leading: 11.4, indent: 8 });
+
+  // Bullet 2: Architecture spec
   if (p.abstract) {
-    y -= 4;
-    paragraph(p.abstract, { size: 8.8, leading: 11.5 });
+    paragraph(`-  Architecture: ${p.abstract}`, { size: 8.2, leading: 11.0, indent: 8, color: MUTED });
   }
-  y -= 10;
+
+  y -= 8; // Spacious separation between projects
 }
 
-// Certifications
-section('CERTIFICATIONS');
+// 5. CERTIFICATIONS & CREDENTIALS
+section('CERTIFICATIONS & CREDENTIALS');
 for (const c of certs) {
-  const meta = `${c.issuer}  |  Issued ${c.issued}  |  ${c.validityLabel} ${c.validityValue}`;
-  splitLine(c.title, c.level);
-  need(12);
-  y -= 12;
-  ops.push(`BT /F1 8.8 Tf ${MUTED} rg ${MARGIN} ${y.toFixed(2)} Td (${esc(meta)}) Tj ET`);
-  y -= 9;
+  const rightMeta = `${c.issuer}   |   ${c.validityLabel}: ${c.validityValue}`;
+  splitLine(c.title, rightMeta, { size: 9.0 });
+  y -= 4; // Clean breathing space per credential
 }
 
-// Footer note
-rule(14, 6);
+// 6. EDUCATION
+section('EDUCATION');
+splitLine('Politeknik Negeri Semarang (POLINES)', 'Semarang, Indonesia', { size: 9.3 });
+need(14);
+y -= 12;
+ops.push(
+  `BT /F1 8.6 Tf ${MUTED} rg ${(MARGIN + 8).toFixed(2)} ${y.toFixed(2)} Td (Diploma Degree in Informatics / Computer Engineering) Tj ET`
+);
+
+// Footer verification rule
+rule(18, 6);
 paragraph(
-  `Portfolio and source of truth: this CV is generated from the live content store. Contact ${profile.email} for the full dossier.`,
-  { size: 8.4, leading: 11 }
+  `Portfolio & verified dossier: https://github.com/cnaresr   |   Generated from verified platform repository`,
+  { size: 7.6, leading: 9.6 }
 );
 
 if (ops.length) pages.push(ops.join('\n'));
@@ -259,7 +292,7 @@ const push = (body) => {
   return objects.length; // 1-based object number
 };
 
-// Reserve: 1 = Catalog, 2 = Pages, 3 = F1, 4 = F2 (filled after page objects).
+// Reserve: 1 = Catalog, 2 = Pages, 3 = F1, 4 = F2
 const catalogNum = push('');
 const pagesNum = push('');
 const f1Num = push('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');

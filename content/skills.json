@@ -113,14 +113,14 @@
       "order": 5
     },
     {
-      "id": "fw-cf",
-      "name": "Cloudflare Edge",
-      "detail": "Workers KV / D1 / Durable Objects",
-      "proof": "Workers + KV/D1, sub-ms routing at the edge.",
-      "percentage": 95,
-      "master": true,
-      "iconSlug": "cloudflare",
-      "order": 6
+      "id": "skill-1790651251911",
+      "name": "Laravel",
+      "detail": "Configuration • Architecture",
+      "proof": "",
+      "percentage": 75,
+      "master": false,
+      "iconSlug": "laravel",
+      "order": 7
     }
   ]
 }

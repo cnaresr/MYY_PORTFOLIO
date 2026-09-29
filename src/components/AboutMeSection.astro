@@ -26,7 +26,7 @@ const data = getLiveAboutMe();
           <div class="reveal-header inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs mb-3">
             <span class="w-1.5 h-1.5 rounded-full bg-slate-900 dark:bg-slate-100 animate-pulse"></span>
             <span class="font-['Space_Grotesk'] text-[10px] text-slate-700 dark:text-slate-300 uppercase tracking-widest font-bold">
-              ABOUT ME // BACKGROUND
+              {data.badgeLabel || "ABOUT ME // BACKGROUND"}
             </span>
           </div>
           <h2 class="reveal-header font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-[46px] font-bold text-slate-950 dark:text-white tracking-tight leading-tight">
@@ -59,7 +59,7 @@ const data = getLiveAboutMe();
           {data.stackText && (
             <div class="reveal-sidebar mb-8">
               <span class="font-['Space_Grotesk'] text-[11px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest block mb-2">
-                TECH / STACK HIGHLIGHT
+                {data.stackLabel || "TECH / STACK HIGHLIGHT"}
               </span>
               <HyperText
                 client:visible
@@ -74,13 +74,15 @@ const data = getLiveAboutMe();
             </div>
           )}
 
-          <div class="reveal-sidebar relative pl-4">
-            <!-- Architectural Vertical Accent Line Draw -->
-            <span class="about-accent-v absolute left-0 top-0 bottom-0 w-[2px] bg-slate-300 dark:bg-slate-700 origin-top"></span>
-            <p class="font-['Hanken_Grotesk'] text-sm text-slate-500 dark:text-slate-400 leading-relaxed italic">
-              "Fokus menciptakan antarmuka yang bersih, responsif, dan fungsional dengan performa yang konsisten."
-            </p>
-          </div>
+          {data.quote && (
+            <div class="reveal-sidebar relative pl-4">
+              <!-- Architectural Vertical Accent Line Draw -->
+              <span class="about-accent-v absolute left-0 top-0 bottom-0 w-[2px] bg-slate-300 dark:bg-slate-700 origin-top"></span>
+              <p class="font-['Hanken_Grotesk'] text-sm text-slate-500 dark:text-slate-400 leading-relaxed italic">
+                "{data.quote}"
+              </p>
+            </div>
+          )}
         </GsapReveal>
       </div>
 
@@ -125,7 +127,8 @@ const data = getLiveAboutMe();
           scrollTrigger: {
             trigger: hLine,
             start: 'top 92%',
-            toggleActions: 'play none none none',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
           },
         }
       );
@@ -145,7 +148,8 @@ const data = getLiveAboutMe();
           scrollTrigger: {
             trigger: vLine,
             start: 'top 90%',
-            toggleActions: 'play none none none',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
           },
         }
       );

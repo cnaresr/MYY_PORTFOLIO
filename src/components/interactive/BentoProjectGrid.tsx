@@ -44,7 +44,8 @@ function StaggerReveal({ children, className, triggerKey }: StaggerRevealProps) 
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top 88%",
-          toggleActions: "play none none none",
+          end: "bottom 15%",
+          toggleActions: "play reverse play reverse",
         },
       });
     },
