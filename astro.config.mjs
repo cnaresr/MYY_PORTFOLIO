@@ -9,9 +9,7 @@ export default defineConfig({
   security: {
     checkOrigin: false,
   },
-  adapter: vercel({
-    includeFiles: ['./content/**'],
-  }),
+  adapter: vercel(),
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
