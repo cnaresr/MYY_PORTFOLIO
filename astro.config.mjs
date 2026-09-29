@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  outDir: './dist_app',
+  // outDir: './dist_app',
   // security.checkOrigin rejects multipart POSTs because @astrojs/node drops
   // the Host-header port when building context.url (origin mismatch -> 403
   // "Cross-site POST form submissions are forbidden"). CSRF is still covered:
@@ -15,9 +15,12 @@ export default defineConfig({
   security: {
     checkOrigin: false,
   },
-  adapter: node({
-    mode: 'standalone',
-  }),
+
+  // adapter: node({
+  //   mode: 'standalone',
+  // }),
+
+  adapter: vercel(),
   integrations: [react()],
   vite: {
     cacheDir: './.vite_cache',
