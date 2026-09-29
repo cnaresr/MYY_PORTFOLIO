@@ -47,7 +47,8 @@ export function GsapReveal({
         scrollTrigger: {
           trigger: root.current,
           start,
-          toggleActions: "play none none none",
+          end: "bottom 15%",
+          toggleActions: "play reverse play reverse",
         },
       });
     },

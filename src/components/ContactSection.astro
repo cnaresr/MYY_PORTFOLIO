@@ -118,7 +118,7 @@ import { ContactForm } from './interactive/ContactForm';
 <script>
   import { gsap, ScrollTrigger } from '../lib/gsap';
 
-  // Dual-Wing Lateral Entry Animation
+  // Dual-Wing Lateral Entry & Exit Animation (symmetrical reverse on exit)
   function initContactWings() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
@@ -138,7 +138,8 @@ import { ContactForm } from './interactive/ContactForm';
           scrollTrigger: {
             trigger: container,
             start: 'top 85%',
-            toggleActions: 'play none none none',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
           },
         }
       );
@@ -155,7 +156,8 @@ import { ContactForm } from './interactive/ContactForm';
           scrollTrigger: {
             trigger: container,
             start: 'top 85%',
-            toggleActions: 'play none none none',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse',
           },
         }
       );

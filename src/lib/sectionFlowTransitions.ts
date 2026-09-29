@@ -2,15 +2,11 @@ import { gsap, ScrollTrigger } from './gsap';
 
 /**
  * Initializes bidirectional exit & enter transitions across all portfolio sections.
- * Excludes #hero section as required.
+ * Excludes #hero section as explicitly required.
  *
- * Lifecycle:
- * - Scrolling DOWN:
- *   - onEnter: Section enters from below (y: 28 -> 0, opacity: 0 -> 1)
- *   - onLeave: Section exits to above (y: 0 -> -28, opacity: 1 -> 0)
- * - Scrolling UP:
- *   - onEnterBack: Section enters from above (y: -28 -> 0, opacity: 0 -> 1)
- *   - onLeaveBack: Section exits to below (y: 0 -> 28, opacity: 1 -> 0)
+ * Uses the existing vertical transition:
+ * - Animasi masuk: smooth in dari bawah ke atas (y: 28 -> 0, opacity: 0 -> 1, scale: 0.99 -> 1)
+ * - Animasi keluar: smooth out arah sebaliknya (y: 0 -> 28, opacity: 1 -> 0, scale: 1 -> 0.99)
  */
 export function initSectionFlowTransitions(): void {
   if (typeof window === 'undefined') return;
@@ -33,66 +29,60 @@ export function initSectionFlowTransitions(): void {
     const content = section.querySelector<HTMLElement>('.section-content-flow');
     if (!content) return;
 
+    const triggerId = `flow-${id}`;
+    const existing = ScrollTrigger.getById(triggerId);
+    if (existing) {
+      existing.kill();
+    }
+
     const isFooter = id === 'footer';
 
+    const enterAnimation = () => {
+      gsap.fromTo(
+        content,
+        { y: 28, opacity: 0, scale: 0.99 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.65,
+          ease: 'power2.out',
+          overwrite: 'auto',
+          onComplete: () => {
+            gsap.set(content, { clearProps: 'transform' });
+          },
+        }
+      );
+    };
+
+    const leaveAnimation = () => {
+      if (isFooter) return; // Footer is at document bottom; cannot exit downwards
+      gsap.to(content, {
+        y: 28,
+        opacity: 0,
+        scale: 0.99,
+        duration: 0.45,
+        ease: 'power2.inOut',
+        overwrite: 'auto',
+      });
+    };
+
     const st = ScrollTrigger.create({
+      id: triggerId,
       trigger: section,
-      start: isFooter ? 'top 92%' : 'top 88%',
+      start: isFooter ? 'top 95%' : 'top 88%',
       end: isFooter ? 'bottom bottom' : 'bottom 14%',
       onEnter: () => {
-        gsap.fromTo(
-          content,
-          { y: 28, opacity: 0, scale: 0.99 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.65,
-            ease: 'power2.out',
-            overwrite: 'auto',
-            onComplete: () => {
-              gsap.set(content, { clearProps: 'transform' });
-            },
-          }
-        );
+        enterAnimation();
       },
       onLeave: () => {
-        if (isFooter) return; // Footer is at document bottom; cannot exit downwards
-        gsap.to(content, {
-          y: -28,
-          opacity: 0,
-          scale: 0.99,
-          duration: 0.45,
-          ease: 'power2.inOut',
-          overwrite: 'auto',
-        });
+        leaveAnimation();
       },
       onEnterBack: () => {
-        gsap.fromTo(
-          content,
-          { y: -28, opacity: 0, scale: 0.99 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.65,
-            ease: 'power2.out',
-            overwrite: 'auto',
-            onComplete: () => {
-              gsap.set(content, { clearProps: 'transform' });
-            },
-          }
-        );
+        enterAnimation();
       },
       onLeaveBack: () => {
-        gsap.to(content, {
-          y: 28,
-          opacity: 0,
-          scale: 0.99,
-          duration: 0.45,
-          ease: 'power2.inOut',
-          overwrite: 'auto',
-        });
+        leaveAnimation();
       },
     });
 
@@ -103,7 +93,7 @@ export function initSectionFlowTransitions(): void {
     } else if (st.progress === 0) {
       gsap.set(content, { opacity: 0, y: 28, scale: 0.99 });
     } else if (st.progress === 1) {
-      gsap.set(content, { opacity: 0, y: -28, scale: 0.99 });
+      gsap.set(content, { opacity: 0, y: 28, scale: 0.99 });
     }
   });
 

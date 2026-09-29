@@ -4,6 +4,7 @@ dist_app/
 dist_old/
 .astro/
 .vite_cache/
+.vercel/
 
 # dependencies
 node_modules/
