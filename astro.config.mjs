@@ -6,24 +6,14 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  // outDir: './dist_app',
-  // security.checkOrigin rejects multipart POSTs because @astrojs/node drops
-  // the Host-header port when building context.url (origin mismatch -> 403
-  // "Cross-site POST form submissions are forbidden"). CSRF is still covered:
-  // admin endpoints sit behind the session middleware in src/middleware.ts and
-  // the session cookie is SameSite=Strict.
   security: {
     checkOrigin: false,
   },
-
-  // adapter: node({
-  //   mode: 'standalone',
-  // }),
-
-  adapter: vercel(),
+  adapter: vercel({
+    includeFiles: ['./content/**'],
+  }),
   integrations: [react()],
   vite: {
-    cacheDir: './.vite_cache',
     plugins: [tailwindcss()],
   },
 });
