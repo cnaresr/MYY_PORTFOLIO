@@ -1,11 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { MonitorIcon, MoonStarIcon, SunIcon, Moon, Sun } from "lucide-react";
+import { MonitorIcon, MoonStarIcon, SunIcon } from "lucide-react";
 import { motion } from "motion/react";
 import { ThemeProvider, useTheme } from "next-themes";
 import type { JSX } from "react";
-import React from "react";
 
 import { cn } from "@/lib/utils";
 import {

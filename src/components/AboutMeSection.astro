@@ -1,9 +1,13 @@
 ---
 import { getLiveAboutMe } from '../data/aboutMe';
+import { getLiveLanguageSkills, getLiveFrameworkSkills } from '../data/skills';
 import { GsapReveal } from './interactive/GsapReveal';
 import { HyperText } from './interactive/HyperText';
+import { SkillsShowreel } from './interactive/SkillsShowreel';
 
 const data = getLiveAboutMe();
+const languages = getLiveLanguageSkills();
+const frameworks = getLiveFrameworkSkills();
 ---
 
 <section
@@ -19,36 +23,83 @@ const data = getLiveAboutMe();
 
   <div class="relative max-w-[1200px] mx-auto px-6 z-10 section-content-flow">
     
-    <!-- Section Header -->
-    <GsapReveal y={18} duration={0.6} selector=".reveal-header">
-      <div class="flex flex-col md:flex-row md:items-end justify-between pb-6">
-        <div>
-          <div class="reveal-header inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs mb-3">
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-900 dark:bg-slate-100 animate-pulse"></span>
-            <span class="font-['Space_Grotesk'] text-[10px] text-slate-700 dark:text-slate-300 uppercase tracking-widest font-bold">
-              {data.badgeLabel || "ABOUT ME // BACKGROUND"}
-            </span>
-          </div>
-          <h2 class="reveal-header font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-[46px] font-bold text-slate-950 dark:text-white tracking-tight leading-tight">
-            {data.title}
-          </h2>
-          <p class="reveal-header font-['Hanken_Grotesk'] text-lg sm:text-xl text-slate-600 dark:text-slate-400 mt-2 font-normal">
-            {data.subtitle}
-          </p>
+    <!-- Section Header (Architectural Style Matching Project Header) -->
+    <GsapReveal y={20} duration={0.7} selector=".reveal-about-header">
+      <div class="relative mb-12">
+        <!-- Giant Architectural Watermark Serial Number -->
+        <div class="pointer-events-none absolute -top-8 right-2 sm:right-6 select-none font-mono text-7xl sm:text-8xl lg:text-9xl font-black text-slate-950/[0.03] dark:text-white/[0.03] tracking-tighter">
+          01
         </div>
 
-        {data.topLabel && (
-          <div class="reveal-header mt-4 md:mt-0">
-            <span class="font-['Space_Grotesk'] text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
-              {data.topLabel}
-            </span>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 relative z-10">
+          <!-- Left Wing: Status Chip + Monumental Typography -->
+          <div class="space-y-3">
+            <div class="reveal-about-header inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span class="font-mono text-[10px] uppercase tracking-widest font-bold text-slate-700 dark:text-slate-300">
+                {data.badgeLabel || "ABOUT ME // PROFILE DOSSIER"}
+              </span>
+            </div>
+
+            <div class="reveal-about-header flex items-baseline gap-3 sm:gap-4 flex-wrap">
+              <h2 class="font-['Space_Grotesk'] text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-none">
+                About Me
+              </h2>
+              <span class="font-mono text-xs sm:text-sm text-slate-400 dark:text-slate-500 font-semibold tracking-wider uppercase">
+                // {data.title || "FULL-STACK ARCHITECTURE"}
+              </span>
+            </div>
           </div>
-        )}
+
+          <!-- Right Wing: Precision Telemetry HUD Cards -->
+          <div class="reveal-about-header flex items-center gap-3 shrink-0">
+            <!-- Focus Pill -->
+            <div class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">terminal</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-['Space_Grotesk'] text-lg font-bold text-slate-950 dark:text-white leading-tight">
+                  Full-Stack
+                </span>
+                <span class="font-mono text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
+                  Engineering Focus
+                </span>
+              </div>
+            </div>
+
+            <!-- Origin Location Pill -->
+            <div class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-center gap-3">
+              <div class="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-500 dark:text-sky-400 shrink-0">
+                <span class="material-symbols-outlined text-[18px]">near_me</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-mono text-xs font-bold text-slate-950 dark:text-white leading-tight flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  INDONESIA
+                </span>
+                <span class="font-mono text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
+                  Semarang UTC+7
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architectural Blueprint Ruler Divider with Registration Marks -->
+        <div class="relative w-full mt-2">
+          <div class="w-full h-[1px] bg-slate-200/90 dark:bg-slate-800"></div>
+          <span class="absolute -top-1.5 left-0 font-mono text-[10px] text-slate-400 dark:text-slate-600 select-none leading-none">+</span>
+          <span class="absolute -top-1.5 right-0 font-mono text-[10px] text-slate-400 dark:text-slate-600 select-none leading-none">+</span>
+          <div class="about-divider-h absolute -top-2 left-1/2 -translate-x-1/2 px-3 bg-slate-50 dark:bg-slate-900 text-[9px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest whitespace-nowrap">
+            SEC // 01 · ARCHITECTURAL BIOGRAPHY &amp; NARRATIVE
+          </div>
+        </div>
       </div>
     </GsapReveal>
-
-    <!-- Architectural Horizontal Line Draw (CAD blueprint effect) -->
-    <div class="about-divider-h w-full h-[1px] bg-slate-200/90 dark:bg-slate-800 mb-12 origin-left"></div>
 
     <!-- Main Content: Pure Text Editorial Layout -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
@@ -105,11 +156,16 @@ const data = getLiveAboutMe();
 
     </div>
 
+    <!-- Technical Capabilities & Runtime Showreel -->
+    <div id="skills" class="scroll-mt-28 mt-16 pt-10 border-t border-slate-200/80 dark:border-slate-800">
+      <SkillsShowreel client:visible languages={languages} frameworks={frameworks} />
+    </div>
+
   </div>
 </section>
 
 <script>
-  import { gsap, ScrollTrigger } from '../lib/gsap';
+  import { gsap } from '../lib/gsap';
 
   function initAboutLines() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

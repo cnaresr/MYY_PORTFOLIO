@@ -4,7 +4,6 @@ import {
   useEffect,
   useId,
   useState,
-  type ComponentProps,
   type CSSProperties,
   type ReactNode,
 } from "react";

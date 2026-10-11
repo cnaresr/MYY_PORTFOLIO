@@ -310,17 +310,6 @@ html.dark {
   --color-cockpit-accent: #38bdf8;
 }
 
-/* ---- Custom smooth cursor colour ----
-   Default (light) renders a black arrow. In dark mode the black fill is
-   invisible on the dark cockpit/page, so flip it to white via a token that
-   the SmoothCursor inline style reads. The white SVG stroke is unchanged. */
-:root {
-  --smooth-cursor-color: #000000;
-}
-html.dark {
-  --smooth-cursor-color: #ffffff;
-}
-
 /* Dual-layer Marquee Animation — seamless infinite loop */
 @keyframes marqueeLeft {
   0% {

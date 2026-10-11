@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576" width="1024" height="576">
+  <defs>
+    <linearGradient id="mapBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020817"/>
+      <stop offset="50%" stop-color="#0a1226"/>
+      <stop offset="100%" stop-color="#030612"/>
+    </linearGradient>
+    <linearGradient id="contourGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="35%" stop-color="#10b981"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <pattern id="mapCoordGrid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="1"/>
+    </pattern>
+    <filter id="glowContour" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="576" fill="url(#mapBg)"/>
+
+  <!-- Top macOS Chrome Window Bar -->
+  <g transform="translate(48, 36)">
+    <rect x="0" y="0" width="928" height="504" rx="20" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
+    <rect x="0" y="0" width="928" height="42" rx="20" fill="#0f172a"/>
+    <circle cx="24" cy="21" r="5" fill="#ef4444"/>
+    <circle cx="40" cy="21" r="5" fill="#f59e0b"/>
+    <circle cx="56" cy="21" r="5" fill="#10b981"/>
+    <text x="76" y="26" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94a3b8">gis_contour://dashboard.polines.geo/elevation · LEAFLET + D3 GEOJSON TOPOGRAPHY</text>
+    <text x="810" y="26" font-family="'JetBrains Mono', monospace" font-size="11" fill="#06b6d4" font-weight="bold">EPSG:4326 WGS84</text>
+
+    <!-- Main Map Viewport Area -->
+    <g transform="translate(24, 60)">
+      <!-- Map Background Surface with Coordinate Grid -->
+      <rect x="0" y="0" width="650" height="420" rx="14" fill="#090e1a" stroke="#1e293b" stroke-width="1"/>
+      <rect x="0" y="0" width="650" height="420" rx="14" fill="url(#mapCoordGrid)"/>
+
+      <!-- Stylized Topographic Contour Isoclines (Vector Elevation Map) -->
+      <!-- Elevation 100m (Base teal) -->
+      <path d="M 40 210 Q 180 90, 320 180 T 500 240 T 630 180" fill="none" stroke="#0e7490" stroke-width="2" opacity="0.4"/>
+      <!-- Elevation 200m (Teal/Emerald) -->
+      <path d="M 60 250 Q 200 130, 310 210 T 480 290 T 610 230" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+      <text x="70" y="244" font-family="'JetBrains Mono', monospace" font-size="8" fill="#06b6d4">200m</text>
+
+      <!-- Elevation 300m Contour Outer Ring -->
+      <path d="M 120 220 C 140 140, 260 110, 360 140 C 440 170, 480 260, 400 320 C 320 370, 180 340, 120 220 Z" fill="rgba(16, 185, 129, 0.05)" stroke="#10b981" stroke-width="2.5" filter="url(#glowContour)"/>
+      <text x="210" y="132" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">300m ISOCLINE</text>
+
+      <!-- Elevation 400m Contour Mid Ring -->
+      <path d="M 170 220 C 190 160, 260 140, 330 170 C 390 200, 400 260, 350 300 C 290 330, 200 300, 170 220 Z" fill="rgba(234, 179, 8, 0.07)" stroke="#eab308" stroke-width="2.5" filter="url(#glowContour)"/>
+      <text x="235" y="162" font-family="'JetBrains Mono', monospace" font-size="9" fill="#eab308">400m</text>
+
+      <!-- Elevation 500m Peak Ring -->
+      <path d="M 220 220 C 230 180, 280 170, 310 190 C 340 210, 340 250, 305 270 C 265 285, 230 265, 220 220 Z" fill="rgba(239, 68, 68, 0.12)" stroke="#ef4444" stroke-width="3" filter="url(#glowContour)"/>
+      <circle cx="270" cy="225" r="5" fill="#ffffff"/>
+      <text x="282" y="229" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="bold" fill="#ffffff">PEAK ▲ 528m</text>
+
+      <!-- Compass Rose Widget (Top Right of Map) -->
+      <g transform="translate(580, 30)">
+        <circle cx="20" cy="20" r="18" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+        <path d="M 20 6 L 24 20 L 20 18 L 16 20 Z" fill="#ef4444"/>
+        <path d="M 20 34 L 24 20 L 20 22 L 16 20 Z" fill="#94a3b8"/>
+        <text x="18" y="5" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold" fill="#ef4444">N</text>
+      </g>
+
+      <!-- Map Scale Bar & Coordinates (Bottom Left) -->
+      <g transform="translate(20, 375)">
+        <rect x="0" y="0" width="220" height="30" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+        <text x="10" y="19" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">LAT: -7.0514° · LNG: 110.4382°</text>
+        <line x1="10" y1="24" x2="60" y2="24" stroke="#ffffff" stroke-width="2"/>
+        <text x="68" y="27" font-family="'JetBrains Mono', monospace" font-size="8" fill="#64748b">500 m</text>
+      </g>
+    </g>
+
+    <!-- Side Panel: Layer Controls & Elevation Analytics -->
+    <g transform="translate(690, 60)">
+      <rect x="0" y="0" width="214" height="420" rx="14" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+      <text x="16" y="28" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">GIS LAYER CONTROL</text>
+      
+      <!-- Layer Toggles -->
+      <g transform="translate(16, 45)">
+        <!-- Layer 1 -->
+        <rect x="0" y="0" width="182" height="38" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+        <circle cx="16" cy="19" r="4" fill="#10b981"/>
+        <text x="28" y="22" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="bold" fill="#e2e8f0">Topographic Contours</text>
+
+        <!-- Layer 2 -->
+        <rect x="0" y="46" width="182" height="38" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+        <circle cx="16" cy="65" r="4" fill="#06b6d4"/>
+        <text x="28" y="68" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="bold" fill="#e2e8f0">DEM Slope Gradient</text>
+
+        <!-- Layer 3 -->
+        <rect x="0" y="92" width="182" height="38" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+        <circle cx="16" cy="111" r="4" fill="#eab308"/>
+        <text x="28" y="114" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="bold" fill="#e2e8f0">GeoJSON Shapefile</text>
+      </g>
+
+      <!-- Elevation Hypsometric Ramp Legend -->
+      <g transform="translate(16, 200)">
+        <text x="0" y="14" font-family="'JetBrains Mono', monospace" font-size="9" fill="#94a3b8">HYPSOMETRIC RAMP</text>
+        <rect x="0" y="24" width="182" height="14" rx="4" fill="url(#contourGrad)"/>
+        <text x="0" y="52" font-family="'JetBrains Mono', monospace" font-size="8" fill="#64748b">0m</text>
+        <text x="65" y="52" font-family="'JetBrains Mono', monospace" font-size="8" fill="#64748b">250m</text>
+        <text x="145" y="52" font-family="'JetBrains Mono', monospace" font-size="8" fill="#ef4444">500m+</text>
+      </g>
+
+      <!-- Telemetry Box -->
+      <g transform="translate(16, 280)">
+        <rect x="0" y="0" width="182" height="110" rx="8" fill="#0f172a" stroke="#1e293b" stroke-width="1"/>
+        <text x="12" y="20" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">POLYGON COUNT</text>
+        <text x="12" y="38" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="bold" fill="#ffffff">1,420 Contours</text>
+        
+        <text x="12" y="62" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">MAX ELEVATION</text>
+        <text x="12" y="80" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="bold" fill="#ef4444">528.4 m (MSL)</text>
+        <text x="12" y="98" font-family="'JetBrains Mono', monospace" font-size="8" fill="#10b981">● WEBGL TILE CACHE: ACTIVE</text>
+      </g>
+    </g>
+  </g>
+</svg>

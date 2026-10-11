@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
-import { Repeat2 } from "lucide-react";
+import { Repeat2, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DownloadButton } from "@/components/ui/download-button";
 import { PulsatingButton } from "./PulsatingButton";
 import { HyperText } from "./HyperText";
 import { BorderBeam } from "./BorderBeam";
 import { BrandIcon } from "./BrandIcon";
+import { CvModal } from "./CvModal";
 
 export interface FloatingIconItem {
   id: number | string;
@@ -20,8 +20,8 @@ export interface FloatingIconItem {
 }
 
 interface FloatingIconProps {
-  mouseX: React.MutableRefObject<number>;
-  mouseY: React.MutableRefObject<number>;
+  mouseX: React.RefObject<number>;
+  mouseY: React.RefObject<number>;
   iconData: FloatingIconItem;
   index: number;
 }
@@ -72,7 +72,7 @@ const FloatingIcon = ({ mouseX, mouseY, iconData, index }: FloatingIconProps) =>
         x: springX,
         y: springY,
       }}
-      initial={{ opacity: 0, scale: 0.6 }}
+      initial={false}
       animate={{ opacity: 1, scale: 1 }}
       transition={{
         delay: 0.1 + index * 0.05,
@@ -139,6 +139,7 @@ export function FloatingIconsHero({
   icons = defaultHeroIcons,
   className,
 }: FloatingIconsHeroProps) {
+  const [isCvOpen, setIsCvOpen] = useState(false);
   const mouseX = useRef(0);
   const mouseY = useRef(0);
 
@@ -190,7 +191,7 @@ export function FloatingIconsHero({
 
             {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="flex flex-wrap items-center gap-4 w-full sm:w-auto"
@@ -221,13 +222,16 @@ export function FloatingIconsHero({
               </PulsatingButton>
 
               {cvPdf && (
-                <DownloadButton
-                  href={cvPdf}
-                  filename={`${(name || "Resume").replace(/\s+/g, "_")}_CV.pdf`}
-                  label="Download CV"
-                  downloadingLabel="Downloading..."
-                  doneLabel="Downloaded"
-                />
+                <button
+                  type="button"
+                  onClick={() => setIsCvOpen(true)}
+                  className="inline-flex h-10 items-center gap-2 rounded-lg px-4 font-['Space_Grotesk'] text-sm font-semibold outline-none select-none transition-all duration-200 shadow-xs cursor-pointer bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800 active:scale-[0.98]"
+                  title="View Curriculum Vitae"
+                  aria-label="View Curriculum Vitae"
+                >
+                  <span>See CV</span>
+                  <ArrowRight className="size-4 text-slate-600 dark:text-slate-400" />
+                </button>
               )}
             </motion.div>
           </div>
@@ -235,7 +239,7 @@ export function FloatingIconsHero({
           {/* Architectural Portrait Contour */}
           {avatar && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-4 relative flex justify-center mt-6 lg:mt-0"
@@ -251,6 +255,15 @@ export function FloatingIconsHero({
           )}
         </div>
       </div>
+
+      {cvPdf && (
+        <CvModal
+          isOpen={isCvOpen}
+          onClose={() => setIsCvOpen(false)}
+          pdfUrl={cvPdf}
+          name={name}
+        />
+      )}
     </section>
   );
 }
@@ -325,7 +338,7 @@ function ProfileFlipCard({
           />
         </div>
 
-        {/* BACK — identity text (Slogan & Kata Penyemangat) */}
+        {/* BACK — identity text (Slogan & Inspirational Quote) */}
         <div
           className={cn(
             "absolute inset-0 h-full w-full",

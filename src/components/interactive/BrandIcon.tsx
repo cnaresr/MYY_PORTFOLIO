@@ -35,7 +35,7 @@ export function BrandIcon({
     <svg
       viewBox="0 0 24 24"
       aria-label={name || "Unknown brand"}
-      className={cn("shrink-0 text-slate-400 dark:text-slate-500", className)}
+      className={cn("shrink-0 text-slate-400 dark:text-slate-500", className, initialClassName)}
       fill="currentColor"
     >
       <title>{name || "Unknown brand"}</title>

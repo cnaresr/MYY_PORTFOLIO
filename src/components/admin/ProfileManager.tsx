@@ -5,7 +5,8 @@ import {
   Home,
   Mail,
   MapPin,
-  FileText,
+  ExternalLink,
+  ArrowRight,
 } from 'lucide-react';
 import { AdminToast } from '../ui/alert';
 import { AvatarUploader } from './AvatarUploader';
@@ -104,28 +105,40 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
       )}
 
       {/* Header Bar */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-4 border-b border-cockpit-line">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <h1 className="text-xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
-              PROFILE & HERO IDENTITY MANAGER // ROOT SPEC
+      <div className="relative rounded-2xl bg-gradient-to-r from-cockpit-panel via-cockpit-panel/95 to-cockpit-raised border border-cockpit-line p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm overflow-hidden">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/5 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <h1 className="text-xl sm:text-2xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
+              Profile & Hero Identity // Root Spec
             </h1>
           </div>
-          <p className="text-xs font-mono text-cockpit-muted mt-1 flex items-center gap-2">
-            <span>PERSISTENCE: <code className="text-cockpit-text font-semibold">content/profile.json</code></span>
+          <p className="text-xs font-mono text-cockpit-muted mt-1.5 flex flex-wrap items-center gap-2">
+            <span>PERSISTENCE: <code className="text-emerald-300 font-semibold">content/profile.json</code></span>
             <span>•</span>
-            <span className="text-emerald-300 font-semibold">ZERO DB ATOMIC STORE</span>
+            <span className="text-cockpit-faint">HERO IDENTITY</span>
+            <span>•</span>
+            <span className="text-emerald-400 font-semibold">ATOMIC STORE</span>
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="relative z-10 flex flex-wrap items-center gap-2.5">
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-text font-mono text-xs transition-colors"
+          >
+            <span>Live Hero</span>
+            <ExternalLink className="w-3.5 h-3.5 text-cockpit-faint" />
+          </a>
           <button
             onClick={handleSave}
             disabled={isSaving}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30 hover:bg-emerald-500/25 disabled:opacity-50 font-mono text-xs font-bold shadow-2xs transition-colors cursor-pointer disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-['Space_Grotesk'] text-xs font-bold shadow-md shadow-emerald-500/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+            <CheckCircle2 className="w-4 h-4" />
             <span>{isSaving ? 'Persisting Profile...' : 'Save Profile Specs'}</span>
           </button>
         </div>
@@ -165,7 +178,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
               />
             </div>
             <div>
-              <label className="block text-cockpit-muted font-bold mb-1">SLOGAN (KARTU HERO)</label>
+              <label className="block text-cockpit-muted font-bold mb-1">SLOGAN (HERO CARD)</label>
               <input
                 type="text"
                 value={profile.subtitle}
@@ -177,12 +190,12 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
           </div>
 
           <div>
-            <label className="block text-cockpit-muted font-bold mb-1">PERIBAHASA / KATA-KATA PENYEMANGAT (KARTU HERO)</label>
+            <label className="block text-cockpit-muted font-bold mb-1">MOTTO / INSPIRATIONAL QUOTE (HERO CARD)</label>
             <textarea
               rows={4}
               value={profile.summary}
               onChange={(e) => setProfile({ ...profile, summary: e.target.value })}
-              placeholder="e.g. Di mana ada kemauan, di situ ada jalan. Teruslah berkarya dan berinovasi tanpa henti."
+              placeholder="e.g. Where there's a will, there's a way. Keep moving forward, creating, and innovating relentlessly."
               className="w-full p-3 bg-cockpit border border-cockpit-line-strong rounded font-sans text-xs text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-relaxed"
             />
           </div>
@@ -222,7 +235,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
                   value={profile.officeAddress || ''}
                   onChange={(e) => setProfile({ ...profile, officeAddress: e.target.value })}
                   className="w-full p-2.5 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-relaxed"
-                  placeholder="Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan"
+                  placeholder="e.g. POLINES, Tembalang, Semarang"
                 />
               </div>
               <div>
@@ -234,7 +247,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
                   value={profile.homeAddress || ''}
                   onChange={(e) => setProfile({ ...profile, homeAddress: e.target.value })}
                   className="w-full p-2.5 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500 leading-relaxed"
-                  placeholder="Jl. Kemang Raya No. 12, Jakarta Selatan"
+                  placeholder="e.g. Semarang, Tembalang, Central Java"
                 />
               </div>
             </div>
@@ -337,7 +350,7 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
               </div>
             </div>
 
-            {/* Slogan & Kata Penyemangat */}
+            {/* Slogan & Inspirational Quote */}
             <p className="text-xs text-cockpit-muted font-sans italic leading-relaxed pt-2">
               "{profile.summary}"
             </p>
@@ -374,8 +387,8 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
                 <span>Direct Contact</span>
               </span>
               <span className="px-3 py-1.5 rounded bg-cockpit-raised text-cockpit-text border border-cockpit-line-strong flex items-center gap-1">
-                <FileText className="w-3 h-3 text-cockpit-faint" />
-                <span>Download CV</span>
+                <span>See CV</span>
+                <ArrowRight className="w-3 h-3 text-cockpit-faint" />
               </span>
             </div>
           </div>

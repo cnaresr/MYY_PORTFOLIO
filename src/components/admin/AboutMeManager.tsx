@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import type { AboutMeData } from '../../data/aboutMe';
 
 export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
@@ -44,23 +44,45 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
   return (
     <div className="max-w-5xl space-y-8 pb-16">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="font-['Space_Grotesk'] text-2xl font-bold text-cockpit-text">About Me Configuration</h1>
-          <p className="text-cockpit-muted text-sm mt-1">
-            Konfigurasi seluruh teks dan konten section "About Me" yang ditampilkan di dashboard utama.
+      <div className="relative rounded-2xl bg-gradient-to-r from-cockpit-panel via-cockpit-panel/95 to-cockpit-raised border border-cockpit-line p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm overflow-hidden">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/5 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <h1 className="text-xl sm:text-2xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
+              About Me Narrative & Showreel Config
+            </h1>
+          </div>
+          <p className="text-xs font-mono text-cockpit-muted mt-1.5 flex flex-wrap items-center gap-2">
+            <span>PERSISTENCE: <code className="text-emerald-300 font-semibold">content/about-me.json</code></span>
+            <span>•</span>
+            <span className="text-cockpit-faint">BIOGRAPHY & MANIFESTO</span>
+            <span>•</span>
+            <span className="text-emerald-400 font-semibold">ZERO DB ATOMIC STORE</span>
           </p>
         </div>
-        <button
-          onClick={handleSave}
-          disabled={isSaving}
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white font-bold font-mono text-sm shadow-sm transition-colors disabled:opacity-50 shrink-0 cursor-pointer"
-        >
-          <span className="material-symbols-outlined text-[18px]">
-            {isSaving ? 'sync' : 'save'}
-          </span>
-          {isSaving ? 'Saving...' : 'Save Changes'}
-        </button>
+
+        <div className="relative z-10 flex flex-wrap items-center gap-2.5">
+          <a
+            href="/#about"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-text font-mono text-xs transition-colors"
+          >
+            <span>Live Section</span>
+            <span className="material-symbols-outlined text-[14px] text-cockpit-faint">open_in_new</span>
+          </a>
+          <button
+            onClick={handleSave}
+            disabled={isSaving}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-['Space_Grotesk'] text-xs font-bold shadow-md shadow-emerald-500/20 transition-all disabled:opacity-50 shrink-0 cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[18px]">
+              {isSaving ? 'sync' : 'save'}
+            </span>
+            <span>{isSaving ? 'Saving Changes...' : 'Save Narrative'}</span>
+          </button>
+        </div>
       </div>
 
       {saveMessage && (
@@ -79,12 +101,12 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
       <div className="p-6 rounded-xl border border-cockpit-line bg-cockpit-panel space-y-6">
         <div className="border-b border-cockpit-line pb-2 flex items-center justify-between">
           <h2 className="font-['Space_Grotesk'] text-lg font-bold text-cockpit-text">1. Header & Headline Identity</h2>
-          <span className="font-mono text-[11px] text-cockpit-muted uppercase">Bagian Atas Section</span>
+          <span className="font-mono text-[11px] text-cockpit-muted uppercase">Top Section</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Badge Tag / Kategori</label>
+            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Badge Tag / Category</label>
             <input
               type="text"
               value={data.badgeLabel || ''}
@@ -95,7 +117,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Top Label / Lokasi (Kanan Atas)</label>
+            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Top Label / Location (Top Right)</label>
             <input
               type="text"
               value={data.topLabel}
@@ -106,7 +128,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Main Title / Role Utama</label>
+            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Main Title / Primary Role</label>
             <input
               type="text"
               value={data.title}
@@ -122,7 +144,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
               type="text"
               value={data.subtitle}
               onChange={(e) => updateField('subtitle', e.target.value)}
-              placeholder="e.g. Membuat Website Sesuai Kebutuhan"
+              placeholder="e.g. Building Websites Tailored to Your Needs"
               className="w-full px-3 py-2 bg-cockpit-bg border border-cockpit-line rounded-lg text-sm text-cockpit-text focus:border-emerald-500 focus:outline-none"
             />
           </div>
@@ -133,7 +155,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
       <div className="p-6 rounded-xl border border-cockpit-line bg-cockpit-panel space-y-6">
         <div className="border-b border-cockpit-line pb-2 flex items-center justify-between">
           <h2 className="font-['Space_Grotesk'] text-lg font-bold text-cockpit-text">2. Highlights & Quote</h2>
-          <span className="font-mono text-[11px] text-cockpit-muted uppercase">Kolom Kiri Dashboard</span>
+          <span className="font-mono text-[11px] text-cockpit-muted uppercase">Left Dashboard Column</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -160,16 +182,16 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Focus Quote / Motto Personal</label>
+            <label className="block text-xs font-bold text-cockpit-muted uppercase mb-1">Focus Quote / Personal Motto</label>
             <textarea
               rows={3}
               value={data.quote || ''}
               onChange={(e) => updateField('quote', e.target.value)}
-              placeholder="e.g. Fokus menciptakan antarmuka yang bersih, responsif, dan fungsional dengan performa yang konsisten."
+              placeholder="e.g. Focused on creating clean, responsive, and functional interfaces with consistent performance."
               className="w-full p-3 bg-cockpit-bg border border-cockpit-line rounded-lg text-sm text-cockpit-text focus:border-emerald-500 focus:outline-none leading-relaxed resize-y"
             />
             <p className="text-[11px] text-cockpit-muted mt-1 italic">
-              Teks kutipan/motto yang ditampilkan di bawah sorotan tech stack dengan garis aksen vertikal di kolom kiri.
+              Quote/motto displayed below the tech stack highlight with a vertical accent bar on the left column.
             </p>
           </div>
         </div>
@@ -180,7 +202,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
         <div className="flex items-center justify-between border-b border-cockpit-line pb-2">
           <div>
             <h2 className="font-['Space_Grotesk'] text-lg font-bold text-cockpit-text">3. Biography & Narrative Paragraphs</h2>
-            <p className="text-cockpit-muted text-xs mt-0.5">Kolom Kanan Dashboard (setiap item menjadi paragraf terpisah)</p>
+            <p className="text-cockpit-muted text-xs mt-0.5">Right Dashboard Column (each item becomes a separate paragraph)</p>
           </div>
           <button
             type="button"
@@ -204,7 +226,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
                   updateField('paragraphs', newP);
                 }}
                 rows={4}
-                placeholder="Tuliskan cerita / paragraf tentang diri Anda..."
+                placeholder="Write a story / paragraph about yourself..."
                 className="flex-1 px-3 py-2 bg-cockpit-panel border border-cockpit-line rounded-lg text-sm text-cockpit-text focus:border-emerald-500 focus:outline-none resize-y leading-relaxed"
               />
               <button
@@ -213,7 +235,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
                   const newP = data.paragraphs.filter((_, idx) => idx !== i);
                   updateField('paragraphs', newP);
                 }}
-                title="Hapus Paragraf"
+                title="Delete Paragraph"
                 className="p-2 rounded-lg bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition-colors shrink-0 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[18px]">delete</span>
@@ -222,7 +244,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
           ))}
           {data.paragraphs.length === 0 && (
             <p className="text-xs text-cockpit-muted italic py-6 text-center">
-              Belum ada paragraf. Klik "+ ADD PARAGRAPH" untuk menambahkan cerita Anda.
+              No paragraphs yet. Click "+ ADD PARAGRAPH" to add your narrative.
             </p>
           )}
         </div>
@@ -233,7 +255,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
         <div className="flex items-center justify-between border-b border-cockpit-line pb-2">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-emerald-400 text-[20px]">visibility</span>
-            <h2 className="font-['Space_Grotesk'] text-lg font-bold text-cockpit-text">Live Preview (Dashboard Utama)</h2>
+            <h2 className="font-['Space_Grotesk'] text-lg font-bold text-cockpit-text">Live Preview (Main Dashboard)</h2>
           </div>
           <span className="font-mono text-[11px] text-cockpit-muted uppercase">Real-Time Sync</span>
         </div>
@@ -249,10 +271,10 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
                 </span>
               </div>
               <h3 className="font-['Space_Grotesk'] text-2xl sm:text-3xl font-bold text-cockpit-text tracking-tight">
-                {data.title || 'Role / Judul Belum Diisi'}
+                {data.title || 'Role / Title Not Specified'}
               </h3>
               <p className="text-sm sm:text-base text-cockpit-muted mt-1">
-                {data.subtitle || 'Subtitle belum diisi'}
+                {data.subtitle || 'Subtitle not specified'}
               </p>
             </div>
             {data.topLabel && (
@@ -300,7 +322,7 @@ export function AboutMeManager({ initialData }: { initialData: AboutMeData }) {
                 </p>
               ))}
               {data.paragraphs.length === 0 && (
-                <p className="text-xs text-cockpit-muted italic">Tidak ada paragraf biografi.</p>
+                <p className="text-xs text-cockpit-muted italic">No biography paragraphs available.</p>
               )}
             </div>
           </div>

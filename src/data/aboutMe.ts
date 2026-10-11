@@ -15,10 +15,10 @@ export const defaultAboutMe: AboutMeData = {
   badgeLabel: "ABOUT ME // BACKGROUND",
   topLabel: "BASED IN SEMARANG, TEMBALANG",
   title: "Full-Stack Developer",
-  subtitle: "Membuat Website Sesuai Kebutuhan",
+  subtitle: "Building Websites Tailored to Your Needs",
   stackLabel: "TECH / STACK HIGHLIGHT",
   stackText: "NODEJS · EXPRESSJS · CSS · HTML",
-  quote: "Fokus menciptakan antarmuka yang bersih, responsif, dan fungsional dengan performa yang konsisten.",
+  quote: "Focused on creating clean, responsive, and functional interfaces with consistent performance.",
   paragraphs: [
     "Hello, my name is Cezar Nareswara Respati. I am a diploma student at a polytechnic in Indonesia. I am a budding full-stack developer who enjoys learning new things, both on and off campus. However, I focus more on backend development than frontend; I have more experience working on backend systems—particularly SQL databases—than on design (simply because I’m not particularly gifted in that area). Like most people, I use AI to assist with projects, assignments, and personal tasks, but I don't just have the AI ​​do the work for me; I ask it to explain concepts so I can learn from them.",
     "Beyond being a full-stack developer, I’m someone who enjoys making friends wherever I go—I’m an easy-going person who adapts well to new environments. My hobbies include gaming (mostly competitive FPS or story-driven titles) and sports, specifically soccer, badminton, and running. If you’re curious about me, scroll down to get in touch."

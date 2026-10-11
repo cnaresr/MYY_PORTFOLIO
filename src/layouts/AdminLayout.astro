@@ -47,7 +47,6 @@ const navItems: NavGroup[] = [
     items: [
       { id: 'projects', name: 'Projects Showcase', href: '/user/admin/projects', icon: 'terminal' },
       { id: 'skills', name: 'Skills & Tech Stack', href: '/user/admin/skills', icon: 'tune' },
-      { id: 'credentials', name: 'Credentials', href: '/user/admin/credentials', icon: 'verified' },
     ],
   },
 ];
@@ -119,17 +118,22 @@ const treeGroups = navItems.map((group) => ({
     >
       <div class="admin-sidebar-inner w-64 flex flex-col flex-1 min-h-0">
         <!-- Brand Header -->
-        <div class="h-16 px-5 border-b border-cockpit-line flex items-center gap-2.5">
+        <div class="h-16 px-5 border-b border-cockpit-line flex items-center justify-between gap-2.5">
           <a href="/user/admin/overview" class="flex items-center gap-2.5 group min-w-0 flex-1">
-            <div class="w-7 h-7 rounded bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
-              <span class="material-symbols-outlined text-[16px]">terminal</span>
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 shadow-xs shadow-emerald-500/10 group-hover:scale-105 transition-transform">
+              <span class="material-symbols-outlined text-[17px]">terminal</span>
             </div>
             <div class="flex flex-col min-w-0 transition-opacity duration-150" data-sidebar-label>
-              <span class="font-['Space_Grotesk'] text-sm font-bold tracking-tight text-cockpit-text leading-none truncate">
-                ARCH.CMS
-              </span>
-              <span class="font-mono text-[9px] text-cockpit-faint mt-0.5">
-                Workspace
+              <div class="flex items-center gap-1.5">
+                <span class="font-['Space_Grotesk'] text-sm font-bold tracking-tight text-cockpit-text leading-none truncate">
+                  ARCH.CMS
+                </span>
+                <span class="px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-mono text-[9px] font-bold border border-emerald-500/30">
+                  v2.6
+                </span>
+              </div>
+              <span class="font-mono text-[9px] text-cockpit-faint mt-0.5 uppercase tracking-wider">
+                Production Console
               </span>
             </div>
           </a>
@@ -150,22 +154,36 @@ const treeGroups = navItems.map((group) => ({
         <TreeNav client:load groups={treeGroups} activeId={activeNav} />
       </div>
 
-      <!-- Sidebar Footer: Live Portfolio link -->
-      <div class="p-3 border-t border-cockpit-line space-y-2 transition-opacity duration-150" data-sidebar-label>
+      <!-- Sidebar Footer: System Status & Live Portfolio link -->
+      <div class="p-3.5 border-t border-cockpit-line space-y-2.5 transition-opacity duration-150" data-sidebar-label>
+        <div class="p-2.5 rounded-lg bg-cockpit-raised/80 border border-cockpit-line text-[11px] font-mono space-y-1">
+          <div class="flex items-center justify-between text-cockpit-faint">
+            <span>ENGINE</span>
+            <span class="text-cockpit-text font-bold">Astro 5 + Vite</span>
+          </div>
+          <div class="flex items-center justify-between text-cockpit-faint">
+            <span>STORAGE</span>
+            <span class="text-emerald-400 font-bold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              SYNCED
+            </span>
+          </div>
+        </div>
+
         <a
           href="/"
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-text font-mono text-xs font-semibold transition-colors"
+          class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:text-emerald-200 font-mono text-xs font-semibold transition-all shadow-2xs group"
         >
-          <span>Live Portfolio</span>
-          <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+          <span>View Live Site</span>
+          <span class="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">open_in_new</span>
         </a>
       </div>
     </aside>
 
     <!-- Top Header (shifts with sidebar state) -->
-    <header class="admin-header h-16 bg-cockpit-panel/95 backdrop-blur-xs border-b border-cockpit-line fixed top-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 transition-[left] duration-200 ease-linear left-64">
+    <header class="admin-header h-16 bg-cockpit-panel/90 backdrop-blur-md border-b border-cockpit-line fixed top-0 right-0 z-30 flex items-center justify-between px-4 sm:px-8 transition-[left] duration-200 ease-linear left-64">
       <!-- Expand trigger (visible only when sidebar collapsed) + Breadcrumbs (desktop) -->
       <div class="flex items-center gap-3 min-w-0">
         <button
@@ -179,31 +197,49 @@ const treeGroups = navItems.map((group) => ({
         </button>
 
         <div class="hidden lg:flex items-center gap-2 font-mono text-xs min-w-0">
-          <span class="text-cockpit-faint">Workspace</span>
+          <span class="text-cockpit-faint">CONSOLE</span>
           <span class="text-cockpit-line-strong">/</span>
-          <span class="text-cockpit-text font-bold uppercase">{breadcrumbs}</span>
+          <span class="text-cockpit-faint">WORKSPACE</span>
+          <span class="text-cockpit-line-strong">/</span>
+          <span class="text-emerald-400 font-bold tracking-wider uppercase">{breadcrumbs}</span>
         </div>
       </div>
 
       <!-- Right Utility Bar -->
       <div class="flex items-center gap-3">
         <!-- Live System Telemetry Ping -->
-        <div class="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded-md bg-cockpit-raised border border-cockpit-line font-mono text-[11px] text-cockpit-text">
+        <div class="hidden xl:flex items-center gap-2 px-3 py-1 rounded-md bg-cockpit-raised/90 border border-cockpit-line font-mono text-[11px] text-cockpit-text shadow-2xs">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
           </span>
-          <span>SYS // LIVE 12ms</span>
+          <span class="font-semibold tracking-wide">SYSTEMS OPERATIONAL</span>
+          <span class="text-cockpit-faint">// 12ms</span>
         </div>
 
+        <!-- Quick View Site button -->
+        <a
+          href="/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-muted hover:text-cockpit-text font-mono text-xs transition-colors"
+          title="Open live portfolio in new tab"
+        >
+          <span>Live Site</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+        </a>
+
         <!-- Operator identity -->
-        <div class="hidden sm:flex items-center gap-2.5" title={`Signed in as ${operatorName}`}>
-          <div class="w-8 h-8 rounded-lg bg-cockpit-raised border border-cockpit-line flex items-center justify-center font-['Space_Grotesk'] text-xs font-bold text-emerald-400 shrink-0 overflow-hidden">
+        <div class="hidden sm:flex items-center gap-2.5 pl-1" title={`Signed in as ${operatorName}`}>
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500/20 to-sky-500/20 border border-emerald-500/40 flex items-center justify-center font-['Space_Grotesk'] text-xs font-bold text-emerald-300 shrink-0 overflow-hidden shadow-2xs">
             {operatorInitials}
           </div>
           <div class="hidden md:flex flex-col leading-tight min-w-0">
-            <span class="font-['Space_Grotesk'] text-xs font-bold text-cockpit-text truncate max-w-[160px]">{operatorName}</span>
-            <span class="font-mono text-[9px] text-cockpit-faint">Operator</span>
+            <span class="font-['Space_Grotesk'] text-xs font-bold text-cockpit-text truncate max-w-[150px]">{operatorName}</span>
+            <span class="font-mono text-[9px] text-emerald-400 flex items-center gap-1">
+              <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+              Lead Architect
+            </span>
           </div>
         </div>
 
@@ -217,7 +253,7 @@ const treeGroups = navItems.map((group) => ({
         <!-- Logout button -->
         <a
           href="/api/auth/logout"
-          class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-cockpit-line hover:bg-cockpit-hover text-cockpit-muted hover:text-rose-400 font-mono text-xs font-semibold transition-colors"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-cockpit-line hover:border-rose-500/40 hover:bg-rose-500/10 text-cockpit-muted hover:text-rose-400 font-mono text-xs font-semibold transition-all"
           title="Sign out of ARCH.CMS"
         >
           <span class="material-symbols-outlined text-[16px]">logout</span>

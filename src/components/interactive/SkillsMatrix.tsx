@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { Crown } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { BrandIcon } from "@/components/interactive/BrandIcon";
 
 export interface MatrixSkill {

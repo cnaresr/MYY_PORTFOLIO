@@ -301,28 +301,40 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
       )}
 
       {/* Top Header Bar */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-4 border-b border-cockpit-line">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <h1 className="text-xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
-              PROJECT SHOWCASE MANAGER // CASE STUDIES
+      <div className="relative rounded-2xl bg-gradient-to-r from-cockpit-panel via-cockpit-panel/95 to-cockpit-raised border border-cockpit-line p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm overflow-hidden">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/5 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <h1 className="text-xl sm:text-2xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
+              Projects Showcase // Case Studies
             </h1>
           </div>
-          <p className="text-xs font-mono text-cockpit-muted mt-1 flex items-center gap-2">
-            <span>SOURCE: <code className="text-cockpit-text font-semibold">content/projects.json</code></span>
+          <p className="text-xs font-mono text-cockpit-muted mt-1.5 flex flex-wrap items-center gap-2">
+            <span>SOURCE: <code className="text-emerald-300 font-semibold">content/projects.json</code></span>
             <span>•</span>
-            <span className="text-emerald-300 font-semibold">AUTO-ID SEQUENTIAL</span>
+            <span className="text-cockpit-faint">DRAG / REORDER ENABLED</span>
+            <span>•</span>
+            <span className="text-emerald-400 font-semibold">LIVE EDGE SYNC</span>
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="relative z-10 flex flex-wrap items-center gap-2.5">
+          <a
+            href="/#projects"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-text font-mono text-xs transition-colors"
+          >
+            <span>Live Section</span>
+            <ExternalLink className="w-3.5 h-3.5 text-cockpit-faint" />
+          </a>
           <button
             onClick={openNewModal}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30 hover:bg-emerald-500/25 font-mono text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-['Space_Grotesk'] text-xs font-bold shadow-md shadow-emerald-500/20 transition-all cursor-pointer group"
           >
-            <Plus className="w-3.5 h-3.5 text-emerald-400" />
-            <span>+ ADD NEW PROJECT</span>
+            <Plus className="w-4 h-4 transition-transform group-hover:rotate-90" />
+            <span>Add New Platform</span>
           </button>
         </div>
       </div>
@@ -695,7 +707,7 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
                     value={modalForm.startDate}
                     onChange={(v) => setModalForm({ ...modalForm, startDate: v })}
                   />
-                  <span className="text-[10px] text-cockpit-faint mt-0.5 block">Pilih bulan & tahun mulai.</span>
+                  <span className="text-[10px] text-cockpit-faint mt-0.5 block">Select start month & year.</span>
                 </div>
               </div>
 
@@ -717,13 +729,13 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
                       className="w-4 h-4 accent-emerald-500 cursor-pointer"
                     />
                     <span className="text-[11px] font-mono text-cockpit-muted">
-                      Masih berjalan / belum selesai (End = Present / Now)
+                      In progress / ongoing (End = Present / Now)
                     </span>
                   </label>
                   <span className="text-[10px] text-cockpit-faint mt-1 block">
                     {modalForm.endDate === 'now' || modalForm.endDate === 'NOW'
-                      ? 'Akan tampil sebagai "Start – Present".'
-                      : 'Pilih bulan & tahun selesai, atau centang "Masih berjalan".'}
+                      ? 'Will display as "Start – Present".'
+                      : 'Select end month & year, or check "In progress".'}
                   </span>
                 </div>
                 <div>
@@ -840,7 +852,7 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
 
               <div>
                 <label className="block text-cockpit-muted font-bold mb-2">
-                  TECHNOLOGIES STACK <span className="font-normal text-cockpit-faint">— klik untuk memilih (bisa lebih dari satu)</span>
+                  TECHNOLOGIES STACK <span className="font-normal text-cockpit-faint">— click to select (multi-select supported)</span>
                 </label>
                 <div className="p-3 bg-cockpit border border-cockpit-line rounded-lg max-h-44 overflow-y-auto">
                   <div className="flex flex-wrap gap-2">
@@ -871,7 +883,7 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
                 </div>
                 {modalForm.technologies && modalForm.technologies.length > 0 && (
                   <span className="text-[10px] text-cockpit-muted mt-1 block font-mono">
-                    Terpilih: {modalForm.technologies.join(' • ')}
+                    Selected: {modalForm.technologies.join(' • ')}
                   </span>
                 )}
               </div>

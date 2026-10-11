@@ -53,10 +53,7 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
   return (
     <AnimatePresence mode="wait">
       <motion.header
-        initial={{
-          opacity: 1,
-          y: -100,
-        }}
+        initial={false}
         animate={{
           y: visible ? 0 : -100,
           opacity: visible ? 1 : 0,

@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useMemo, useEffect } from "react";
-import { cn } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { motion } from "motion/react";
 import type { Certificate } from "@/data/certificates";

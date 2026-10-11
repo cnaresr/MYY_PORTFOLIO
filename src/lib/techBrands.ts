@@ -11,6 +11,8 @@ import {
   siDjango, siFlask, siFastapi, siSpring, siLaravel, siRuby, siPhp, siSwift,
   siKotlin, siDart, siFlutter, siTerraform, siAnsible, siJenkins, siGithub,
   siGitlab, siGit, siNpm, siYarn, siPnpm, siJest, siVitest, siCypress, siFigma,
+  siWebassembly, siWebrtc, siBootstrap, siPrisma, siTensorflow, siArduino,
+  siLeaflet, siMapbox, siD3,
 } from 'simple-icons';
 
 export interface BrandLogo {
@@ -80,6 +82,15 @@ export const BRAND_LOGO_OPTIONS: BrandLogo[] = [
   { slug: 'vitest', label: 'Vitest' },
   { slug: 'cypress', label: 'Cypress' },
   { slug: 'figma', label: 'Figma' },
+  { slug: 'webassembly', label: 'WebAssembly' },
+  { slug: 'webrtc', label: 'WebRTC' },
+  { slug: 'bootstrap', label: 'Bootstrap' },
+  { slug: 'prisma', label: 'Prisma' },
+  { slug: 'tensorflow', label: 'TensorFlow' },
+  { slug: 'arduino', label: 'Arduino' },
+  { slug: 'leaflet', label: 'Leaflet' },
+  { slug: 'mapbox', label: 'Mapbox' },
+  { slug: 'd3', label: 'D3.js' },
 ];
 
 // Explicit icon registry — tree-shakeable, only the icons used by the site
@@ -144,6 +155,16 @@ const registry: Record<string, SimpleIcon> = Object.assign(Object.create(null), 
   vitest: siVitest,
   cypress: siCypress,
   figma: siFigma,
+  webassembly: siWebassembly,
+  webrtc: siWebrtc,
+  bootstrap: siBootstrap,
+  prisma: siPrisma,
+  tensorflow: siTensorflow,
+  arduino: siArduino,
+  leaflet: siLeaflet,
+  mapbox: siMapbox,
+  d3: siD3,
+  d3dotjs: siD3,
 });
 
 interface SimpleIcon {
@@ -180,6 +201,9 @@ const SLUG_ALIASES: Record<string, string> = {
   postgresql: 'postgresql',
   aws: 'amazonwebservices',
   amazonaws: 'amazonwebservices',
+  wasm: 'webassembly',
+  webassembly: 'webassembly',
+  webrtc: 'webrtc',
 };
 
 function normalizeSlug(slug: string): string {
@@ -254,6 +278,15 @@ export function resolveBrandSlug(name?: string): string | null {
     [/gitlab/, 'gitlab'],
     [/^git\b|\bgit\b/, 'git'],
     [/bash|posix/, 'gnubash'],
+    [/wasm|webassembly/, 'webassembly'],
+    [/webrtc/, 'webrtc'],
+    [/bootstrap/, 'bootstrap'],
+    [/prisma/, 'prisma'],
+    [/tensorflow/, 'tensorflow'],
+    [/arduino/, 'arduino'],
+    [/leaflet/, 'leaflet'],
+    [/mapbox/, 'mapbox'],
+    [/d3/, 'd3'],
   ];
 
   for (const [re, slug] of rules) {
