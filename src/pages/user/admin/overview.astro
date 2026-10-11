@@ -5,7 +5,6 @@ import {
   getProjectsData,
   getInquiriesData,
   getSkillsData,
-  getCertificatesData,
   getProfileData,
   getTechStackData,
 } from '../../../lib/contentStore';
@@ -23,7 +22,6 @@ const profile = safeRead(() => getProfileData(), {});
 const projects = safeRead(() => getProjectsData(), []);
 const inquiries = safeRead(() => getInquiriesData(), []);
 const skills = safeRead(() => getSkillsData(), { languages: [], frameworks: [] });
-const certificates = safeRead(() => getCertificatesData(), []);
 const techStack = safeRead(() => getTechStackData(), { loopDuration: 0, track1: [], track2: [] });
 
 const totalSkills =
@@ -41,7 +39,6 @@ const stats = {
   totalProjects: projects.length,
   inquiriesCount: inquiries.length,
   unreadInquiries: inquiries.filter((i: any) => i.unread).length,
-  certsCount: certificates.length,
   skillsCount: totalSkills,
   techBadgeCount:
     (techStack.track1?.filter((b: any) => b.enabled).length || 0) +
@@ -57,7 +54,6 @@ const stats = {
     inquiries={inquiries}
     profile={profile}
     skills={skills}
-    certificates={certificates}
     techStack={techStack}
   />
 </AdminLayout>

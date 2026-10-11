@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Plus,
   Trash2,
@@ -6,6 +6,7 @@ import {
   ArrowUp,
   ArrowDown,
   Zap,
+  ExternalLink,
 } from 'lucide-react';
 import { AdminToast } from '../ui/alert';
 import { ConfirmDialog } from '../ui/alert-dialog';
@@ -242,30 +243,42 @@ export const SkillsStackManager: React.FC<SkillsStackManagerProps> = ({
         <AdminToast title={toast.title} description={toast.description} variant={toast.variant} />
       )}
 
-      {/* Top Header Bar matching Photo/screen (4).png */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-4 border-b border-cockpit-line">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <h1 className="text-xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
-              SKILLS & TECH STACK // ARCHITECTURAL REPOSITORY
+      {/* Top Header Bar */}
+      <div className="relative rounded-2xl bg-gradient-to-r from-cockpit-panel via-cockpit-panel/95 to-cockpit-raised border border-cockpit-line p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-sm overflow-hidden">
+        <div className="absolute top-0 right-0 w-72 h-72 bg-sky-500/5 blur-3xl pointer-events-none rounded-full" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <h1 className="text-xl sm:text-2xl font-bold font-['Space_Grotesk'] text-cockpit-text tracking-tight">
+              Skills & Tech Stack // Architectural Repository
             </h1>
           </div>
-          <p className="text-xs font-mono text-cockpit-muted mt-1 flex items-center gap-2">
-            <span>SOURCE: <code className="text-cockpit-text font-semibold">content/skills.json & tech-stack.json</code></span>
+          <p className="text-xs font-mono text-cockpit-muted mt-1.5 flex flex-wrap items-center gap-2">
+            <span>SOURCE: <code className="text-emerald-300 font-semibold">content/skills.json & tech-stack.json</code></span>
             <span>•</span>
-            <span className="text-emerald-300 font-semibold">ZERO EXTERNAL DB</span>
+            <span className="text-cockpit-faint">PERCENTAGE SLIDERS</span>
+            <span>•</span>
+            <span className="text-emerald-400 font-semibold">TICKER VELOCITY</span>
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="relative z-10 flex flex-wrap items-center gap-2.5">
+          <a
+            href="/#skills"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-text font-mono text-xs transition-colors"
+          >
+            <span>Live Section</span>
+            <ExternalLink className="w-3.5 h-3.5 text-cockpit-faint" />
+          </a>
           <button
             onClick={handleSaveAll}
             disabled={isSaving}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-500/15 text-emerald-300 ring-1 ring-emerald-500/30 hover:bg-emerald-500/25 disabled:opacity-50 font-mono text-xs font-bold shadow-2xs transition-colors cursor-pointer disabled:cursor-not-allowed"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-['Space_Grotesk'] text-xs font-bold shadow-md shadow-emerald-500/20 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>{isSaving ? 'Syncing Store...' : 'SAVE SKILLS MATRIX'}</span>
+            <CheckCircle2 className="w-4 h-4" />
+            <span>{isSaving ? 'Syncing Store...' : 'Save Matrix & Ticker'}</span>
           </button>
         </div>
       </div>
@@ -382,7 +395,7 @@ export const SkillsStackManager: React.FC<SkillsStackManagerProps> = ({
                               ? 'bg-amber-400/15 border-amber-400/40 text-amber-300'
                               : 'bg-cockpit-raised border-cockpit-line text-cockpit-faint hover:text-cockpit-muted'
                           }`}
-                          title="Tandai sebagai sangat mahir / berpengalaman"
+                          title="Mark as highly proficient / master"
                         >
                           <Zap className="w-3 h-3" />
                           Master
@@ -430,7 +443,7 @@ export const SkillsStackManager: React.FC<SkillsStackManagerProps> = ({
                       </select>
                     </div>
                     <div className="text-[10px] text-cockpit-faint">
-                      Slider 0–100. Pilih logo brand. Aktifkan Master jika sudah sangat mahir.
+                      Slider 0–100. Choose brand logo. Enable Master badge if highly proficient.
                     </div>
                   </div>
                 </div>
@@ -539,7 +552,7 @@ export const SkillsStackManager: React.FC<SkillsStackManagerProps> = ({
                               ? 'bg-amber-400/15 border-amber-400/40 text-amber-300'
                               : 'bg-cockpit-raised border-cockpit-line text-cockpit-faint hover:text-cockpit-muted'
                           }`}
-                          title="Tandai sebagai sangat mahir / berpengalaman"
+                          title="Mark as highly proficient / master"
                         >
                           <Zap className="w-3 h-3" />
                           Master
@@ -587,13 +600,113 @@ export const SkillsStackManager: React.FC<SkillsStackManagerProps> = ({
                       </select>
                     </div>
                     <div className="text-[10px] text-cockpit-faint">
-                      Slider 0–100. Pilih logo brand. Aktifkan Master jika sudah sangat mahir.
+                      Slider 0–100. Choose brand logo. Enable Master badge if highly proficient.
                     </div>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Marquee Ticker Configuration */}
+      <div className="bg-cockpit-raised border border-cockpit-line rounded-xl shadow-2xs overflow-hidden p-5 space-y-5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-cockpit-line gap-3">
+          <div>
+            <h3 className="font-['Space_Grotesk'] text-sm font-bold text-cockpit-text tracking-tight">
+              CONTINUOUS LOGO TICKER // TECH STACK MARQUEE
+            </h3>
+            <p className="text-xs font-mono text-cockpit-muted">
+              Live continuous marquee banner with progressive edge blur on the public landing page.
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono text-cockpit-muted">Loop Speed:</span>
+            <input
+              type="number"
+              min={10}
+              max={120}
+              value={techStack.loopDuration || 30}
+              onChange={(e) => handleDurationChange(Number(e.target.value))}
+              className="w-16 px-2 py-1 bg-cockpit border border-cockpit-line rounded font-mono text-xs text-cockpit-text"
+            />
+            <span className="text-xs font-mono text-cockpit-faint">sec</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {(['track1', 'track2'] as const).map((trackKey) => (
+            <div key={trackKey} className="space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-cockpit-line">
+                <span className="font-mono text-xs font-bold text-cockpit-text uppercase">
+                  {trackKey === 'track1' ? 'Track 1 (Right to Left)' : 'Track 2 (Left to Right)'}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleAddBadge(trackKey)}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-cockpit hover:bg-cockpit-hover text-cockpit-text font-mono text-[11px] font-semibold transition-colors cursor-pointer"
+                >
+                  <Plus className="w-3 h-3 text-emerald-400" />
+                  <span>Add Badge</span>
+                </button>
+              </div>
+
+              <div className="space-y-2">
+                {techStack[trackKey]?.map((badge) => (
+                  <div
+                    key={badge.id}
+                    className="flex items-center justify-between gap-2 p-2 rounded-lg bg-cockpit/60 border border-cockpit-line text-xs"
+                  >
+                    <div className="flex items-center gap-2 flex-1 min-w-0">
+                      <input
+                        type="checkbox"
+                        checked={badge.enabled}
+                        onChange={() => handleToggleBadge(trackKey, badge.id)}
+                        className="rounded accent-emerald-500 cursor-pointer"
+                        title="Toggle visibility in ticker"
+                      />
+                      <BrandIcon slug={badge.iconSlug} name={badge.name} className="w-4 h-4 shrink-0" />
+                      <input
+                        type="text"
+                        value={badge.name}
+                        onChange={(e) => handleRenameBadge(trackKey, badge.id, e.target.value)}
+                        className="px-2 py-0.5 bg-cockpit-raised border border-cockpit-line rounded font-mono text-xs text-cockpit-text w-32"
+                      />
+                      <select
+                        value={badge.iconSlug || ''}
+                        onChange={(e) => handleLogoChange(trackKey, badge.id, e.target.value)}
+                        className="flex-1 px-1.5 py-0.5 bg-cockpit-raised border border-cockpit-line rounded text-[11px] text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                      >
+                        <option value="">Auto from name</option>
+                        {BRAND_LOGO_OPTIONS.map((opt) => (
+                          <option key={opt.slug} value={opt.slug}>
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPendingDelete({
+                          kind: 'badge',
+                          track: trackKey,
+                          id: badge.id,
+                          name: badge.name,
+                        })
+                      }
+                      className="p-1 rounded text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
+                      title="Remove Badge"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       {/* Confirm Delete Dialog */}

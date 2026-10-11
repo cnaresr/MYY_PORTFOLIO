@@ -40,7 +40,7 @@ export const Meteors = ({
   return (
     <>
       {[...meteorStyles].map((style, idx) => (
-        // Meteor Head: disesuaikan agar kontras & terlihat baik di light mode (zinc-500) maupun dark mode (zinc-200 glow)
+        // Meteor Head: tuned for contrast in both light mode (zinc-500) and dark mode (zinc-200 glow)
         <span
           key={idx}
           style={{ ...style }}
@@ -51,7 +51,7 @@ export const Meteors = ({
             className
           )}
         >
-          {/* Meteor Tail: gradient dari zinc-500 (light) / zinc-200 (dark) menuju transparan */}
+          {/* Meteor Tail: gradient from zinc-500 (light) / zinc-200 (dark) to transparent */}
           <div className="pointer-events-none absolute top-1/2 -z-10 h-px w-12 -translate-y-1/2 bg-gradient-to-r from-zinc-500 dark:from-zinc-200 to-transparent" />
         </span>
       ))}

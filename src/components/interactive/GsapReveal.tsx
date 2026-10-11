@@ -10,7 +10,7 @@ type GsapRevealProps = {
   delay?: number;
   duration?: number;
   stagger?: number;
-  /** Kalau diisi, animasi target anak (stagger). Kalau kosong, animasi wrapper. */
+  /** When provided, animates child targets (stagger). When empty, animates the wrapper. */
   selector?: string;
   start?: string;
 };

@@ -1,126 +1,206 @@
 {
   "languages": [
     {
-      "id": "lang-ts",
-      "name": "TypeScript",
-      "detail": "v5.4 • Strict Typing",
-      "proof": "Strict-mode islands, typed CMS payloads, zero any in public pages.",
-      "percentage": 98,
-      "master": true,
-      "iconSlug": "typescript",
+      "id": "lang-php",
+      "name": "PHP",
+      "detail": "v8.2+ • Modern Backend Engine",
+      "proof": "Server-side routing, blade template rendering, and secure authentication.",
+      "percentage": 90,
+      "master": false,
+      "iconSlug": "php",
       "order": 1
     },
     {
-      "id": "lang-rust",
-      "name": "Rust",
-      "detail": "Tokio • Wasm • Zero-Copy",
-      "proof": "Tokio + Wasm pipelines, zero-copy buffers on hot paths.",
-      "percentage": 95,
-      "master": true,
-      "iconSlug": "rust",
-      "order": 2
-    },
-    {
-      "id": "lang-go",
-      "name": "Go",
-      "detail": "Concurrency • Channels • Microservices",
-      "proof": "Channel-based workers for microservice fan-out.",
-      "percentage": 92,
+      "id": "lang-js",
+      "name": "JavaScript",
+      "detail": "ES2024 • DOM & Async Pipeline",
+      "proof": "Interactive client scripting, dynamic GIS mapping, and event handlers.",
+      "percentage": 90,
       "master": false,
-      "iconSlug": "go",
-      "order": 3
+      "iconSlug": "javascript",
+      "order": 2
     },
     {
       "id": "lang-py",
       "name": "Python",
-      "detail": "AsyncIO • Data Pipelines / PyTorch",
-      "proof": "AsyncIO ETL + PyTorch jobs on scheduled pipelines.",
-      "percentage": 90,
-      "master": false,
-      "iconSlug": "python",
-      "order": 4
-    },
-    {
-      "id": "lang-cpp",
-      "name": "C++",
-      "detail": "C++20 / Memory Optimization / SIMD",
-      "proof": "C++20 SIMD kernels, tuned allocators on tight loops.",
+      "detail": "Machine Learning & IoT Data",
+      "proof": "Time-series environmental modeling, data preprocessing, and Flask REST API.",
       "percentage": 88,
       "master": false,
-      "iconSlug": "cplusplus",
-      "order": 5
-    },
-    {
-      "id": "lang-sql",
-      "name": "SQL & PostgreSQL",
-      "detail": "pgvector / Hypertables / Tuning",
-      "proof": "pgvector + hypertables, query plans tuned under load.",
-      "percentage": 98,
-      "master": true,
-      "iconSlug": "postgresql",
-      "order": 6
-    }
-  ],
-  "frameworks": [
-    {
-      "id": "fw-astro",
-      "name": "Astro Islands",
-      "detail": "v4.x Zero-JS Baseline",
-      "proof": "Zero-JS baseline pages, islands only where interaction lives.",
-      "percentage": 95,
-      "master": false,
-      "iconSlug": "astro",
-      "order": 1
-    },
-    {
-      "id": "fw-react",
-      "name": "React 19 & Vite",
-      "detail": "Concurrent Mode / Rolldown Engine",
-      "proof": "Concurrent islands, INP kept under 10ms on key routes.",
-      "percentage": 96,
-      "master": true,
-      "iconSlug": "react",
-      "order": 2
-    },
-    {
-      "id": "fw-next",
-      "name": "Next.js App Router",
-      "detail": "RSC Streaming / Partial Prerendering",
-      "proof": "RSC streaming + edge middleware on app-router work.",
-      "percentage": 94,
-      "master": false,
-      "iconSlug": "nextdotjs",
+      "iconSlug": "python",
       "order": 3
     },
     {
-      "id": "fw-tailwind",
-      "name": "Tailwind CSS v4",
-      "detail": "Token Engines / Lightning CSS",
-      "proof": "Token engines + Lightning CSS, one cascade across themes.",
-      "percentage": 96,
-      "master": true,
-      "iconSlug": "tailwindcss",
+      "id": "lang-dart",
+      "name": "Dart",
+      "detail": "Cross-Platform Mobile Runtime",
+      "proof": "Reactive mobile UI, state management, and native geolocation tracking.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "dart",
       "order": 4
     },
     {
-      "id": "fw-node",
-      "name": "Node.js LTS v22",
-      "detail": "Worker Threads / V8 Isolates",
-      "proof": "Worker threads + streams for CPU-bound admin jobs.",
-      "percentage": 92,
+      "id": "lang-node",
+      "name": "Node.js",
+      "detail": "LTS Runtime • Asynchronous I/O",
+      "proof": "RESTful microservices, JWT authentication, and high-concurrency event loops.",
+      "percentage": 90,
       "master": false,
       "iconSlug": "nodedotjs",
       "order": 5
     },
     {
-      "id": "skill-1790651251911",
+      "id": "lang-pg",
+      "name": "PostgreSQL",
+      "detail": "Relational & Geospatial Storage",
+      "proof": "Time-series IoT telemetry sink, Prisma migrations, and complex query plans.",
+      "percentage": 90,
+      "master": false,
+      "iconSlug": "postgresql",
+      "order": 6
+    },
+    {
+      "id": "lang-mysql",
+      "name": "MySQL",
+      "detail": "Relational Database Engine",
+      "proof": "ACID transactional schemas, relational indexing, and automated backups.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "mysql",
+      "order": 7
+    },
+    {
+      "id": "lang-arduino",
+      "name": "C++ & Arduino",
+      "detail": "Embedded IoT Firmware",
+      "proof": "Dual ESP32 sensor telemetry reading, LoRa 915MHz packet transmission.",
+      "percentage": 86,
+      "master": false,
+      "iconSlug": "arduino",
+      "order": 8
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "fw-laravel",
       "name": "Laravel",
-      "detail": "Configuration • Architecture",
-      "proof": "",
-      "percentage": 75,
+      "detail": "v10/v11 • MVC & Eloquent ORM",
+      "proof": "RBAC authentication pipelines, REST API controllers, and enterprise CMS logic.",
+      "percentage": 90,
       "master": false,
       "iconSlug": "laravel",
+      "order": 1
+    },
+    {
+      "id": "fw-flutter",
+      "name": "Flutter",
+      "detail": "Cross-Platform UI Engine",
+      "proof": "Mobile attendance UI, responsive layouts, and custom component trees.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "flutter",
+      "order": 2
+    },
+    {
+      "id": "fw-express",
+      "name": "Express.js",
+      "detail": "Minimalist Web Framework",
+      "proof": "Robust API routing, middleware authentication, and CORS pipeline management.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "express",
+      "order": 3
+    },
+    {
+      "id": "fw-flask",
+      "name": "Flask",
+      "detail": "Python Microframework",
+      "proof": "Lightweight ML model serving endpoints and sensor data ingestion.",
+      "percentage": 86,
+      "master": false,
+      "iconSlug": "flask",
+      "order": 4
+    },
+    {
+      "id": "fw-tensorflow",
+      "name": "TensorFlow",
+      "detail": "Deep Learning & Predictive AI",
+      "proof": "Neural network time-series inference for atmospheric precipitation forecasting.",
+      "percentage": 86,
+      "master": false,
+      "iconSlug": "tensorflow",
+      "order": 5
+    },
+    {
+      "id": "fw-prisma",
+      "name": "Prisma",
+      "detail": "Type-Safe Database Toolkit",
+      "proof": "Declarative schema modeling, automated migrations, and type-safe queries.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "prisma",
+      "order": 6
+    },
+    {
+      "id": "fw-tailwind",
+      "name": "Tailwind CSS",
+      "detail": "Utility-First Styling Engine",
+      "proof": "Modern responsive layouts, dark/light design systems, and rapid UI prototyping.",
+      "percentage": 90,
+      "master": false,
+      "iconSlug": "tailwindcss",
       "order": 7
+    },
+    {
+      "id": "fw-bootstrap",
+      "name": "Bootstrap",
+      "detail": "Component-Based Grid UI",
+      "proof": "Standardized responsive dashboards, admin tables, and accessible modal components.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "bootstrap",
+      "order": 8
+    },
+    {
+      "id": "fw-leaflet",
+      "name": "Leaflet.js",
+      "detail": "Interactive Geospatial Mapping",
+      "proof": "Topographic contour layer rendering, dynamic tile caching, and vector GIS overlays.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "leaflet",
+      "order": 9
+    },
+    {
+      "id": "fw-mapbox",
+      "name": "Mapbox",
+      "detail": "Vector Tiles & Spatial Analytics",
+      "proof": "Custom map styling, geospatial vector tiling, and high-performance terrain rendering.",
+      "percentage": 86,
+      "master": false,
+      "iconSlug": "mapbox",
+      "order": 10
+    },
+    {
+      "id": "fw-d3",
+      "name": "D3.js",
+      "detail": "Data-Driven Visualization",
+      "proof": "Dynamic vector contour calculation, color hypsometric scales, and terrain graphs.",
+      "percentage": 86,
+      "master": false,
+      "iconSlug": "d3",
+      "order": 11
+    },
+    {
+      "id": "fw-vite",
+      "name": "Vite",
+      "detail": "Next-Gen Frontend Tooling",
+      "proof": "Instant HMR, lightning-fast ESM bundling, and asset optimization.",
+      "percentage": 88,
+      "master": false,
+      "iconSlug": "vite",
+      "order": 12
     }
   ]
 }

@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 576" width="1024" height="576">
+  <defs>
+    <linearGradient id="weatherBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="50%" stop-color="#0b1329"/>
+      <stop offset="100%" stop-color="#020817"/>
+    </linearGradient>
+    <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.0"/>
+    </linearGradient>
+    <linearGradient id="rainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.0"/>
+    </linearGradient>
+    <pattern id="weatherGrid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+    </pattern>
+    <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="576" fill="url(#weatherBg)"/>
+  <rect width="1024" height="576" fill="url(#weatherGrid)"/>
+
+  <!-- Top macOS Chrome Window Bar -->
+  <g transform="translate(48, 36)">
+    <rect x="0" y="0" width="928" height="504" rx="20" fill="#030712" stroke="#1e293b" stroke-width="1.5"/>
+    <rect x="0" y="0" width="928" height="42" rx="20" fill="#0f172a"/>
+    <circle cx="24" cy="21" r="5" fill="#ef4444"/>
+    <circle cx="40" cy="21" r="5" fill="#f59e0b"/>
+    <circle cx="56" cy="21" r="5" fill="#10b981"/>
+    <text x="76" y="26" font-family="'JetBrains Mono', monospace" font-size="11" fill="#94a3b8">iot_telemetry://station-01.polines.ac.id · DUAL ESP32 LoRa 915MHz · ML TENSORFLOW RUNTIME</text>
+    <text x="820" y="26" font-family="'JetBrains Mono', monospace" font-size="11" fill="#10b981" font-weight="bold">● RSSI: -68 dBm</text>
+
+    <!-- Top Telemetry KPI Cards -->
+    <g transform="translate(24, 60)">
+      <!-- Card 1: Temperature -->
+      <rect x="0" y="0" width="206" height="100" rx="14" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+      <text x="18" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">AMBIENT TEMPERATURE</text>
+      <text x="18" y="62" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="bold" fill="#ffffff">28.4°C</text>
+      <text x="18" y="84" font-family="'JetBrains Mono', monospace" font-size="10" fill="#f59e0b">BME280 Sensor · ±0.2°</text>
+
+      <!-- Card 2: Relative Humidity -->
+      <rect x="224" y="0" width="206" height="100" rx="14" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+      <text x="242" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">RELATIVE HUMIDITY</text>
+      <text x="242" y="62" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="bold" fill="#38bdf8">74.2%</text>
+      <text x="242" y="84" font-family="'JetBrains Mono', monospace" font-size="10" fill="#10b981">Dew Point: 23.1°C</text>
+
+      <!-- Card 3: Atmospheric Pressure -->
+      <rect x="448" y="0" width="206" height="100" rx="14" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+      <text x="466" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#64748b">BAROMETRIC PRESSURE</text>
+      <text x="466" y="62" font-family="'Space Grotesk', sans-serif" font-size="28" font-weight="bold" fill="#ffffff">1012.8 <tspan font-size="14" fill="#64748b">hPa</tspan></text>
+      <text x="466" y="84" font-family="'JetBrains Mono', monospace" font-size="10" fill="#38bdf8">Trend: Stable (QNH)</text>
+
+      <!-- Card 4: ML Forecast Prediction -->
+      <rect x="672" y="0" width="206" height="100" rx="14" fill="rgba(16, 185, 129, 0.08)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1"/>
+      <text x="690" y="24" font-family="'JetBrains Mono', monospace" font-size="10" fill="#10b981">ML FORECAST (+3H)</text>
+      <text x="690" y="62" font-family="'Space Grotesk', sans-serif" font-size="24" font-weight="bold" fill="#10b981">RAIN LIKELY</text>
+      <text x="690" y="84" font-family="'JetBrains Mono', monospace" font-size="10" fill="#e2e8f0">Confidence: 94.6%</text>
+    </g>
+
+    <!-- Main Chart Section: Time-Series Weather Ingestion -->
+    <g transform="translate(24, 180)">
+      <rect x="0" y="0" width="580" height="230" rx="14" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+      <text x="20" y="26" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">TIME-SERIES ML PREDICTION VS GROUND TRUTH</text>
+      <text x="20" y="42" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">LoRa Ingestion Interval: 5.0s · Dual ESP32 Packet Buffer</text>
+
+      <!-- Chart Grid Lines -->
+      <line x1="20" y1="80" x2="560" y2="80" stroke="#1e293b" stroke-dasharray="4 4"/>
+      <line x1="20" y1="130" x2="560" y2="130" stroke="#1e293b" stroke-dasharray="4 4"/>
+      <line x1="20" y1="180" x2="560" y2="180" stroke="#1e293b" stroke-dasharray="4 4"/>
+
+      <!-- Fill area under graph -->
+      <path d="M 30 160 Q 90 140, 150 150 T 270 120 T 390 100 T 480 85 T 550 70 L 550 210 L 30 210 Z" fill="url(#chartGrad)"/>
+      <!-- Curve Line -->
+      <path d="M 30 160 Q 90 140, 150 150 T 270 120 T 390 100 T 480 85 T 550 70" fill="none" stroke="#38bdf8" stroke-width="2.5" filter="url(#glowBlue)"/>
+
+      <!-- Data Points -->
+      <circle cx="150" cy="150" r="4" fill="#38bdf8"/>
+      <circle cx="270" cy="120" r="4" fill="#38bdf8"/>
+      <circle cx="390" cy="100" r="4" fill="#38bdf8"/>
+      <circle cx="480" cy="85" r="4" fill="#10b981"/>
+      <circle cx="550" cy="70" r="5" fill="#10b981"/>
+
+      <!-- Chart Labels -->
+      <text x="30" y="222" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">T-120m</text>
+      <text x="150" y="222" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">T-60m</text>
+      <text x="270" y="222" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">T-30m</text>
+      <text x="390" y="222" font-family="'JetBrains Mono', monospace" font-size="9" fill="#64748b">NOW</text>
+      <text x="480" y="222" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">+60m (ML)</text>
+      <text x="540" y="222" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">+180m</text>
+    </g>
+
+    <!-- Side Panel: LoRa & Sensor Hardware Status -->
+    <g transform="translate(620, 180)">
+      <rect x="0" y="0" width="284" height="230" rx="14" fill="#090d16" stroke="#1e293b" stroke-width="1"/>
+      <text x="18" y="26" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="bold" fill="#ffffff">HARDWARE ARRAY SPECS</text>
+
+      <g transform="translate(18, 45)">
+        <text x="0" y="12" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">TRANSMITTER</text>
+        <text x="0" y="26" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="bold" fill="#ffffff">ESP32 + LoRa SX1276 (915MHz)</text>
+        
+        <text x="0" y="52" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">RECEIVER GATEWAY</text>
+        <text x="0" y="66" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="bold" fill="#ffffff">ESP32 WiFi Bridge → AWS Cloud</text>
+
+        <text x="0" y="92" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">SENSOR PAYLOAD</text>
+        <text x="0" y="106" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="bold" fill="#10b981">BME280 + Rain + Anemometer</text>
+
+        <text x="0" y="132" font-family="'JetBrains Mono', monospace" font-size="10" fill="#94a3b8">DATABASE SINK</text>
+        <text x="0" y="146" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="bold" fill="#38bdf8">PostgreSQL (Time-Series Table)</text>
+
+        <text x="0" y="172" font-family="'JetBrains Mono', monospace" font-size="9" fill="#10b981">● PROTOCOL LOSS RATE: 0.02% (NOMINAL)</text>
+      </g>
+    </g>
+  </g>
+</svg>

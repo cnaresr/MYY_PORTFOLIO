@@ -24,7 +24,7 @@ const defaultSiteConfig: SiteConfig = {
   title: "CEZAR NARESWARA RESPATI",
   subtitle: "Code with Passion, Build with Purpose",
   summary:
-    "Di mana ada kemauan, di situ ada jalan. Teruslah melangkah, berkarya, dan berinovasi tanpa henti.",
+    "Where there's a will, there's a way. Keep moving forward, creating, and innovating relentlessly.",
   email: "cezar.nares@gmail.com",
   country: "Indonesia",
   officeAddress: "",
@@ -34,9 +34,7 @@ const defaultSiteConfig: SiteConfig = {
   navLinks: [
     { name: "Overview", href: "#" },
     { name: "About Me", href: "#about" },
-    { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
-    { name: "Certificate", href: "#certificates" },
     { name: "Contact", href: "#contact" },
   ],
   socialLinks: [

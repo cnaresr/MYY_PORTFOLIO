@@ -5,19 +5,17 @@ import { gsap, ScrollTrigger } from './gsap';
  * Excludes #hero section as explicitly required.
  *
  * Uses the existing vertical transition:
- * - Animasi masuk: smooth in dari bawah ke atas (y: 28 -> 0, opacity: 0 -> 1, scale: 0.99 -> 1)
- * - Animasi keluar: smooth out arah sebaliknya (y: 0 -> 28, opacity: 1 -> 0, scale: 1 -> 0.99)
+ * - Entrance animation: smooth in from bottom to top (y: 28 -> 0, opacity: 0 -> 1, scale: 0.99 -> 1)
+ * - Exit animation: smooth out in reverse direction (y: 0 -> 28, opacity: 1 -> 0, scale: 1 -> 0.99)
  */
 export function initSectionFlowTransitions(): void {
   if (typeof window === 'undefined') return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const sectionIds = [
-    'skills-ticker',
     'about',
-    'skills',
+    'skills-ticker',
     'projects',
-    'certificates',
     'contact',
     'footer',
   ];
@@ -35,7 +33,7 @@ export function initSectionFlowTransitions(): void {
       existing.kill();
     }
 
-    const isFooter = id === 'footer';
+    const isTerminalSection = id === 'contact' || id === 'footer';
 
     const enterAnimation = () => {
       gsap.fromTo(
@@ -55,8 +53,8 @@ export function initSectionFlowTransitions(): void {
       );
     };
 
-    const leaveAnimation = () => {
-      if (isFooter) return; // Footer is at document bottom; cannot exit downwards
+    const leaveAnimation = (force = false) => {
+      if (isTerminalSection && !force) return; // Contact and Footer are at document bottom; cannot exit downwards
       gsap.to(content, {
         y: 28,
         opacity: 0,
@@ -70,13 +68,15 @@ export function initSectionFlowTransitions(): void {
     const st = ScrollTrigger.create({
       id: triggerId,
       trigger: section,
-      start: isFooter ? 'top 95%' : 'top 88%',
-      end: isFooter ? 'bottom bottom' : 'bottom 14%',
+      start: isTerminalSection ? 'top 95%' : 'top 88%',
+      end: isTerminalSection ? 'bottom bottom' : 'bottom 14%',
       onEnter: () => {
         enterAnimation();
       },
       onLeave: () => {
-        leaveAnimation();
+        if (!isTerminalSection) {
+          leaveAnimation();
+        }
       },
       onEnterBack: () => {
         enterAnimation();
@@ -93,7 +93,12 @@ export function initSectionFlowTransitions(): void {
     } else if (st.progress === 0) {
       gsap.set(content, { opacity: 0, y: 28, scale: 0.99 });
     } else if (st.progress === 1) {
-      gsap.set(content, { opacity: 0, y: 28, scale: 0.99 });
+      if (isTerminalSection) {
+        gsap.set(content, { opacity: 1, y: 0, scale: 1 });
+        gsap.set(content, { clearProps: 'transform' });
+      } else {
+        gsap.set(content, { opacity: 0, y: 28, scale: 0.99 });
+      }
     }
   });
 

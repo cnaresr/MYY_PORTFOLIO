@@ -1,39 +1,46 @@
 {
-  "loopDuration": 35,
+  "loopDuration": 32,
   "track1": [
     {
-      "id": "b-ts",
-      "name": "TypeScript 5.4",
+      "id": "b-php",
+      "name": "PHP 8.2+",
       "category": "lang",
-      "iconSlug": "typescript",
+      "iconSlug": "php",
       "enabled": true
     },
     {
-      "id": "b-rust",
-      "name": "Rust 2024",
-      "category": "lang",
-      "iconSlug": "rust",
+      "id": "b-laravel",
+      "name": "Laravel 11",
+      "category": "framework",
+      "iconSlug": "laravel",
       "enabled": true
     },
     {
-      "id": "b-go",
-      "name": "Go 1.22",
-      "category": "lang",
-      "iconSlug": "go",
+      "id": "b-flutter",
+      "name": "Flutter & Dart",
+      "category": "framework",
+      "iconSlug": "flutter",
       "enabled": true
     },
     {
-      "id": "b-py",
-      "name": "Python 3.12",
-      "category": "lang",
-      "iconSlug": "python",
+      "id": "b-node",
+      "name": "Node.js LTS",
+      "category": "runtime",
+      "iconSlug": "nodedotjs",
       "enabled": true
     },
     {
-      "id": "b-cpp",
-      "name": "C++ 20",
-      "category": "lang",
-      "iconSlug": "cplusplus",
+      "id": "b-express",
+      "name": "Express.js",
+      "category": "framework",
+      "iconSlug": "express",
+      "enabled": true
+    },
+    {
+      "id": "b-prisma",
+      "name": "Prisma ORM",
+      "category": "db",
+      "iconSlug": "prisma",
       "enabled": true
     },
     {
@@ -44,75 +51,75 @@
       "enabled": true
     },
     {
-      "id": "b-bash",
-      "name": "Bash & POSIX",
-      "category": "cli",
-      "iconSlug": "gnubash",
-      "enabled": true
-    },
-    {
-      "id": "b-graphql",
-      "name": "GraphQL & gRPC",
-      "category": "api",
-      "iconSlug": "graphql",
+      "id": "b-mysql",
+      "name": "MySQL 8.0",
+      "category": "db",
+      "iconSlug": "mysql",
       "enabled": true
     }
   ],
   "track2": [
     {
-      "id": "b-astro",
-      "name": "Astro 4.x Islands",
-      "category": "framework",
-      "iconSlug": "astro",
+      "id": "b-py",
+      "name": "Python 3.12",
+      "category": "lang",
+      "iconSlug": "python",
       "enabled": true
     },
     {
-      "id": "b-react",
-      "name": "React 19 RC",
+      "id": "b-tf",
+      "name": "TensorFlow AI",
       "category": "framework",
-      "iconSlug": "react",
+      "iconSlug": "tensorflow",
       "enabled": true
     },
     {
-      "id": "b-next",
-      "name": "Next.js App Router",
+      "id": "b-flask",
+      "name": "Flask REST",
       "category": "framework",
-      "iconSlug": "nextdotjs",
+      "iconSlug": "flask",
       "enabled": true
     },
     {
-      "id": "b-vite",
-      "name": "Vite 6 Engine",
+      "id": "b-arduino",
+      "name": "Arduino & ESP32",
+      "category": "infra",
+      "iconSlug": "arduino",
+      "enabled": true
+    },
+    {
+      "id": "b-leaflet",
+      "name": "Leaflet GIS",
+      "category": "framework",
+      "iconSlug": "leaflet",
+      "enabled": true
+    },
+    {
+      "id": "b-mapbox",
+      "name": "Mapbox Vector",
+      "category": "framework",
+      "iconSlug": "mapbox",
+      "enabled": true
+    },
+    {
+      "id": "b-d3",
+      "name": "D3.js Visual",
       "category": "tool",
-      "iconSlug": "vite",
-      "enabled": true
-    },
-    {
-      "id": "b-node",
-      "name": "Node.js 22 LTS",
-      "category": "runtime",
-      "iconSlug": "nodedotjs",
+      "iconSlug": "d3",
       "enabled": true
     },
     {
       "id": "b-tailwind",
-      "name": "Tailwind CSS v4",
+      "name": "Tailwind CSS",
       "category": "styling",
       "iconSlug": "tailwindcss",
       "enabled": true
     },
     {
-      "id": "b-redis",
-      "name": "Redis Sentinel",
-      "category": "db",
-      "iconSlug": "redis",
-      "enabled": true
-    },
-    {
-      "id": "b-docker",
-      "name": "Docker & K8s",
-      "category": "infra",
-      "iconSlug": "docker",
+      "id": "b-vite",
+      "name": "Vite Bundler",
+      "category": "tool",
+      "iconSlug": "vite",
       "enabled": true
     }
   ]

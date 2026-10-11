@@ -3,7 +3,6 @@ import {
   Search,
   FolderGit2,
   Cpu,
-  ShieldCheck,
   Mail,
 
   KeyRound,
@@ -73,8 +72,8 @@ export const CommandPalette: React.FC = () => {
       {
         id: 'nav-projects',
         category: 'Navigation',
-        title: 'Explore Architecture Systems',
-        subtitle: 'Navigate to distributed case studies & system telemetry',
+        title: 'Explore Projects',
+        subtitle: 'Navigate to project showcase & case studies',
         icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
         badge: '#projects',
         action: () => {
@@ -86,26 +85,13 @@ export const CommandPalette: React.FC = () => {
       {
         id: 'nav-skills',
         category: 'Navigation',
-        title: 'Technical Radar & Skills Matrix',
-        subtitle: 'View languages, frameworks, and continuous marquee ticker',
+        title: 'Technical Stack Showreel',
+        subtitle: 'View languages, frameworks, and runtime capabilities in About Me',
         icon: <Cpu className="w-4 h-4 text-cyan-400" />,
         badge: '#skills',
         action: () => {
           setIsOpen(false);
           const el = document.getElementById('skills');
-          el?.scrollIntoView({ behavior: 'smooth' });
-        },
-      },
-      {
-        id: 'nav-certificates',
-        category: 'Navigation',
-        title: 'Cryptographic Credentials Ledger',
-        subtitle: 'SHA-256 verifiable architecture certifications',
-        icon: <ShieldCheck className="w-4 h-4 text-amber-400" />,
-        badge: '#certificates',
-        action: () => {
-          setIsOpen(false);
-          const el = document.getElementById('certificates');
           el?.scrollIntoView({ behavior: 'smooth' });
         },
       },
