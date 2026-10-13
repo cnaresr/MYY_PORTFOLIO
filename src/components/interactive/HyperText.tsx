@@ -1,7 +1,9 @@
 "use client";
 
 import {
+  Fragment,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ComponentType,
@@ -190,6 +192,27 @@ export function HyperText({
     };
   }, [content, duration, isAnimating, characterSet]);
 
+  // Group letters into words so the browser wraps whole words and never breaks a word across lines
+  const words = useMemo(() => {
+    const list: { letters: { char: string; index: number }[] }[] = [];
+    let current: { char: string; index: number }[] = [];
+
+    displayText.forEach((char, index) => {
+      if (char === " ") {
+        if (current.length > 0) {
+          list.push({ letters: current });
+          current = [];
+        }
+      } else {
+        current.push({ char, index });
+      }
+    });
+    if (current.length > 0) {
+      list.push({ letters: current });
+    }
+    return list;
+  }, [displayText]);
+
   return (
     <MotionComponent
       ref={elementRef}
@@ -198,13 +221,20 @@ export function HyperText({
       {...props}
     >
       <AnimatePresence>
-        {displayText.map((letter, index) => (
-          <motion.span
-            key={index}
-            className={cn("font-mono", letter === " " ? "w-3" : "")}
-          >
-            {letter.toUpperCase()}
-          </motion.span>
+        {words.map((word, wIdx) => (
+          <Fragment key={wIdx}>
+            <span className="inline-block whitespace-nowrap">
+              {word.letters.map(({ char, index }) => (
+                <motion.span
+                  key={index}
+                  className="inline-block"
+                >
+                  {char.toUpperCase()}
+                </motion.span>
+              ))}
+            </span>
+            {wIdx < words.length - 1 && " "}
+          </Fragment>
         ))}
       </AnimatePresence>
     </MotionComponent>

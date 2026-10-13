@@ -36,6 +36,7 @@ export interface Project {
   technologies: string[];
   githubUrl: string;
   image: string;
+  video?: string;
   abstract: string;
   metrics?: Metric[];
 }
@@ -116,6 +117,7 @@ export function getLiveProjects(): Project[] {
         technologies: p.technologies || ['TypeScript', 'Astro'],
         githubUrl: p.githubUrl || 'https://github.com',
         image: p.image || p.telemetryImage || '/images/project-veloce.jpg',
+        video: p.video || undefined,
         abstract: p.abstract || p.spec?.abstract || p.description || '',
         metrics: p.metrics || defaultMetricsFor(p.title),
       }));

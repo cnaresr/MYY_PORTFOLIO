@@ -15,6 +15,7 @@
     ],
     "githubUrl": "https://github.com/UnivNews/UnivNews",
     "image": "/images/projects/univnews.jpg",
+    "video": "/UnivNews_Motion_Reel_v4_25s.mp4",
     "abstract": "UnivNews Architecture — Multi-role RBAC authentication, digital editorial CMS pipelines, responsive journalism layout, dan isolated university news catalog.",
     "metrics": [
       {

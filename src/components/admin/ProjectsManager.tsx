@@ -35,6 +35,7 @@ interface Project {
   technologies: string[];
   githubUrl?: string;
   image?: string;
+  video?: string;
   abstract?: string;
   metrics?: Metric[];
 }
@@ -64,10 +65,10 @@ const STATUS_OPTIONS: ReadonlyArray<{ value: Project['status']; label: string }>
 ];
 
 const TECH_PRESET = [
-  'TypeScript', 'JavaScript', 'React', 'Next.js', 'Vite', 'Astro', 'Tailwind',
-  'PostgreSQL', 'MySQL', 'Redis', 'MongoDB', 'Kafka', 'Docker', 'Kubernetes',
-  'Rust', 'Go', 'Node.js', 'Python', 'GraphQL', 'WebSockets', 'SSE Streams',
-  'WebRTC', 'Protobuf', 'Wasm', 'Cloudflare', 'AWS',
+  'Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'Vite', 'Flutter', 'Dart', 'Node.js',
+  'Express.js', 'Prisma', 'PostgreSQL', 'Bootstrap', 'JavaScript', 'Python',
+  'TensorFlow', 'C++ & Arduino', 'Flask', 'Leaflet.js', 'Mapbox', 'D3.js',
+  'React', 'TypeScript', 'Astro', 'MongoDB', 'Docker',
 ] as const;
 
 export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProjects }) => {
@@ -141,6 +142,7 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
       technologies: [],
       githubUrl: '',
       image: '',
+      video: '',
       abstract: '',
       metrics: [
         { label: 'Availability', value: '99.99%' },
@@ -620,7 +622,7 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
                       </div>
                     )}
 
-                    <div className="flex items-center gap-3 pt-2">
+                    <div className="flex flex-wrap items-center gap-3 pt-2">
                       {project.githubUrl && (
                         <a
                           href={project.githubUrl}
@@ -631,6 +633,14 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
                           <span>GitHub Repository</span>
                           <ExternalLink className="w-3 h-3 text-cockpit-faint" />
                         </a>
+                      )}
+                      {project.video && (
+                        <>
+                          <span className="text-cockpit-faint">•</span>
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-mono font-semibold">
+                            <span>Video Reel Active</span>
+                          </span>
+                        </>
                       )}
                       <span className="text-cockpit-faint">•</span>
                       <button
@@ -749,9 +759,25 @@ export const ProjectsManager: React.FC<ProjectsManagerProps> = ({ initialProject
                     value={modalForm.image || ''}
                     onChange={(e) => setModalForm({ ...modalForm, image: e.target.value })}
                     className="mt-2 w-full px-3 py-2 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text font-mono text-[11px] focus:outline-none focus:ring-1 focus:ring-emerald-500"
-                    placeholder=""
+                    placeholder="/images/projects/preview.jpg"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-cockpit-muted font-bold mb-1">
+                  MOTION REEL / VIDEO ASSET PATH (OPTIONAL)
+                </label>
+                <input
+                  type="text"
+                  value={modalForm.video || ''}
+                  onChange={(e) => setModalForm({ ...modalForm, video: e.target.value })}
+                  className="w-full px-3 py-2 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text font-mono text-[11px] focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  placeholder="e.g. /UnivNews_Motion_Reel_v4_25s.mp4"
+                />
+                <span className="text-[10px] text-cockpit-faint mt-0.5 block">
+                  Path to an MP4 video demonstration in public/ directory.
+                </span>
               </div>
 
               <div>
