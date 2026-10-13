@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState, useEffect, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { gsap, useGSAP } from "@/lib/gsap";
 import type { Project } from "@/data/projects";
 import { BrandIcon } from "./BrandIcon";
 import { formatRange } from "@/lib/formatDate";
 import { resolveBrandSlug } from "@/lib/techBrands";
+import { ExternalLink } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
 /*  Staggered reveal wrapper — cards fade up on scroll                */
@@ -69,9 +70,10 @@ interface ProjectCardProps {
   project: Project;
   index: number;
   onViewSpec?: (id: string) => void;
+  onOpenVideo?: (project: Project) => void;
 }
 
-function ProjectCard({ project, index, onViewSpec }: ProjectCardProps) {
+function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const [imgError, setImgError] = useState(false);
@@ -145,6 +147,25 @@ function ProjectCard({ project, index, onViewSpec }: ProjectCardProps) {
     }
   };
 
+  const handleInspectClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (project.video) {
+      if (onOpenVideo) {
+        onOpenVideo(project);
+      } else if (typeof (window as any).openVideoModal === "function") {
+        (window as any).openVideoModal(project.id);
+      } else {
+        window.dispatchEvent(
+          new CustomEvent("open-video-modal", {
+            detail: { projectId: project.id },
+          })
+        );
+      }
+    } else {
+      handleSpecClick(e);
+    }
+  };
+
   return (
     <div
       data-bento-card
@@ -169,13 +190,13 @@ function ProjectCard({ project, index, onViewSpec }: ProjectCardProps) {
         {/* TOP: Hardware/Application Mockup Viewport */}
         <div className="p-4 sm:p-5 pb-0 relative z-10">
           <div className="relative w-full overflow-hidden rounded-xl bg-slate-950 border border-slate-800/80 shadow-md">
-            {/* macOS Chrome Header */}
-            <div className="flex items-center px-3.5 py-2.5 bg-slate-900/90 border-b border-slate-800/80 select-none">
-              <div className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/90 border border-[#e0443e]/50" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/90 border border-[#dea123]/50" />
-                <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]/90 border border-[#1aab29]/50" />
-              </div>
+            {/* Technical Viewport Bar */}
+            <div className="flex items-center justify-between px-3.5 py-2 bg-slate-900 border-b border-slate-800 select-none font-mono text-[11px] text-slate-400">
+              <span className="text-cyan-400 font-bold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                sys://{project.id}.local
+              </span>
+              <span className="text-[11px] text-slate-400 font-mono">PROD // 16:9</span>
             </div>
 
             {/* High-Resolution Screenshot Visual */}
@@ -184,6 +205,8 @@ function ProjectCard({ project, index, onViewSpec }: ProjectCardProps) {
                 <img
                   src={project.image}
                   alt={project.title}
+                  width={800}
+                  height={450}
                   onError={() => setImgError(true)}
                   className="w-full h-full object-cover object-top opacity-90 dark:opacity-85 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500 ease-out"
                   loading="lazy"
@@ -210,11 +233,11 @@ function ProjectCard({ project, index, onViewSpec }: ProjectCardProps) {
               <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto">
                 <button
                   type="button"
-                  onClick={handleSpecClick}
+                  onClick={handleInspectClick}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-['Space_Grotesk'] text-xs font-bold shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer border border-slate-200 dark:border-slate-700"
                 >
                   <span className="material-symbols-outlined text-[16px]">visibility</span>
-                  <span>Inspect Architecture</span>
+                  <span>Inspect</span>
                 </button>
               </div>
             </div>
@@ -291,6 +314,128 @@ function ProjectCard({ project, index, onViewSpec }: ProjectCardProps) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Cinema Video Modal Player                                         */
+/* ------------------------------------------------------------------ */
+
+interface ProjectVideoModalProps {
+  project: Project;
+  onClose: () => void;
+  onOpenSpec?: (id: string) => void;
+}
+
+function ProjectVideoModal({ project, onClose, onOpenSpec }: ProjectVideoModalProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="video-modal-title"
+      className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-4xl bg-[#070b14] rounded-2xl sm:rounded-3xl border border-slate-800 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Subtle CAD Blueprint Grid Watermark & Ambient Glows */}
+        <div className="absolute inset-0 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] dark:bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none z-0" />
+        <div className="absolute -top-32 -right-32 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none z-0" />
+
+        {/* Top Header Bar */}
+        <div className="relative z-10 flex items-center justify-between px-4 sm:px-6 py-2.5 bg-slate-900 border-b border-slate-800 select-none">
+          <div className="flex items-center gap-2 font-mono text-xs text-slate-300">
+            <span className="text-emerald-400 font-bold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              MOTION_REEL
+            </span>
+            <span className="text-slate-500">//</span>
+            <span>video/{project.id}.mp4</span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline-block text-xs font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
+              ESC
+            </span>
+            <button
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg font-mono text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            >
+              ✕ CLOSE
+            </button>
+          </div>
+        </div>
+
+        {/* Video Player Canvas */}
+        <div className="relative z-10 w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
+          <video
+            ref={videoRef}
+            src={project.video}
+            controls
+            autoPlay
+            playsInline
+            poster={project.image}
+            className="w-full h-full object-contain"
+          >
+            Your browser does not support HTML5 video playback.
+          </video>
+        </div>
+
+        {/* Bottom Information & Action Deck */}
+        <div className="relative z-10 p-4 sm:p-5 bg-slate-900/90 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="px-2.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-xs font-bold">
+                {project.id.toUpperCase()}
+              </span>
+              <span className="text-xs font-mono text-slate-400">
+                Motion Reel Demonstration
+              </span>
+            </div>
+            <h3
+              id="video-modal-title"
+              className="font-['Space_Grotesk'] text-base sm:text-lg font-bold text-white tracking-tight"
+            >
+              {project.title}
+            </h3>
+          </div>
+
+          <div className="flex items-center gap-2.5 shrink-0 w-full sm:w-auto justify-end">
+            <button
+              type="button"
+              onClick={() => onOpenSpec?.(project.id)}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-['Space_Grotesk'] text-xs font-bold transition-all shadow-xs cursor-pointer select-none border border-slate-200 dark:border-slate-700"
+            >
+              <span>Inspect Architecture Spec</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </button>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-mono text-xs font-semibold transition-colors cursor-pointer"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Exported Grid with Technology Filter & Symmetrical 2-Column Grid  */
 /* ------------------------------------------------------------------ */
 
@@ -299,6 +444,31 @@ interface BentoProjectGridProps {
 }
 
 export function BentoProjectGrid({ projects }: BentoProjectGridProps) {
+  const [activeVideoProject, setActiveVideoProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    (window as any).openVideoModal = (targetId?: string) => {
+      const found =
+        projects?.find(
+          (p) => p.id === targetId || p.id?.toLowerCase() === String(targetId).toLowerCase()
+        ) || projects?.find((p) => p.video) || null;
+      if (found && found.video) {
+        setActiveVideoProject(found);
+      }
+    };
+
+    const handleOpen = (e: any) => {
+      const targetId = e.detail?.projectId;
+      (window as any).openVideoModal(targetId);
+    };
+
+    window.addEventListener("open-video-modal" as any, handleOpen);
+    return () => {
+      window.removeEventListener("open-video-modal" as any, handleOpen);
+      delete (window as any).openVideoModal;
+    };
+  }, [projects]);
+
   return (
     <div className="flex flex-col gap-8">
       {/* Symmetrical High-Impact 2-Column Grid */}
@@ -309,10 +479,29 @@ export function BentoProjectGrid({ projects }: BentoProjectGridProps) {
               key={project.id}
               project={project}
               index={index}
+              onOpenVideo={(p) => setActiveVideoProject(p)}
             />
           ))}
         </div>
       </StaggerReveal>
+
+      {/* Cinema Video Modal */}
+      {activeVideoProject && (
+        <ProjectVideoModal
+          project={activeVideoProject}
+          onClose={() => setActiveVideoProject(null)}
+          onOpenSpec={(id) => {
+            setActiveVideoProject(null);
+            if (typeof (window as any).openSpecModal === "function") {
+              (window as any).openSpecModal(id);
+            } else {
+              window.dispatchEvent(
+                new CustomEvent("open-spec-modal", { detail: { projectId: id } })
+              );
+            }
+          }}
+        />
+      )}
     </div>
   );
 }

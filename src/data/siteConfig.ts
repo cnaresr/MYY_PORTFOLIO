@@ -24,12 +24,12 @@ const defaultSiteConfig: SiteConfig = {
   title: "CEZAR NARESWARA RESPATI",
   subtitle: "Code with Passion, Build with Purpose",
   summary:
-    "Where there's a will, there's a way. Keep moving forward, creating, and innovating relentlessly.",
+    "Full-Stack Developer & Software Architect based in Indonesia, specializing in high-performance web applications, scalable backend systems, and modern digital platforms.",
   email: "cezar.nares@gmail.com",
   country: "Indonesia",
   officeAddress: "",
   homeAddress: "",
-  avatar: "/images/foto-pp-385190-087084-cropped-119042.png",
+  avatar: "/images/avatar-hero.jpg",
   cvPdf: "",
   navLinks: [
     { name: "Overview", href: "#" },

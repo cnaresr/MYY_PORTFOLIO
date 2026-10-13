@@ -21,7 +21,7 @@ const row2: MarqueeItem[] = tickerRow2.map((item) => ({
 <section class="w-full bg-slate-100 dark:bg-slate-900/50 border-b border-slate-200/80 dark:border-slate-800 py-5 select-none overflow-hidden transition-colors" id="skills-ticker">
   <div class="section-content-flow w-full">
     <div class="relative w-full">
-      <SkillsMarquee client:load items={row1} reverse speed={55} speedOnHover={0} />
+      <SkillsMarquee client:visible items={row1} reverse speed={55} speedOnHover={0} />
       <ProgressiveBlur
         className="top-0 left-0 h-full w-[204px]"
         direction="left"
@@ -35,7 +35,7 @@ const row2: MarqueeItem[] = tickerRow2.map((item) => ({
     </div>
 
     <div class="relative w-full">
-      <SkillsMarquee client:load items={row2} speed={45} speedOnHover={0} />
+      <SkillsMarquee client:visible items={row2} speed={45} speedOnHover={0} />
       <ProgressiveBlur
         className="top-0 left-0 h-full w-[204px]"
         direction="left"

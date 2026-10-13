@@ -42,6 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
       technologies: newProject.technologies || ['Astro', 'TypeScript', 'Tailwind'],
       githubUrl: newProject.githubUrl || 'https://github.com',
       image: newProject.image || '/images/project-veloce.jpg',
+      video: newProject.video || undefined,
       abstract: newProject.abstract || 'Architectural specification for the system.',
       metrics: Array.isArray(newProject.metrics) && newProject.metrics.length > 0
         ? newProject.metrics

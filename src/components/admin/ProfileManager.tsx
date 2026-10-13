@@ -156,6 +156,16 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="sm:col-span-2">
+              <label className="block text-cockpit-muted font-bold mb-1">FULL NAME</label>
+              <input
+                type="text"
+                value={profile.name}
+                onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                className="w-full px-3 py-2 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500 font-bold"
+                placeholder="e.g. Cezar nareswara respati"
+              />
+            </div>
             <div>
               <label className="block text-cockpit-muted font-bold mb-1">INITIALS</label>
               <input
@@ -165,6 +175,17 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
                 className="w-full px-3 py-2 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500 font-bold text-center"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-cockpit-muted font-bold mb-1">PROFESSIONAL ROLE</label>
+            <input
+              type="text"
+              value={profile.role || ''}
+              onChange={(e) => setProfile({ ...profile, role: e.target.value })}
+              className="w-full px-3 py-2 bg-cockpit border border-cockpit-line-strong rounded text-cockpit-text focus:outline-none focus:ring-1 focus:ring-emerald-500 font-medium"
+              placeholder="e.g. Full-Stack Architect"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -346,7 +367,10 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
                 <h3 className="font-['Space_Grotesk'] text-xl font-bold text-cockpit-text tracking-tight">
                   {profile.name}
                 </h3>
-                <p className="text-xs font-mono text-emerald-400 font-semibold">{profile.subtitle}</p>
+                <p className="text-xs font-mono text-emerald-400 font-semibold">{profile.role || 'Full-Stack Architect'}</p>
+                {profile.subtitle && (
+                  <p className="text-[11px] text-cockpit-muted mt-0.5">{profile.subtitle}</p>
+                )}
               </div>
             </div>
 
@@ -381,10 +405,10 @@ export const ProfileManager: React.FC<ProfileManagerProps> = ({ initialProfile }
               )}
             </div>
 
-            {/* Action buttons preview */}
+            {/* Action buttons preview matching public hero */}
             <div className="pt-2 flex items-center gap-2 font-mono text-xs">
               <span className="px-3 py-1.5 rounded bg-emerald-500 text-cockpit-text font-bold flex items-center gap-1">
-                <span>Direct Contact</span>
+                <span>Explore Works</span>
               </span>
               <span className="px-3 py-1.5 rounded bg-cockpit-raised text-cockpit-text border border-cockpit-line-strong flex items-center gap-1">
                 <span>See CV</span>

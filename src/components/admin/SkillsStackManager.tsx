@@ -264,7 +264,7 @@ export const SkillsStackManager: React.FC<SkillsStackManagerProps> = ({
 
         <div className="relative z-10 flex flex-wrap items-center gap-2.5">
           <a
-            href="/#skills"
+            href="/#skills-ticker"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cockpit-raised hover:bg-cockpit-hover border border-cockpit-line text-cockpit-text font-mono text-xs transition-colors"

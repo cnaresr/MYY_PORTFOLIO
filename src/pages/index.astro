@@ -17,7 +17,7 @@ const liveProjects = getLiveProjects();
 
 <Layout>
   <Header />
-  <main class="w-full pt-24 overflow-x-hidden">
+  <main id="main-content" class="w-full pt-24 overflow-x-hidden">
     <Hero />
     <AboutMeSection />
     <SkillsTicker />
@@ -25,7 +25,7 @@ const liveProjects = getLiveProjects();
     <ContactSection />
   </main>
   <Footer />
-  <SpecModal client:load projects={liveProjects} />
+  <SpecModal client:idle projects={liveProjects} />
 </Layout>
 
 <script>

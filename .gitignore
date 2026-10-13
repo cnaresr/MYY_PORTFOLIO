@@ -28,6 +28,8 @@ package-lock.json
 # backups and local tooling
 _gsap_backup/
 .dsh-terminal/
+.agents/
+skills-lock.json
 
 # OS generated files
 .DS_Store

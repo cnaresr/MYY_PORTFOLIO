@@ -178,7 +178,7 @@ export const OverviewManager: React.FC<OverviewProps> = ({
       title: 'Hero & Identity Profile',
       href: '/user/admin/profile',
       action: 'Edit Profile',
-      detail: [profile?.name, profile?.subtitle || profile?.role].filter(Boolean).join(' · ') || 'No profile data',
+      detail: [profile?.name, profile?.role || profile?.subtitle].filter(Boolean).join(' · ') || 'No profile data',
       status: profile?.name ? '100% READY' : 'EMPTY',
       badge: 'Core Identity',
       color: 'emerald',
@@ -188,7 +188,7 @@ export const OverviewManager: React.FC<OverviewProps> = ({
       title: 'About Me Narrative & Showreel',
       href: '/user/admin/about',
       action: 'Configure Narrative',
-      detail: 'Architectural biography, manifesto quote, and integrated technical showreel',
+      detail: 'Full-Stack Developer · Semarang, Tembalang · 20 showreel capabilities',
       status: 'SYNCED',
       badge: 'Showcase',
       color: 'sky',
@@ -197,10 +197,10 @@ export const OverviewManager: React.FC<OverviewProps> = ({
       icon: 'view_in_ar',
       title: 'Tech Stack Continuous Marquee',
       href: '/user/admin/skills',
-      action: 'Adjust Ticker',
-      detail: `${stats.techBadgeCount} enabled badges${techStack?.loopDuration ? ` · ${techStack.loopDuration}s loop velocity` : ''}`,
+      action: 'Adjust Marquee',
+      detail: `${stats.techBadgeCount} enabled marquee badges${techStack?.loopDuration ? ` · ${techStack.loopDuration}s loop velocity` : ''}`,
       status: `${stats.techBadgeCount} BADGES`,
-      badge: 'Interactive HUD',
+      badge: 'Interactive Marquee',
       color: 'indigo',
     },
     {
@@ -208,7 +208,7 @@ export const OverviewManager: React.FC<OverviewProps> = ({
       title: 'Technical Capabilities Matrix',
       href: '/user/admin/skills',
       action: 'Edit Matrix',
-      detail: `${stats.skillsCount} calibrated capabilities · ${masterSkillsCount} Master Tier certified`,
+      detail: `${stats.skillsCount} calibrated capabilities across languages & frameworks`,
       status: `${stats.skillsCount} STACKS`,
       badge: 'Production Stacks',
       color: 'emerald',
@@ -218,7 +218,7 @@ export const OverviewManager: React.FC<OverviewProps> = ({
       title: 'Projects Showcase',
       href: '/user/admin/projects',
       action: 'Manage Projects',
-      detail: `${stats.publishedProjects} published of ${stats.totalProjects} total platforms`,
+      detail: `${stats.publishedProjects} published platforms (UnivNews, PADi, LSP Polines, Weather IoT, Map Contour)`,
       status: `${stats.publishedProjects}/${stats.totalProjects} LIVE`,
       badge: 'Projects',
       color: 'amber',
@@ -360,7 +360,7 @@ export const OverviewManager: React.FC<OverviewProps> = ({
           {[
             { label: '#overview', href: '/' },
             { label: '#about', href: '/#about' },
-            { label: '#skills', href: '/#skills' },
+            { label: '#skills-ticker', href: '/#skills-ticker' },
             { label: '#projects', href: '/#projects' },
             { label: '#contact', href: '/#contact' },
           ].map((anchor) => (
@@ -470,7 +470,9 @@ export const OverviewManager: React.FC<OverviewProps> = ({
           </div>
 
           <div className="pt-3 border-t border-cockpit-line mt-4 flex items-center justify-between text-[11px] font-mono">
-            <span className="text-cockpit-faint">{masterSkillsCount} Master Tier</span>
+            <span className="text-cockpit-faint">
+              {masterSkillsCount > 0 ? `${masterSkillsCount} Master Tier` : `${stats.skillsCount} Verified Stacks`}
+            </span>
             <a href="/user/admin/skills" className="text-sky-400 hover:underline inline-flex items-center gap-1 font-semibold">
               Edit Matrix <ArrowUpRight className="w-3 h-3" />
             </a>

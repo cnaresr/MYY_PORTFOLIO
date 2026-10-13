@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
-import { Repeat2, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PulsatingButton } from "./PulsatingButton";
 import { HyperText } from "./HyperText";
@@ -181,7 +181,7 @@ export function FloatingIconsHero({
           <div className="lg:col-span-8 flex flex-col items-start text-left">
             <HyperText
               as="h1"
-              className="font-['Space_Grotesk'] text-5xl sm:text-6xl lg:text-[74px] font-bold text-slate-950 dark:text-white tracking-tight leading-[1.05] mb-3"
+              className="font-['Space_Grotesk'] text-4xl sm:text-5xl md:text-6xl lg:text-[54px] xl:text-[62px] font-bold text-slate-950 dark:text-white tracking-tight leading-[1.08] mb-4"
               duration={900}
               delay={150}
               animateOnHover
@@ -288,12 +288,29 @@ function ProfileFlipCard({
 }) {
   const [isFlipped, setIsFlipped] = React.useState(false);
 
+  const canHover = () =>
+    typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches;
+
   return (
     <div
-      className="group relative h-[340px] w-64 sm:w-72 [perspective:2000px]"
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
+      role="button"
+      tabIndex={0}
+      aria-label="Profile identity card, click or tap to flip"
+      aria-pressed={isFlipped}
+      className="group relative h-[340px] w-64 sm:w-72 [perspective:2000px] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-[2.5rem]"
+      onMouseEnter={() => {
+        if (canHover()) setIsFlipped(true);
+      }}
+      onMouseLeave={() => {
+        if (canHover()) setIsFlipped(false);
+      }}
       onClick={() => setIsFlipped((f) => !f)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setIsFlipped((f) => !f);
+        }
+      }}
     >
       <div
         className={cn(
@@ -319,6 +336,10 @@ function ProfileFlipCard({
             alt={`Stylized monochromatic high-contrast portrait of ${name || "Architect"}`}
             className="absolute inset-0 w-full h-full object-cover object-center grayscale contrast-125 opacity-95"
             loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            width={720}
+            height={720}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
 
@@ -338,7 +359,7 @@ function ProfileFlipCard({
           />
         </div>
 
-        {/* BACK — identity text (Slogan & Inspirational Quote) */}
+        {/* BACK — identity text (Slogan & Profile summary) */}
         <div
           className={cn(
             "absolute inset-0 h-full w-full",
@@ -366,17 +387,10 @@ function ProfileFlipCard({
               </p>
             )}
             {summary && (
-              <p className="font-['Hanken_Grotesk'] text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed italic px-1">
-                "{summary.replace(/^["“”']+|["“”']+$/g, '')}"
+              <p className="font-['Hanken_Grotesk'] text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed px-1">
+                {summary.replace(/^["“”']+|["“”']+$/g, '')}
               </p>
             )}
-          </div>
-
-          <div className="border-t border-slate-200 dark:border-slate-800 pt-3 flex items-center justify-between">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500">
-              Hover / tap to flip
-            </span>
-            <Repeat2 aria-hidden="true" className="size-3.5 text-slate-400 dark:text-slate-500" />
           </div>
         </div>
       </div>
