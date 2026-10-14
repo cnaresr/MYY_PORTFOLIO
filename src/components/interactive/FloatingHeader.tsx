@@ -68,6 +68,23 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
         )}
       >
         <div className="h-24 max-w-[1400px] mx-auto px-8 flex items-center justify-between gap-6">
+          {/* Brand mark — the CNR monogram asset already shipped with the site
+              (public/favicon-512.png), used at its natural size so the layout
+              cannot shift while it loads. */}
+          <a
+            href="#"
+            className="inline-flex shrink-0 items-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-4 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
+            aria-label="Cezar Nareswara Respati — back to top"
+          >
+            <img
+              src="/favicon-512.png"
+              alt=""
+              width={40}
+              height={40}
+              className="size-10 rounded-xl shadow-xs ring-1 ring-slate-900/10 dark:ring-white/15"
+            />
+          </a>
+
           {/* Desktop Navigation (gooey spring nav) */}
           <nav className="hidden md:block" aria-label="Primary">
             <HeaderNav links={navLinks} />

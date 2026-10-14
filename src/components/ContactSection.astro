@@ -93,13 +93,13 @@ import { GsapReveal } from './interactive/GsapReveal';
       <div class="contact-wing-left lg:col-span-5 flex flex-col justify-between">
         <div>
           <span class="font-['Space_Grotesk'] text-[11px] text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold block mb-1">
-            DIRECT INQUIRY // ADVISORY
+            DIRECT INQUIRY // COLLABORATION
           </span>
           <h3 class="font-['Space_Grotesk'] text-2xl sm:text-3xl font-bold text-slate-950 dark:text-white mb-3 tracking-tight leading-tight">
             Want to collaborate?
           </h3>
           <p class="font-['Hanken_Grotesk'] text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-            Open for fractional systems advisory, technical due diligence for early-stage funds, and principal greenfield architecture contracts.
+            I'm a diploma student and self-taught full-stack developer — most at home on the backend and with SQL. I take on small freelance builds, internships, and open-source work, and I'm always glad to talk about any of it.
             <span class="block mt-2 font-semibold text-slate-800 dark:text-slate-200">Contact me at:</span>
           </p>
 
@@ -121,9 +121,10 @@ import { GsapReveal } from './interactive/GsapReveal';
                 id="copyEmailBtn"
                 class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-mono font-semibold transition-colors cursor-pointer"
                 title="Copy email to clipboard"
+                aria-label="Copy email to clipboard"
               >
-                <span class="material-symbols-outlined text-[16px]">content_copy</span>
-                <span id="copyBtnLabel">Copy</span>
+                <span class="material-symbols-outlined text-[16px]" id="copyBtnIcon" aria-hidden="true">content_copy</span>
+                <span id="copyBtnLabel" role="status" aria-live="polite">Copy</span>
               </button>
             </div>
           </div>
@@ -185,7 +186,7 @@ import { GsapReveal } from './interactive/GsapReveal';
         <ContactForm
           client:load
           title="SECURE TRANSMISSION CONSOLE"
-          subtitle="Outline technical objectives, timeline constraints, and scope."
+          subtitle="Tell me what you're building and where you'd like my help."
           successTitle="Message Received"
           siteName={siteConfig.name.split(' ')[0]}
           fallbackEmail={siteConfig.email}
@@ -249,25 +250,72 @@ import { GsapReveal } from './interactive/GsapReveal';
   // Copy email micro-interaction
   const copyBtn = document.getElementById('copyEmailBtn');
   const copyLabel = document.getElementById('copyBtnLabel');
+  const copyIcon = document.getElementById('copyBtnIcon');
   const emailText = document.getElementById('emailText');
+  let copyResetTimer: ReturnType<typeof setTimeout> | undefined;
+
+  const showCopiedState = () => {
+    if (!copyBtn || !copyLabel || !copyIcon) return;
+    clearTimeout(copyResetTimer);
+    copyBtn.dataset.copied = 'true';
+    copyBtn.title = 'Email copied to clipboard';
+    copyBtn.setAttribute('aria-label', 'Email copied to clipboard');
+    copyIcon.innerText = 'check';
+    copyLabel.innerText = 'Copied!';
+    copyResetTimer = setTimeout(() => {
+      copyBtn.dataset.copied = 'false';
+      copyBtn.title = 'Copy email to clipboard';
+      copyBtn.setAttribute('aria-label', 'Copy email to clipboard');
+      copyIcon.innerText = 'content_copy';
+      copyLabel.innerText = 'Copy';
+    }, 2000);
+  };
 
   if (copyBtn && copyLabel && emailText) {
     copyBtn.addEventListener('click', async () => {
       const email = emailText.innerText.trim();
       try {
-        await navigator.clipboard.writeText(email);
-        copyLabel.innerText = 'Copied!';
-        copyBtn.classList.add('bg-slate-900', 'text-white');
-        setTimeout(() => {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          // Non-secure contexts expose no Clipboard API — fall back to a
+          // hidden textarea so the button still works on http:// previews.
+          const helper = document.createElement('textarea');
+          helper.value = email;
+          helper.setAttribute('readonly', '');
+          helper.style.position = 'fixed';
+          helper.style.opacity = '0';
+          document.body.appendChild(helper);
+          helper.select();
+          const ok = (document as any).execCommand('copy');
+          document.body.removeChild(helper);
+          if (!ok) throw new Error('execCommand copy failed');
+        }
+        showCopiedState();
+      } catch {
+        // Naming the failure and the recovery keeps the button honest.
+        clearTimeout(copyResetTimer);
+        copyLabel.innerText = 'Copy failed';
+        copyBtn.title = 'Copy failed — select the email and press Ctrl+C';
+        copyResetTimer = setTimeout(() => {
           copyLabel.innerText = 'Copy';
-          copyBtn.classList.remove('bg-slate-900', 'text-white');
-        }, 2200);
-      } catch (err) {
-        copyLabel.innerText = 'Copied!';
-        setTimeout(() => {
-          copyLabel.innerText = 'Copy';
-        }, 1500);
+          copyBtn.title = 'Copy email to clipboard';
+        }, 3000);
       }
     });
   }
 </script>
+
+<style>
+  /* Success state must beat the light/dark utility classes on the button. */
+  #copyEmailBtn[data-copied='true'] {
+    background-color: #047857;
+    border-color: #047857;
+    color: #ffffff;
+  }
+
+  #copyEmailBtn[data-copied='true']:hover {
+    background-color: #065f46;
+    border-color: #065f46;
+  }
+</style>

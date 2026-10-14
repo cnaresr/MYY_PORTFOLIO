@@ -20,13 +20,17 @@ type SubmitEvent = SyntheticEvent<HTMLFormElement>;
 /** RFC-5322 is overkill here — this rejects the obvious malformed cases. */
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Topics mirror the inquiry taxonomy the API stores against each dispatch. */
+/**
+ * Topics mirror the inquiry taxonomy the API stores against each dispatch.
+ * Kept honest to the student-builder positioning used in the About section —
+ * no consulting language the site cannot back up.
+ */
 const TOPICS = [
-  "Fractional Architecture Advisory",
-  "Full-Stack Greenfield Contract",
-  "Technical Due Diligence",
-  "Keynote / Tech Talk",
-  "Other High-Priority Query",
+  "Freelance project or collaboration",
+  "Internship, part-time or junior role",
+  "Open-source or campus community work",
+  "Speaking at a meetup or campus event",
+  "Something else",
 ] as const;
 
 type ContactFormValues = Readonly<{
@@ -406,6 +410,15 @@ export const ContactForm = forwardRef<HTMLDivElement, ContactFormProps>(
                 onChange={(event) => {
                   setEmail(event.target.value);
                   clearError("email");
+                }}
+                onBlur={() => {
+                  // Inline validation on blur so a malformed address is caught
+                  // while the user is still in the field, not only on submit.
+                  const { email: emailError } = validateContact(
+                    { name, email, topic, message },
+                    messageLimit,
+                  );
+                  setErrors((prev) => ({ ...prev, email: emailError }));
                 }}
                 className={fieldClass(Boolean(errors.email))}
                 placeholder="jane@company.com"

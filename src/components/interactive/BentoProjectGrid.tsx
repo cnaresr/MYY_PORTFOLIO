@@ -187,6 +187,17 @@ function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardPro
         {/* Ambient colored perimeter glow */}
         <div className="pointer-events-none absolute -inset-px rounded-2xl border border-transparent group-hover:border-slate-300 dark:group-hover:border-slate-700/80 transition-colors duration-300 z-20" />
 
+        {/* Whole-card click target.
+            Rendered as a sibling overlay rather than a wrapper element so the
+            "Source" link and "View Spec" button below stay valid — no button
+            inside a button, and keyboard users still reach one clear control. */}
+        <button
+          type="button"
+          onClick={handleInspectClick}
+          aria-label={`Inspect ${project.title}`}
+          className="absolute inset-0 z-[15] rounded-2xl cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
+        />
+
         {/* TOP: Hardware/Application Mockup Viewport */}
         <div className="p-4 sm:p-5 pb-0 relative z-10">
           <div className="relative w-full overflow-hidden rounded-xl bg-slate-950 border border-slate-800/80 shadow-md">
@@ -229,23 +240,24 @@ function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardPro
               {/* Subtle Ambient Vignette Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
 
-              {/* Hover Quick Action Overlay */}
-              <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none group-hover:pointer-events-auto">
-                <button
-                  type="button"
-                  onClick={handleInspectClick}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-['Space_Grotesk'] text-xs font-bold shadow-xl hover:scale-105 active:scale-95 transition-all cursor-pointer border border-slate-200 dark:border-slate-700"
-                >
-                  <span className="material-symbols-outlined text-[16px]">visibility</span>
+              {/* Hover Quick Action Overlay — decorative only.
+                  The click is handled by the whole-card trigger above, so this
+                  pill must never take pointer events itself. */}
+              <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-['Space_Grotesk'] text-xs font-bold shadow-xl transition-all border border-slate-200 dark:border-slate-700">
+                  <span className="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
                   <span>Inspect</span>
-                </button>
+                </span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* MIDDLE: Project Narrative & Stack */}
-        <div className="p-5 sm:p-6 flex flex-col flex-1 relative z-10">
+        {/* MIDDLE: Project Narrative & Stack
+            No z-index here: without one this container does not form a stacking
+            context, so the narrative stays under the whole-card trigger while
+            the action deck can rise above it. */}
+        <div className="p-5 sm:p-6 flex flex-col flex-1 relative">
           {/* Metadata Row: ID & Timeline */}
           <div className="flex items-center justify-between gap-2 mb-2">
             <span className="inline-flex items-center px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-[11px] font-bold text-slate-700 dark:text-slate-300">
@@ -271,7 +283,7 @@ function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardPro
             {project.technologies.map((tech) => (
               <span
                 key={tech}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 font-mono text-[11px] text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-600 transition-colors"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/80 font-mono text-[11px] text-slate-700 dark:text-slate-300 group-hover:border-slate-300 dark:group-hover:border-slate-600 transition-colors"
               >
                 <BrandIcon
                   slug={resolveBrandSlug(tech)}
@@ -284,8 +296,9 @@ function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardPro
             ))}
           </div>
 
-          {/* Action Deck Bar */}
-          <div className="flex items-center justify-between gap-3 pt-5 mt-auto border-t border-slate-100 dark:border-slate-800/80">
+          {/* Action Deck Bar — sits above the whole-card trigger so these two
+              controls keep their own targets and the card cannot swallow them. */}
+          <div className="relative z-20 flex items-center justify-between gap-3 pt-5 mt-auto border-t border-slate-100 dark:border-slate-800/80">
             <a
               href={project.githubUrl}
               target="_blank"

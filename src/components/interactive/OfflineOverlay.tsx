@@ -40,7 +40,9 @@ async function probeNetwork(): Promise<boolean> {
   try {
     // `no-store` forces a real network round-trip instead of serving the
     // HTTP cache — that is what makes this a connectivity probe.
+    // HEAD keeps the probe body-less: we only care whether traffic passes.
     await fetch(`${HEARTBEAT_URL}?heartbeat=${Date.now()}`, {
+      method: "HEAD",
       cache: "no-store",
       signal,
     });
