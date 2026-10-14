@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Console, API and auth routes are not public content.
+Disallow: /user/admin
+Disallow: /api/
+
+Sitemap: https://www.ctech.web.id/sitemap-index.xml

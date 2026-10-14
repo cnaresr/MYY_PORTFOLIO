@@ -446,6 +446,7 @@ export const SpecModal: React.FC<SpecModalProps> = ({ projects }) => {
                           src={activeProject.video}
                           controls
                           playsInline
+                          preload="none"
                           poster={activeProject.image}
                           className="w-full h-full object-contain"
                         >
@@ -457,6 +458,7 @@ export const SpecModal: React.FC<SpecModalProps> = ({ projects }) => {
                           alt={activeProject.title}
                           className="w-full h-full object-cover object-top"
                           loading="lazy"
+                          decoding="async"
                         />
                       )}
                     </div>
