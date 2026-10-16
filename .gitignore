@@ -30,6 +30,7 @@ _gsap_backup/
 .dsh-terminal/
 .agents/
 skills-lock.json
+.temp-*
 
 # OS generated files
 .DS_Store

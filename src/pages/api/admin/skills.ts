@@ -30,6 +30,14 @@ export const PUT: APIRoute = async ({ request }) => {
     if (body.techStack) {
       saveTechStackData(body.techStack);
     }
+
+    // Regenerate CV PDF so skills in the CV are always in sync
+    try {
+      const { generateCvPdf } = await import('../../../../scripts/generate-cv.mjs');
+      generateCvPdf();
+    } catch (cvErr) {
+      console.warn('Auto-generate CV failed:', cvErr);
+    }
     return new Response(
       JSON.stringify({
         success: true,

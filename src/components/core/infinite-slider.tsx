@@ -33,11 +33,12 @@ export function InfiniteSlider({
   reverse = false,
   className,
 }: InfiniteSliderProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
   const copiesRef = useRef(2);
+  const offsetRef = useRef(0);
   const [copies, setCopies] = useState(2);
-  const [offset, setOffset] = useState(0);
   const [unitWidth, setUnitWidth] = useState(0);
   const [hovered, setHovered] = useState(false);
   const velocityMultiplierRef = useRef(1);
@@ -110,30 +111,61 @@ export function InfiniteSlider({
     };
   }, [children]);
 
-  // Drive the marquee. Speed is px/s; wrap offset back to zero every unit so
-  // the loop never visibly resets.
+  // Drive the marquee via direct DOM transform manipulation.
+  // Using direct transform avoids 60-120 React Virtual DOM re-renders/second.
+  // Pauses automatically via IntersectionObserver when scrolled out of view.
   useEffect(() => {
-    if (unitWidth <= 0) return;
+    const track = trackRef.current;
+    const container = containerRef.current;
+    if (!track || unitWidth <= 0) return;
+
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
 
     const activeSpeed =
       hovered && speedOnHover != null ? speedOnHover : speed;
 
+    let isIntersecting = true;
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined" && container) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isIntersecting = entry.isIntersecting;
+          if (isIntersecting) {
+            last = performance.now();
+          }
+        },
+        { rootMargin: "120px" }
+      );
+      observer.observe(container);
+    }
+
     let last = performance.now();
     const tick = (now: number) => {
-      const dt = (now - last) / 1000;
-      last = now;
-      const speedMultiplier = velocityMultiplierRef.current;
-      setOffset((prev) => {
-        let next = prev + direction * activeSpeed * speedMultiplier * dt;
-        if (next >= unitWidth) next -= unitWidth;
-        else if (next < 0) next += unitWidth;
-        return next;
-      });
+      if (isIntersecting && activeSpeed !== 0) {
+        const dt = Math.min((now - last) / 1000, 0.1);
+        last = now;
+        const speedMultiplier = velocityMultiplierRef.current;
+        offsetRef.current += direction * activeSpeed * speedMultiplier * dt;
+        if (offsetRef.current >= unitWidth) offsetRef.current -= unitWidth;
+        else if (offsetRef.current < 0) offsetRef.current += unitWidth;
+
+        track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+      } else {
+        last = now;
+      }
       rafRef.current = requestAnimationFrame(tick);
     };
 
     rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      observer?.disconnect();
+    };
   }, [unitWidth, hovered, speedOnHover, speed, direction]);
 
   const items = React.Children.map(children, (child, i) => (
@@ -149,14 +181,15 @@ export function InfiniteSlider({
 
   return (
     <div
+      ref={containerRef}
       className={`overflow-hidden ${className ?? ""}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div
         ref={trackRef}
-        className="flex w-max"
-        style={{ transform: `translateX(${-offset}px)` }}
+        className="flex w-max will-change-transform"
+        style={{ transform: `translate3d(${-offsetRef.current}px, 0, 0)` }}
       >
         {Array.from({ length: copies }, (_, copy) => (
           <React.Fragment key={copy}>{items}</React.Fragment>

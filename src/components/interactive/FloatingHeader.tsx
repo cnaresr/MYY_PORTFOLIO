@@ -81,6 +81,12 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
               alt=""
               width={40}
               height={40}
+              /* Decorative mark that sits in the viewport, so lazy still paints it
+                 immediately — but it stops Astro emitting a head/body preload for a
+                 91 KB asset, which would compete with the LCP portrait for a
+                 critical-path slot. */
+              loading="lazy"
+              decoding="async"
               className="size-10 rounded-xl shadow-xs ring-1 ring-slate-900/10 dark:ring-white/15"
             />
           </a>

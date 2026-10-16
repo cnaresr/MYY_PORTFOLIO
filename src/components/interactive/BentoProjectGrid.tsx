@@ -76,42 +76,63 @@ interface ProjectCardProps {
 function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
+  const rafId = useRef<number>(0);
   const [imgError, setImgError] = useState(false);
 
-  // 3D Parallax Mouse Tilt Handlers
+  useEffect(() => {
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
+
+  // 3D Parallax Mouse Tilt Handlers with rAF coalescing and touch device guard
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = cardRef.current;
     if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
 
-    // 5-degree subtle, tactile depth
-    const rotX = -((y - centerY) / centerY) * 5;
-    const rotY = ((x - centerX) / centerX) * 5;
+    if (rafId.current) return;
+    rafId.current = requestAnimationFrame(() => {
+      rafId.current = 0;
+      if (!cardRef.current) return;
 
-    gsap.to(card, {
-      rotateX: rotX,
-      rotateY: rotY,
-      duration: 0.25,
-      ease: "power1.out",
-      overwrite: "auto",
-    });
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    if (glareRef.current) {
-      gsap.to(glareRef.current, {
-        opacity: 1,
-        background: `radial-gradient(circle 380px at ${x}px ${y}px, rgba(255,255,255,0.12), transparent 70%)`,
-        duration: 0.2,
+      // 5-degree subtle, tactile depth
+      const rotX = -((y - centerY) / centerY) * 5;
+      const rotY = ((x - centerX) / centerX) * 5;
+
+      gsap.to(cardRef.current, {
+        rotateX: rotX,
+        rotateY: rotY,
+        duration: 0.25,
+        ease: "power1.out",
         overwrite: "auto",
       });
-    }
+
+      if (glareRef.current) {
+        gsap.to(glareRef.current, {
+          opacity: 1,
+          background: `radial-gradient(circle 380px at ${x}px ${y}px, rgba(255,255,255,0.12), transparent 70%)`,
+          duration: 0.2,
+          overwrite: "auto",
+        });
+      }
+    });
   };
 
   const handleMouseLeave = () => {
+    if (rafId.current) {
+      cancelAnimationFrame(rafId.current);
+      rafId.current = 0;
+    }
     const card = cardRef.current;
     if (!card) return;
 
@@ -201,15 +222,6 @@ function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardPro
         {/* TOP: Hardware/Application Mockup Viewport */}
         <div className="p-4 sm:p-5 pb-0 relative z-10">
           <div className="relative w-full overflow-hidden rounded-xl bg-slate-950 border border-slate-800/80 shadow-md">
-            {/* Technical Viewport Bar */}
-            <div className="flex items-center justify-between px-3.5 py-2 bg-slate-900 border-b border-slate-800 select-none font-mono text-[11px] text-slate-400">
-              <span className="text-cyan-400 font-bold flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                sys://{project.id}.local
-              </span>
-              <span className="text-[11px] text-slate-400 font-mono">PROD // 16:9</span>
-            </div>
-
             {/* High-Resolution Screenshot Visual */}
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-950">
               {!imgError && project.image ? (
@@ -242,8 +254,11 @@ function ProjectCard({ project, index, onViewSpec, onOpenVideo }: ProjectCardPro
 
               {/* Hover Quick Action Overlay — decorative only.
                   The click is handled by the whole-card trigger above, so this
-                  pill must never take pointer events itself. */}
-              <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                  pill must never take pointer events itself.
+                  No backdrop-blur: a backdrop-filter layer that animates opacity
+                  forces an offscreen re-blur every frame for no readable gain at
+                  2px, so the scrim just darkens a touch more instead. */}
+              <div className="absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
                 <span className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-['Space_Grotesk'] text-xs font-bold shadow-xl transition-all border border-slate-200 dark:border-slate-700">
                   <span className="material-symbols-outlined text-[16px]" aria-hidden="true">visibility</span>
                   <span>Inspect</span>
@@ -367,13 +382,10 @@ function ProjectVideoModal({ project, onClose, onOpenSpec }: ProjectVideoModalPr
 
         {/* Top Header Bar */}
         <div className="relative z-10 flex items-center justify-between px-4 sm:px-6 py-2.5 bg-slate-900 border-b border-slate-800 select-none">
-          <div className="flex items-center gap-2 font-mono text-xs text-slate-300">
-            <span className="text-emerald-400 font-bold flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              MOTION_REEL
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold text-slate-200 font-['Space_Grotesk']">
+              {project.title}
             </span>
-            <span className="text-slate-500">//</span>
-            <span>video/{project.id}.mp4</span>
           </div>
 
           <div className="flex items-center gap-2">

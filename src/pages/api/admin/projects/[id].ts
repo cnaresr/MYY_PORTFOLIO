@@ -17,6 +17,13 @@ export const PUT: APIRoute = async ({ params, request }) => {
     projects[index] = { ...projects[index], ...body, id };
     saveProjectsData(projects);
 
+    try {
+      const { generateCvPdf } = await import('../../../../../scripts/generate-cv.mjs');
+      generateCvPdf();
+    } catch (cvErr) {
+      console.warn('Auto-generate CV failed:', cvErr);
+    }
+
     return new Response(JSON.stringify({ success: true, project: projects[index] }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -37,6 +44,13 @@ export const DELETE: APIRoute = async ({ params }) => {
     }
 
     saveProjectsData(filtered);
+
+    try {
+      const { generateCvPdf } = await import('../../../../../scripts/generate-cv.mjs');
+      generateCvPdf();
+    } catch (cvErr) {
+      console.warn('Auto-generate CV failed:', cvErr);
+    }
     return new Response(JSON.stringify({ success: true, remaining: filtered.length }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },

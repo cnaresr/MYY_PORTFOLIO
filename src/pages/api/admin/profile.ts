@@ -35,6 +35,15 @@ export const PUT: APIRoute = async ({ request }) => {
     const merged = { ...current, ...payload };
 
     saveProfileData(merged);
+
+    // Regenerate CV PDF asynchronously so the downloaded file is always fresh
+    try {
+      const { generateCvPdf } = await import('../../../../scripts/generate-cv.mjs');
+      generateCvPdf();
+    } catch (cvErr) {
+      console.warn('Auto-generate CV failed:', cvErr);
+    }
+
     return new Response(JSON.stringify({ success: true, data: merged }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },

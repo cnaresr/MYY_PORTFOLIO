@@ -3,6 +3,9 @@ import { siteConfig } from '../data/siteConfig';
 import { FloatingIconsHero } from './interactive/FloatingIconsHero';
 ---
 
+<!-- Kept on client:load. The hero is the LCP element and holds the primary CTA
+     plus the CV dialog, so its interactivity must not wait for a viewport
+     callback. -->
 <FloatingIconsHero
   client:load
   title={siteConfig.title}

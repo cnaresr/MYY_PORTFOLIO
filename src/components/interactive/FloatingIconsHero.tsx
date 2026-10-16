@@ -8,7 +8,11 @@ import { PulsatingButton } from "./PulsatingButton";
 import { HyperText } from "./HyperText";
 import { BorderBeam } from "./BorderBeam";
 import { BrandIcon } from "./BrandIcon";
-import { CvModal } from "./CvModal";
+
+// Lazily load CvModal so its bundle and icons are deferred until user clicks "See CV"
+const CvModal = React.lazy(() =>
+  import("./CvModal").then((module) => ({ default: module.CvModal }))
+);
 
 export interface FloatingIconItem {
   id: number | string;
@@ -35,9 +39,21 @@ const FloatingIcon = ({ mouseX, mouseY, iconData, index }: FloatingIconProps) =>
   const springY = useSpring(y, { stiffness: 300, damping: 22 });
 
   useEffect(() => {
+    // The repel is a pointer flourish only — touch devices have no cursor to
+    // track, so skip the listener entirely there (both events fire on scroll
+    // for no visible benefit).
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    let frame = 0;
     const handleMouseMove = () => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
+      if (frame) return;
+      // Coalesce to one geometry read per animation frame: getBoundingClientRect
+      // inside a raw mousemove handler forces a layout read on every event.
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const el = ref.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         const distance = Math.hypot(mouseX.current - centerX, mouseY.current - centerY);
@@ -52,11 +68,14 @@ const FloatingIcon = ({ mouseX, mouseY, iconData, index }: FloatingIconProps) =>
           x.set(0);
           y.set(0);
         }
-      }
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      if (frame) cancelAnimationFrame(frame);
+    };
   }, [x, y, mouseX, mouseY]);
 
   // Pseudo-random gentle floating per icon index
@@ -256,13 +275,15 @@ export function FloatingIconsHero({
         </div>
       </div>
 
-      {cvPdf && (
-        <CvModal
-          isOpen={isCvOpen}
-          onClose={() => setIsCvOpen(false)}
-          pdfUrl={cvPdf}
-          name={name}
-        />
+      {cvPdf && isCvOpen && (
+        <React.Suspense fallback={null}>
+          <CvModal
+            isOpen={isCvOpen}
+            onClose={() => setIsCvOpen(false)}
+            pdfUrl={cvPdf}
+            name={name}
+          />
+        </React.Suspense>
       )}
     </section>
   );

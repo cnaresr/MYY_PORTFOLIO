@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/generate-cv.mjs && astro build",
+    "generate-cv": "node scripts/generate-cv.mjs",
     "preview": "astro preview",
     "start": "node ./dist_app/server/entry.mjs",
     "astro": "astro"

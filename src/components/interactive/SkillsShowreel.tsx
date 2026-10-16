@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Crown,
@@ -36,15 +36,27 @@ interface SkillsShowreelProps {
  */
 function ShowreelCard({ skill, index }: { skill: ShowreelSkill; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const rafId = useRef<number>(0);
+
+  useEffect(() => {
+    return () => {
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+    if (!cardRef.current || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    if (rafId.current) return;
+    rafId.current = requestAnimationFrame(() => {
+      rafId.current = 0;
+      const card = cardRef.current;
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--spot-x", `${clientX - rect.left}px`);
+      card.style.setProperty("--spot-y", `${clientY - rect.top}px`);
     });
   };
 
@@ -55,8 +67,6 @@ function ShowreelCard({ skill, index }: { skill: ShowreelSkill; index: number })
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: Math.min(index * 0.03, 0.3), ease: "easeOut" }}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={cn(
         "group relative rounded-2xl p-4 sm:p-4.5 transition-all duration-300 overflow-hidden",
         "bg-white/85 dark:bg-slate-900/80 backdrop-blur-md select-none",
@@ -70,13 +80,11 @@ function ShowreelCard({ skill, index }: { skill: ShowreelSkill; index: number })
       <div
         className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-0"
         style={{
-          background: isHovered
-            ? `radial-gradient(280px circle at ${mousePos.x}px ${mousePos.y}px, ${
-                skill.master
-                  ? "rgba(245, 158, 11, 0.12)"
-                  : "rgba(59, 130, 246, 0.08)"
-              }, transparent 65%)`
-            : "none",
+          background: `radial-gradient(280px circle at var(--spot-x, 50%) var(--spot-y, 50%), ${
+            skill.master
+              ? "rgba(245, 158, 11, 0.12)"
+              : "rgba(59, 130, 246, 0.08)"
+          }, transparent 65%)`,
         }}
       />
 
