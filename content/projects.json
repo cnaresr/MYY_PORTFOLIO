@@ -2,7 +2,7 @@
   {
     "id": "univnews",
     "status": "published",
-    "startDate": "2023-06",
+    "startDate": "2026-06",
     "endDate": "",
     "title": "UnivNews — University Digital Journalism Portal & CMS",
     "description": "Platform portal berita digital multi-kampus modern berbasis Laravel dengan isolasi autentikasi peran (Public Readers, Authors, Admins), manajemen editorial, dan antarmuka responsif.",
@@ -35,8 +35,8 @@
   {
     "id": "app-padi",
     "status": "published",
-    "startDate": "2023-01",
-    "endDate": "2023-12",
+    "startDate": "2026-01",
+    "endDate": "",
     "title": "App_PADi — Platform Absensi Digital (Mobile & Backend)",
     "description": "Sistem absensi digital terintegrasi memadukan aplikasi mobile Flutter dengan backend Node.js, Express, dan Prisma ORM, dilengkapi validasi radius geofencing dan rekap kehadiran real-time.",
     "technologies": [
@@ -68,8 +68,8 @@
   {
     "id": "pbl-lsp",
     "status": "published",
-    "startDate": "2023-09",
-    "endDate": "2024-06",
+    "startDate": "2025-09",
+    "endDate": "",
     "title": "Sistem Informasi LSP POLINES — Sertifikasi Kompetensi",
     "description": "Sistem informasi manajemen sertifikasi kompetensi profesi untuk Lembaga Sertifikasi Profesi (LSP) Politeknik Negeri Semarang, mendigitalisasi alur pendaftaran asesi hingga penerbitan sertifikat.",
     "technologies": [
@@ -100,7 +100,7 @@
   {
     "id": "weather-prediction-iot",
     "status": "published",
-    "startDate": "2024-03",
+    "startDate": "2026-03",
     "endDate": "",
     "title": "Micro-Local Climate Monitor & Predictor (IoT & ML)",
     "description": "Stasiun cuaca mikro-lokal hiperlokal berbasis Dual ESP32 LoRa-WiFi terintegrasi Machine Learning (TensorFlow) untuk pemantauan atmosfer lingkungan dan peramalan hujan presisi tinggi.",
@@ -132,8 +132,8 @@
   {
     "id": "dashboard-web-map-contour",
     "status": "published",
-    "startDate": "2024-01",
-    "endDate": "2024-08",
+    "startDate": "2025-01",
+    "endDate": "",
     "title": "Dashboard Web Map Contour — Geospatial Elevation GIS",
     "description": "Platform visualisasi geospasial interaktif pemetaan garis kontur medan topografi dan elevasi ketinggian lereng, mendukung layer GeoJSON/Shapefile dinamis dan analisis spasial web.",
     "technologies": [

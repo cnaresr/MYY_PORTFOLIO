@@ -1,0 +1,425 @@
+---
+// CertificatesC.astro — ARCHITECTURAL CREDENTIAL REGISTRY (VIEWPORT-OPTIMIZED & SELARAS)
+// Header system matches About / Projects / Contact exactly (chips, monumental type,
+// telemetry pills, blueprint ruler). GSAP pinned horizontal scrub + mobile swipe intact.
+
+import { GsapReveal } from './interactive/GsapReveal';
+import { CERTIFICATES } from '../data/certificates';
+import CredentialCard from './CredentialCard.astro';
+
+const CERTIFICATIONS = "SEC // 03 · CREDENTIAL REGISTRY";
+
+const totalCerts = CERTIFICATES.length;
+const totalIssuers = new Set(CERTIFICATES.map((c) => c.issuer)).size;
+---
+
+<section
+  id="certificates"
+  class="hcert-section scroll-mt-0 relative w-full bg-[#f8f9ff] dark:bg-[#050811] text-slate-900 dark:text-slate-100 transition-colors overflow-hidden"
+  aria-labelledby="hcert-heading"
+>
+  <!-- Architectural Subtle Grid Background Pattern -->
+  <div
+    class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:28px_28px] opacity-40 dark:opacity-20 pointer-events-none z-0"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Ambient Backdrop Glows -->
+  <div
+    class="absolute top-1/3 -left-40 w-72 h-72 bg-emerald-500/5 dark:bg-emerald-500/10 blur-3xl pointer-events-none rounded-full"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute bottom-1/3 -right-40 w-72 h-72 bg-sky-500/5 dark:bg-sky-500/10 blur-3xl pointer-events-none rounded-full"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Pinned Viewport Container (Guaranteed zero vertical overflow below navbar) -->
+  <div class="hcert-pin-container relative w-full flex flex-col justify-start">
+    <!-- Architectural Header — same system as About / Projects / Contact -->
+    <div class="relative max-w-[1200px] mx-auto px-6 w-full z-10 shrink-0">
+      <GsapReveal y={20} duration={0.7} selector=".reveal-cert-header">
+        <div class="relative mb-3 sm:mb-4">
+          <!-- Giant Architectural Watermark Serial Number -->
+          <div
+            class="pointer-events-none absolute -top-8 right-2 sm:right-6 select-none font-mono text-6xl sm:text-7xl lg:text-8xl font-black text-slate-950/[0.03] dark:text-white/[0.03] tracking-tighter"
+            aria-hidden="true"
+          >
+            03
+          </div>
+
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2 sm:pb-3 relative z-10">
+            <!-- Left Wing: Status Chip + Monumental Typography -->
+            <div class="space-y-1.5 sm:space-y-2">
+              <div class="reveal-cert-header inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="font-mono text-[11px] uppercase tracking-widest font-bold text-slate-700 dark:text-slate-300">
+                  CREDENTIAL REGISTRY // VERIFIED ACCREDITATIONS
+                </span>
+              </div>
+
+              <div class="reveal-cert-header flex items-baseline gap-3 sm:gap-4 flex-wrap">
+                <h2
+                  id="hcert-heading"
+                  class="font-['Space_Grotesk'] text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-none"
+                >
+                  Certificates
+                </h2>
+                <span class="font-mono text-xs sm:text-sm text-slate-400 dark:text-slate-500 font-semibold tracking-wider uppercase">
+                  // LICENSED STANDARDS
+                </span>
+              </div>
+            </div>
+
+            <!-- Right Wing: Precision Telemetry HUD Cards -->
+            <div class="reveal-cert-header flex items-center gap-2.5 shrink-0">
+              <!-- Credentials Count Pill -->
+              <div class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shrink-0">
+                  <span class="material-symbols-outlined text-[16px]">verified</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-['Space_Grotesk'] text-base font-bold text-slate-950 dark:text-white leading-tight tabular-nums">
+                    {totalCerts}/{totalCerts}
+                  </span>
+                  <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
+                    Credentials Active
+                  </span>
+                </div>
+              </div>
+
+              <!-- Issuing Authorities Pill -->
+              <div class="px-3.5 py-1.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-500 dark:text-sky-400 shrink-0">
+                  <span class="material-symbols-outlined text-[16px]">account_balance</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="font-mono text-xs font-bold text-slate-950 dark:text-white leading-tight flex items-center gap-1.5 tabular-nums">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    {totalIssuers} AUTHORITIES
+                  </span>
+                  <span class="font-mono text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
+                    {Array.from(new Set(CERTIFICATES.map((c) => c.issuer))).join(' · ')}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architectural Blueprint Ruler Divider with Registration Marks -->
+          <div class="relative w-full mt-1.5">
+            <div class="w-full h-[1px] bg-slate-200/90 dark:bg-slate-800"></div>
+            <span class="absolute -top-1.5 left-0 font-mono text-xs text-slate-400 dark:text-slate-600 select-none leading-none">+</span>
+            <span class="absolute -top-1.5 right-0 font-mono text-xs text-slate-400 dark:text-slate-600 select-none leading-none">+</span>
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 px-3 bg-slate-50 dark:bg-slate-900 text-[11px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest whitespace-nowrap">
+              {CERTIFICATIONS}
+            </div>
+          </div>
+        </div>
+      </GsapReveal>
+
+      <!-- Reel Toolbar: live scrubber + pan controls (section-specific controls) -->
+      <div class="flex items-center justify-between gap-4 mt-2 mb-2">
+        <div class="flex items-center gap-2 font-mono text-[11px] text-slate-500 dark:text-slate-400 shrink-0">
+          <span class="px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-[10px] font-semibold text-slate-700 dark:text-slate-300">
+            STREAM
+          </span>
+          <span class="hidden sm:inline tracking-wider">HORIZONTAL REEL</span>
+        </div>
+
+        <!-- Progress Scrubber Rail -->
+        <div class="flex-1 max-w-xs sm:max-w-md flex items-center gap-2.5">
+          <div class="hcert-progress relative flex-1 h-1.5 bg-slate-200/80 dark:bg-slate-800 rounded-full overflow-hidden" aria-hidden="true">
+            <div class="hcert-bar absolute top-0 left-0 h-full w-full bg-emerald-500 rounded-full origin-left transform scale-x-0 transition-transform duration-75"></div>
+          </div>
+          <span id="hcert-percentage" class="font-mono text-[11px] text-slate-500 dark:text-slate-400 font-bold tabular-nums min-w-[3ch] text-right">
+            0%
+          </span>
+        </div>
+
+        <!-- Pan Navigation Buttons -->
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button
+            type="button"
+            id="hcert-btn-prev"
+            class="p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs transition-all active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            aria-label="Previous credential card"
+            title="Pan Left"
+          >
+            <span class="material-symbols-outlined text-[15px] block">arrow_back</span>
+          </button>
+          <button
+            type="button"
+            id="hcert-btn-next"
+            class="p-1.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs transition-all active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            aria-label="Next credential card"
+            title="Pan Right"
+          >
+            <span class="material-symbols-outlined text-[15px] block">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Viewport & Horizontal Track -->
+    <div class="hcert-viewport w-full overflow-hidden shrink-0 mt-2">
+      <div class="hcert-track flex gap-4 w-max will-change-transform">
+        {
+          CERTIFICATES.map((c, i) => (
+            <CredentialCard {...c} index={String(i + 1).padStart(2, "0")} />
+          ))
+        }
+
+        <!-- Dossier Summary / Archive Closure Card (Matching Height & Layout Harmony) -->
+        <article
+          class="hcert-card-end relative w-[270px] sm:w-[300px] h-[220px] shrink-0 flex flex-col justify-between rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-[#020618] text-white border border-slate-800 shadow-xs hover:shadow-xl p-4 sm:p-4.5 overflow-hidden"
+        >
+          <!-- Background Grid Overlay -->
+          <div
+            class="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:16px_16px] opacity-20 pointer-events-none"
+            aria-hidden="true"
+          ></div>
+
+          <!-- Top Row -->
+          <div class="relative z-10 flex items-center justify-between pb-2 border-b border-slate-800/80">
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-[9px] font-bold tracking-wider">
+              LEDGER SYNC // COMPLIANT
+            </span>
+            <span class="material-symbols-outlined text-slate-400 text-[18px]" aria-hidden="true">
+              verified_user
+            </span>
+          </div>
+
+          <!-- Middle Description -->
+          <div class="relative z-10 my-auto py-1">
+            <span class="font-mono text-[9px] text-slate-400 uppercase tracking-widest block mb-0.5">
+              REGISTRY ARCHIVE
+            </span>
+            <h3 class="font-['Space_Grotesk'] text-sm sm:text-[15px] font-bold text-white tracking-tight leading-snug">
+              More Credentials Incoming<span class="text-emerald-400 animate-pulse">_</span>
+            </h3>
+            <p class="font-['Hanken_Grotesk'] text-[11px] text-slate-400 mt-0.5 leading-normal line-clamp-1">
+              Ongoing accreditations in cloud architecture & systems.
+            </p>
+          </div>
+
+          <!-- Bottom Button -->
+          <div class="relative z-10 pt-2.5 border-t border-slate-800/80">
+            <a
+              href="#contact"
+              class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-950 font-['Space_Grotesk'] text-xs font-bold transition-all shadow-xs active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
+            >
+              <span>INQUIRE ACCREDITATION</span>
+              <span class="material-symbols-outlined text-[13px]" aria-hidden="true">mail</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hcert-section {
+    position: relative;
+  }
+
+  /* Desktop Viewport-Fitted Pin Container: content starts safely below fixed floating navbar */
+  @media (min-width: 769px) {
+    .hcert-pin-container {
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      padding-top: 6.5rem; /* 104px clearance for fixed floating navbar (h-24 = 96px) */
+      padding-bottom: 2.5rem;
+    }
+  }
+
+  .hcert-viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hcert-track {
+    display: flex;
+    padding-left: max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+    padding-right: max(1.5rem, calc((100vw - 1200px) / 2 + 1.5rem));
+  }
+
+  .hcert-track :global(.cc-card),
+  .hcert-card-end {
+    width: 270px;
+    height: 220px;
+    flex-shrink: 0;
+  }
+  @media (min-width: 640px) {
+    .hcert-track :global(.cc-card),
+    .hcert-card-end {
+      width: 300px;
+    }
+  }
+
+  /* Mobile Fallback: Native Smooth Horizontal Swipe */
+  @media (max-width: 768px) {
+    .hcert-pin-container {
+      height: auto;
+      max-height: none;
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .hcert-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.75rem;
+    }
+
+    .hcert-track {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      gap: 0.875rem;
+    }
+
+    .hcert-track :global(.cc-card),
+    .hcert-card-end {
+      scroll-snap-align: start;
+    }
+  }
+
+  /* Accessibility: Prefers-Reduced-Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hcert-pin-container {
+      height: auto;
+      max-height: none;
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .hcert-viewport {
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 0.75rem;
+    }
+
+    .hcert-track {
+      transform: none !important;
+    }
+
+    .hcert-track :global(.cc-card),
+    .hcert-card-end {
+      scroll-snap-align: start;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "../lib/gsap";
+
+  function initCertificatesRedesign() {
+    const section = document.getElementById("certificates");
+    if (!section) return;
+
+    const track = section.querySelector<HTMLElement>(".hcert-track");
+    const bar = section.querySelector<HTMLElement>(".hcert-bar");
+    const percentLabel = section.querySelector<HTMLElement>("#hcert-percentage");
+    const btnPrev = section.querySelector<HTMLButtonElement>("#hcert-btn-prev");
+    const btnNext = section.querySelector<HTMLButtonElement>("#hcert-btn-next");
+
+    if (!track) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      if (bar) gsap.set(bar, { scaleX: 1 });
+      if (percentLabel) percentLabel.textContent = "100%";
+      return;
+    }
+
+    // GSAP MatchMedia for Desktop Pin & Horizontal Scroll
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+      const getScrollDistance = () => Math.max(300, track.scrollWidth - window.innerWidth + 120);
+
+      const horizontalTween = gsap.to(track, {
+        x: () => -getScrollDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: () => "+=" + getScrollDistance(),
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.7,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const progress = Math.max(0, Math.min(1, self.progress));
+            if (bar) {
+              gsap.set(bar, { scaleX: progress });
+            }
+            if (percentLabel) {
+              percentLabel.textContent = `${Math.round(progress * 100)}%`;
+            }
+          },
+        },
+      });
+
+      // Interactive Navigation Buttons (Prev / Next)
+      const step = 360;
+      const onPrev = () => {
+        window.scrollBy({ top: -step, behavior: "smooth" });
+      };
+      const onNext = () => {
+        window.scrollBy({ top: step, behavior: "smooth" });
+      };
+
+      btnPrev?.addEventListener("click", onPrev);
+      btnNext?.addEventListener("click", onNext);
+
+      return () => {
+        if (horizontalTween.scrollTrigger) {
+          horizontalTween.scrollTrigger.kill();
+        }
+        horizontalTween.kill();
+        btnPrev?.removeEventListener("click", onPrev);
+        btnNext?.removeEventListener("click", onNext);
+        gsap.set(track, { clearProps: "transform" });
+      };
+    });
+
+    // Mobile viewport (<768px): bar is filled, buttons scroll track horizontally
+    mm.add("(max-width: 768px)", () => {
+      if (bar) gsap.set(bar, { scaleX: 1 });
+      if (percentLabel) percentLabel.textContent = "100%";
+
+      const mobileStep = 280;
+      const onMobilePrev = () => {
+        track.scrollBy({ left: -mobileStep, behavior: "smooth" });
+      };
+      const onMobileNext = () => {
+        track.scrollBy({ left: mobileStep, behavior: "smooth" });
+      };
+
+      btnPrev?.addEventListener("click", onMobilePrev);
+      btnNext?.addEventListener("click", onMobileNext);
+
+      return () => {
+        btnPrev?.removeEventListener("click", onMobilePrev);
+        btnNext?.removeEventListener("click", onMobileNext);
+      };
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCertificatesRedesign);
+  } else {
+    initCertificatesRedesign();
+  }
+  document.addEventListener("astro:page-load", initCertificatesRedesign);
+</script>

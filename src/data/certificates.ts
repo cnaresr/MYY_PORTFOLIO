@@ -17,60 +17,60 @@ export interface Certificate {
 
 const defaultCertificates: Certificate[] = [
   {
-    id: "aws-sap",
-    title: "AWS Certified Solutions Architect",
-    level: "Professional Level (SAP-C02)",
-    issuer: "AMAZON WEB SERVICES",
-    icon: "cloud_done",
+    id: "mtcna",
+    title: "MikroTik Certified Network Associate (MTCNA)",
+    level: "Certificate ID: 2511NA7324",
+    issuer: "MikroTik",
+    icon: "router",
     status: "ACTIVE",
-    issued: "2024",
+    issued: "2025",
     validityLabel: "EXPIRY",
-    validityValue: "2027",
-    hash: "8f9b..41cd7a",
-    verifyUrl: "https://aws.amazon.com/verification",
-    verifyButtonText: "Verify AWS Ledger",
+    validityValue: "2028",
+    hash: "2511..7324",
+    verifyUrl: "https://mikrotik.com/certificates",
+    verifyButtonText: "Verify MikroTik",
   },
   {
-    id: "pg-dba",
-    title: "PostgreSQL Certified Enterprise DBA",
-    level: "PostgreSQL 15/16 Professional",
-    issuer: "POSTGRESQL GLOBAL",
-    icon: "database",
+    id: "mtcre",
+    title: "MikroTik Certified Routing Engineer (MTCRE)",
+    level: "Certificate ID: 2512RE1563",
+    issuer: "MikroTik",
+    icon: "alt_route",
     status: "ACTIVE",
-    issued: "2023",
+    issued: "2025",
+    validityLabel: "EXPIRY",
+    validityValue: "2028",
+    hash: "2512..1563",
+    verifyUrl: "https://mikrotik.com/certificates",
+    verifyButtonText: "Verify MikroTik",
+  },
+  {
+    id: "oracle-sql",
+    title: "Database Programming with SQL",
+    level: "Course Completion Award",
+    issuer: "Oracle Academy",
+    icon: "database",
+    status: "COMPLETED",
+    issued: "2024",
     validityLabel: "VALIDATION",
     validityValue: "PERPETUAL",
-    hash: "4e21..90ad31",
-    verifyUrl: "https://www.postgresql.org",
-    verifyButtonText: "Verify PG Credential",
+    hash: "sql..2024",
+    verifyUrl: "/certificates/SQLclmsCertificate.pdf",
+    verifyButtonText: "View Certificate",
   },
   {
-    id: "cka",
-    title: "Certified Kubernetes Administrator",
-    level: "Linux Foundation (CKA-2401)",
-    issuer: "CNCF / LINUX FOUNDATION",
-    icon: "view_in_ar",
-    status: "ACTIVE",
+    id: "oracle-design",
+    title: "Database Design",
+    level: "Course Completion Award",
+    issuer: "Oracle Academy",
+    icon: "schema",
+    status: "COMPLETED",
     issued: "2024",
-    validityLabel: "EXPIRY",
-    validityValue: "2027",
-    hash: "11c3..aa049f",
-    verifyUrl: "https://www.cncf.io/certification/cka/",
-    verifyButtonText: "Verify Linux Found.",
-  },
-  {
-    id: "meta-frontend",
-    title: "Meta Certified Frontend Lead",
-    level: "Principal Engineering Specialist",
-    issuer: "META OPEN SOURCE",
-    icon: "code_blocks",
-    status: "ACTIVE",
-    issued: "2023",
     validityLabel: "VALIDATION",
-    validityValue: "VERIFIED",
-    hash: "902f..77b022",
-    verifyUrl: "https://www.coursera.org",
-    verifyButtonText: "Verify Meta Badge",
+    validityValue: "PERPETUAL",
+    hash: "dsgn..2024",
+    verifyUrl: "/certificates/DesignclmsCertificate.pdf",
+    verifyButtonText: "View Certificate",
   },
 ];
 
@@ -104,3 +104,48 @@ export const certificates: Certificate[] = new Proxy([] as Certificate[], {
     return typeof val === 'function' ? val.bind(list) : val;
   },
 });
+
+export interface CertificateItem {
+  title: string;
+  issuer: string;
+  year: string;
+  verifyUrl: string;
+  logo: string;
+  initials: string;
+}
+
+// Logo asli taruh di public/logos/ lalu isi field logo dengan path-nya, mis. "/logos/bnsp.svg"
+export const CERTIFICATES: CertificateItem[] = [
+  {
+    title: "MikroTik Certified Network Associate (MTCNA)",
+    issuer: "MikroTik",
+    year: "2025",
+    verifyUrl: "https://mikrotik.com/certificates",
+    logo: "",
+    initials: "MTK",
+  },
+  {
+    title: "MikroTik Certified Routing Engineer (MTCRE)",
+    issuer: "MikroTik",
+    year: "2025",
+    verifyUrl: "https://mikrotik.com/certificates",
+    logo: "",
+    initials: "MTK",
+  },
+  {
+    title: "Database Programming with SQL",
+    issuer: "Oracle Academy",
+    year: "2024",
+    verifyUrl: "/certificates/SQLclmsCertificate.pdf",
+    logo: "",
+    initials: "ORA",
+  },
+  {
+    title: "Database Design",
+    issuer: "Oracle Academy",
+    year: "2024",
+    verifyUrl: "/certificates/DesignclmsCertificate.pdf",
+    logo: "",
+    initials: "ORA",
+  },
+];

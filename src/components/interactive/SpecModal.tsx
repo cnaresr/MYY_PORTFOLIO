@@ -456,6 +456,8 @@ export const SpecModal: React.FC<SpecModalProps> = ({ projects }) => {
                         <img
                           src={activeProject.image}
                           alt={activeProject.title}
+                          width={800}
+                          height={450}
                           className="w-full h-full object-cover object-top"
                           loading="lazy"
                           decoding="async"

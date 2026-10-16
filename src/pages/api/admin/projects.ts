@@ -35,8 +35,8 @@ export const POST: APIRoute = async ({ request }) => {
     const projectToSave = {
       id,
       status: newProject.status || 'published',
-      startDate: newProject.startDate || '2024',
-      endDate: newProject.endDate || '2024',
+      startDate: newProject.startDate || '',
+      endDate: newProject.endDate || '',
       title: newProject.title,
       description: newProject.description || '',
       technologies: newProject.technologies || ['Astro', 'TypeScript', 'Tailwind'],
@@ -51,6 +51,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     projects.push(projectToSave);
     saveProjectsData(projects);
+
+    try {
+      const { generateCvPdf } = await import('../../../../scripts/generate-cv.mjs');
+      generateCvPdf();
+    } catch (cvErr) {
+      console.warn('Auto-generate CV failed:', cvErr);
+    }
 
     return new Response(JSON.stringify({ success: true, project: projectToSave }), {
       status: 201,
@@ -68,6 +75,14 @@ export const PUT: APIRoute = async ({ request }) => {
       return new Response(JSON.stringify({ error: 'Expected an array of projects' }), { status: 400 });
     }
     saveProjectsData(updatedProjects);
+
+    try {
+      const { generateCvPdf } = await import('../../../../scripts/generate-cv.mjs');
+      generateCvPdf();
+    } catch (cvErr) {
+      console.warn('Auto-generate CV failed:', cvErr);
+    }
+
     return new Response(JSON.stringify({ success: true, projects: updatedProjects }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },

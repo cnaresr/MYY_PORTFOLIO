@@ -4,7 +4,11 @@ import { FloatingHeader } from './interactive/FloatingHeader';
 import { CommandPalette } from './interactive/CommandPalette';
 ---
 
-<FloatingHeader client:load navLinks={siteConfig.navLinks} />
+<!-- Hydrates on idle rather than at first paint: the header is server-rendered
+     and visually complete without JS, and this defers motion + the nav's
+     scroll-spy, which would otherwise compete with hydration for the main thread
+     during the LCP window. -->
+<FloatingHeader client:idle navLinks={siteConfig.navLinks} />
 
 <!-- Global Command Palette Island -->
 <CommandPalette client:idle />

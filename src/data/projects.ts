@@ -110,8 +110,8 @@ export function getLiveProjects(): Project[] {
       .map((p: any) => ({
         id: p.id || 'project',
         status: statusLabel(p.status),
-        startDate: p.startDate || '2024',
-        endDate: p.endDate || '2024',
+        startDate: p.startDate || '',
+        endDate: p.endDate || '',
         title: p.title || 'System Architecture',
         description: p.description || '',
         technologies: p.technologies || ['TypeScript', 'Astro'],

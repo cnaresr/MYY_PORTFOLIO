@@ -4,7 +4,7 @@ import {
   FolderGit2,
   Cpu,
   Mail,
-
+  ShieldCheck,
   KeyRound,
   Terminal,
   ArrowRight,
@@ -96,6 +96,19 @@ export const CommandPalette: React.FC = () => {
         },
       },
       {
+        id: 'nav-certificates',
+        category: 'Navigation',
+        title: 'Certificates & Credentials',
+        subtitle: 'View verified accreditations from MikroTik and Oracle Academy',
+        icon: <ShieldCheck className="w-4 h-4 text-amber-400" />,
+        badge: '#certificates',
+        action: () => {
+          setIsOpen(false);
+          const el = document.getElementById('certificates');
+          el?.scrollIntoView({ behavior: 'smooth' });
+        },
+      },
+      {
         id: 'nav-contact',
         category: 'Navigation',
         title: 'Dispatch Inquiry / Contact',
@@ -126,16 +139,16 @@ export const CommandPalette: React.FC = () => {
       {
         id: 'act-open-spec',
         category: 'Actions',
-        title: 'Inspect Veloce Architecture Spec (SYS 01)',
-        subtitle: 'Open distributed query fabric specifications & SLA',
+        title: 'Inspect UnivNews Architecture Spec (SYS 01)',
+        subtitle: 'Open digital journalism portal specifications & telemetry',
         icon: <Terminal className="w-4 h-4 text-emerald-400" />,
         badge: 'SYS 01',
         action: () => {
           setIsOpen(false);
           if (typeof (window as any).openSpecModal === 'function') {
-            (window as any).openSpecModal('veloce');
+            (window as any).openSpecModal('univnews');
           } else {
-            window.dispatchEvent(new CustomEvent('open-spec-modal', { detail: { projectId: 'veloce' } }));
+            window.dispatchEvent(new CustomEvent('open-spec-modal', { detail: { projectId: 'univnews' } }));
           }
         },
       },
