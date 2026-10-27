@@ -15,9 +15,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // The console and its API routes are not public content.
-      filter: (page) =>
-        !page.includes('/user/admin') && !page.includes('/api/'),
+      filter: (page) => !page.includes('/api/'),
     }),
   ],
   vite: {

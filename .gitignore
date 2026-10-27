@@ -35,3 +35,5 @@ skills-lock.json
 # OS generated files
 .DS_Store
 Thumbs.db
+
+.trash_admin/
