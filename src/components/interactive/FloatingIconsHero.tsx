@@ -448,11 +448,11 @@ function ProfileFlipCard({
 }
 
 export const defaultHeroIcons: FloatingIconItem[] = [
-  // Top-left sector
+  // Top-left sector (kept clear of the left-aligned headline band)
   { id: 1, name: "TypeScript", iconSlug: "typescript", className: "top-[6%] left-[3%]" },
-  { id: 2, name: "Rust", iconSlug: "rust", className: "top-[22%] left-[12%]" },
-  { id: 3, name: "Go", iconSlug: "go", className: "top-[4%] left-[26%]" },
-  { id: 4, name: "Astro", iconSlug: "astro", className: "top-[42%] left-[4%]" },
+  { id: 2, name: "Rust", iconSlug: "rust", className: "top-[14%] left-[16%]" },
+  { id: 3, name: "Go", iconSlug: "go", className: "top-[4%] left-[28%]" },
+  { id: 4, name: "Astro", iconSlug: "astro", className: "top-[24%] left-[2%]" },
   
   // Bottom-left sector
   { id: 5, name: "React", iconSlug: "react", className: "top-[64%] left-[10%]" },

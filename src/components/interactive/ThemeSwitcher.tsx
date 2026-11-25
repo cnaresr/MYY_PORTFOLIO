@@ -157,11 +157,15 @@ function AnimatedThemeTogglerBridge({
   if (!isMounted) {
     return (
       <div
+        aria-hidden="true"
         className={cn(
-          "inline-flex size-9 items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800",
+          "inline-flex size-9 items-center justify-center rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200",
           className
         )}
-      />
+      >
+        <SunIcon className="hidden dark:block size-[18px]" />
+        <MoonStarIcon className="block dark:hidden size-[18px]" />
+      </div>
     );
   }
 

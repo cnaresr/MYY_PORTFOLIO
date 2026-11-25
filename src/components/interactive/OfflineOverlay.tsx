@@ -21,7 +21,7 @@ import {
  */
 
 const HEARTBEAT_URL = "/favicon.svg";
-const HEARTBEAT_INTERVAL_MS = 10_000;
+const HEARTBEAT_INTERVAL_MS = 60_000;
 const HEARTBEAT_TIMEOUT_MS = 6_000;
 
 type Connectivity = "online" | "offline" | "checking";
@@ -87,10 +87,17 @@ export default function OfflineOverlay() {
     window.addEventListener("online", onOnline);
     window.addEventListener("offline", onOffline);
     document.addEventListener("visibilitychange", onVisible);
-    // Initial probe: confirm the connection is real before showing anything.
-    recheck(false);
+    // Trust navigator.onLine on initial mount to avoid an unprompted network probe;
+    // only probe immediately if the browser already reports offline.
+    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+      recheck(false);
+    } else {
+      setStatus("online");
+    }
     heartbeat = window.setInterval(() => {
-      if (document.visibilityState === "visible") recheck(false);
+      if (document.visibilityState === "visible" && navigator.onLine === false) {
+        recheck(false);
+      }
     }, HEARTBEAT_INTERVAL_MS);
 
     return () => {
