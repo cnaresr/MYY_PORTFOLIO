@@ -9,6 +9,7 @@ import { PulsatingButton } from "./PulsatingButton";
 import { HyperText } from "./HyperText";
 import { BorderBeam } from "./BorderBeam";
 import { BrandIcon } from "./BrandIcon";
+import { HeroDotGrid } from "./HeroDotGrid";
 
 // Lazily load CvModal so its bundle and icons are deferred until user clicks "See CV"
 const CvModal = React.lazy(() =>
@@ -178,6 +179,9 @@ export function FloatingIconsHero({
         className
       )}
     >
+      {/* Reactive Dot-Grid Background */}
+      <HeroDotGrid />
+
       {/* Ambient Specular Backdrop */}
       <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[380px] bg-gradient-to-b from-slate-300/35 dark:from-slate-700/20 via-slate-200/20 dark:via-slate-800/20 to-transparent blur-3xl pointer-events-none rounded-full" />
       <div className="absolute top-1/3 right-8 w-96 h-96 bg-slate-200/30 dark:bg-slate-800/30 blur-2xl pointer-events-none rounded-full" />
