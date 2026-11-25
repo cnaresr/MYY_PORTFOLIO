@@ -122,6 +122,19 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
 
             {/* Theme Switcher: animated reveal (View Transitions API) */}
             <AnimatedThemeSwitcher variant="circle" duration={700} />
+
+            {/* Persistent Hire Me CTA (visible on both desktop and mobile) */}
+            <button
+              type="button"
+              id="hireMeNavBtn"
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("open-hire-modal"));
+              }}
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#00bc7d] hover:bg-emerald-500 active:scale-[0.96] text-slate-950 font-['Space_Grotesk'] text-xs sm:text-sm font-bold shadow-xs transition-[background-color,transform] duration-150 ease-out cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00bc7d] focus-visible:ring-offset-2"
+              aria-label="Open hire and contact options"
+            >
+              <span>Hire me</span>
+            </button>
           </div>
 
           {/* Mobile menu trigger */}

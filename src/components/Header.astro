@@ -1,7 +1,9 @@
 ---
 import { siteConfig } from '../data/siteConfig';
+import { portfolioConfig } from '../config';
 import { FloatingHeader } from './interactive/FloatingHeader';
 import { CommandPalette } from './interactive/CommandPalette';
+import { HireModal } from './interactive/HireModal';
 ---
 
 <!-- Hydrates on idle rather than at first paint: the header is server-rendered
@@ -10,5 +12,6 @@ import { CommandPalette } from './interactive/CommandPalette';
      during the LCP window. -->
 <FloatingHeader client:idle navLinks={siteConfig.navLinks} />
 
-<!-- Global Command Palette Island -->
+<!-- Global Command Palette & Hire Modal Islands -->
 <CommandPalette client:idle />
+<HireModal client:idle links={portfolioConfig.links} />
