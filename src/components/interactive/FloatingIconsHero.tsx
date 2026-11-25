@@ -217,7 +217,7 @@ export function FloatingIconsHero({
                 <span
                   className={cn(
                     "relative inline-flex rounded-full size-2",
-                    availability.open ? "bg-[#00bc7d]" : "bg-slate-400 dark:bg-slate-500"
+                    availability.open ? "bg-[var(--site-accent)]" : "bg-slate-400 dark:bg-slate-500"
                   )}
                 ></span>
               </span>

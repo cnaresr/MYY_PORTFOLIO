@@ -1,4 +1,5 @@
 import { getProfileData } from '../lib/contentStore';
+import { portfolioConfig } from '../config';
 
 export interface SiteConfig {
   name: string;
@@ -17,20 +18,20 @@ export interface SiteConfig {
   socialLinks: { name: string; href: string; icon: string }[];
 }
 
+const defaultSocialLinks: { name: string; href: string; icon: string }[] = [
+  portfolioConfig.links.github
+    ? { name: "GitHub", href: portfolioConfig.links.github, icon: "code" }
+    : null,
+  portfolioConfig.links.linkedin
+    ? { name: "LinkedIn", href: portfolioConfig.links.linkedin, icon: "arrow_outward" }
+    : null,
+  portfolioConfig.links.instagram
+    ? { name: "Instagram", href: portfolioConfig.links.instagram, icon: "arrow_outward" }
+    : null,
+].filter((item): item is { name: string; href: string; icon: string } => Boolean(item));
+
 const defaultSiteConfig: SiteConfig = {
-  name: "Cezar nareswara respati",
-  initials: "CNR",
-  role: "Full-Stack Architect",
-  title: "CEZAR NARESWARA RESPATI",
-  subtitle: "Code with Passion, Build with Purpose",
-  summary:
-    "Full-Stack Developer & Software Architect based in Indonesia, specializing in high-performance web applications, scalable backend systems, and modern digital platforms.",
-  email: "cezar.nares@gmail.com",
-  country: "Indonesia",
-  officeAddress: "",
-  homeAddress: "",
-  avatar: "/images/avatar-hero.jpg",
-  cvPdf: "",
+  ...portfolioConfig.identity,
   navLinks: [
     { name: "Overview", href: "#" },
     { name: "About Me", href: "#about" },
@@ -38,11 +39,7 @@ const defaultSiteConfig: SiteConfig = {
     { name: "Certs", href: "#certificates" },
     { name: "Contact", href: "#contact" },
   ],
-  socialLinks: [
-    { name: "GitHub", href: "https://github.com", icon: "code" },
-    { name: "LinkedIn", href: "https://linkedin.com", icon: "arrow_outward" },
-    { name: "X / Twitter", href: "https://x.com", icon: "arrow_outward" },
-  ],
+  socialLinks: defaultSocialLinks,
 };
 
 export function getLiveSiteConfig(): SiteConfig {

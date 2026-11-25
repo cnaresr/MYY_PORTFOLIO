@@ -17,56 +17,58 @@ const primaryStack = [
 ];
 ---
 
-<section
-  aria-label="Delivery proof and capabilities summary"
-  class="w-full py-10 bg-white dark:bg-slate-950 border-y border-slate-200/80 dark:border-slate-800 transition-colors"
->
-  <div class="max-w-[1200px] mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start md:items-center">
-      <!-- Real project count from site data -->
-      <div class="md:col-span-3 flex items-center gap-4">
-        <div class="px-4 py-3 rounded-xl bg-[#f8f9ff] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shrink-0">
-          <span class="font-['Space_Grotesk'] text-3xl font-extrabold text-slate-950 dark:text-white tabular-nums leading-none block">
-            {projectCount}
-          </span>
-        </div>
-        <div>
-          <span class="font-mono text-[10px] uppercase tracking-wider font-bold text-[#00bc7d] block">
-            Verified Portfolio
-          </span>
-          <span class="font-['Space_Grotesk'] text-sm font-bold text-slate-950 dark:text-white">
-            Documented Builds
-          </span>
-        </div>
-      </div>
-
-      <!-- Focus work types -->
-      <div class="md:col-span-4 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-6">
-        <span class="font-mono text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 block mb-2">
-          Available Build Types
-        </span>
-        <div class="flex flex-wrap gap-1.5">
-          {workTypes.map((type) => (
-            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 font-['Hanken_Grotesk'] text-xs font-medium text-slate-800 dark:text-slate-200">
-              {type}
+{(projectCount > 0 || workTypes.length > 0 || primaryStack.length > 0) && (
+  <section
+    aria-label="Delivery proof and capabilities summary"
+    class="w-full py-10 bg-white dark:bg-slate-950 border-y border-slate-200/80 dark:border-slate-800 transition-colors"
+  >
+    <div class="max-w-[1200px] mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start md:items-center">
+        <!-- Real project count from site data -->
+        <div class="md:col-span-3 flex items-center gap-4">
+          <div class="px-4 py-3 rounded-xl bg-[#f8f9ff] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shrink-0">
+            <span class="font-['Space_Grotesk'] text-3xl font-extrabold text-slate-950 dark:text-white tabular-nums leading-none block">
+              {projectCount}
             </span>
-          ))}
-        </div>
-      </div>
-
-      <!-- Primary stack derived from live skills data -->
-      <div class="md:col-span-5 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-6">
-        <span class="font-mono text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 block mb-2">
-          Core Stack
-        </span>
-        <div class="flex flex-wrap gap-1.5">
-          {primaryStack.map((tech) => (
-            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-[#f8f9ff] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 font-mono text-[11px] font-medium text-slate-700 dark:text-slate-300">
-              {tech}
+          </div>
+          <div>
+            <span class="font-mono text-[10px] uppercase tracking-wider font-bold text-[var(--site-accent)] block">
+              Verified Portfolio
             </span>
-          ))}
+            <span class="font-['Space_Grotesk'] text-sm font-bold text-slate-950 dark:text-white">
+              Documented Builds
+            </span>
+          </div>
+        </div>
+
+        <!-- Focus work types -->
+        <div class="md:col-span-4 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-6">
+          <span class="font-mono text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 block mb-2">
+            Available Build Types
+          </span>
+          <div class="flex flex-wrap gap-1.5">
+            {workTypes.map((type) => (
+              <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 font-['Hanken_Grotesk'] text-xs font-medium text-slate-800 dark:text-slate-200">
+                {type}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Primary stack derived from live skills data -->
+        <div class="md:col-span-5 md:border-l md:border-slate-200 md:dark:border-slate-800 md:pl-6">
+          <span class="font-mono text-[10px] uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 block mb-2">
+            Core Stack
+          </span>
+          <div class="flex flex-wrap gap-1.5">
+            {primaryStack.map((tech) => (
+              <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-[#f8f9ff] dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 font-mono text-[11px] font-medium text-slate-700 dark:text-slate-300">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+)}

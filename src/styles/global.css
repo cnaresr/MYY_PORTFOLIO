@@ -5,6 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --color-accent: var(--site-accent, #00bc7d);
   --color-platinum: #E5E7EB;
   --color-surface: #FFFFFF;
   --color-midnight: #0A1128;
@@ -100,6 +101,7 @@
   }
 
   :root {
+    --site-accent: #00bc7d;
     /* Cockpit palette defaults (dark). Admin light mode overrides these. */
     --ck-bg: #060a14;
     --ck-raised: #0b1220;

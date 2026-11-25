@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../data/siteConfig';
+import { portfolioConfig } from '../config';
 import OfflineOverlay from '../components/interactive/OfflineOverlay';
 
 interface Props {
@@ -21,7 +22,7 @@ const ogImageUrl = siteConfig.avatar?.startsWith('http')
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" style={`--site-accent: ${portfolioConfig.accent};`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

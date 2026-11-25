@@ -1,51 +1,123 @@
 /**
- * Centralized portfolio conversion & business configuration.
- * All mutable conversion values (availability, social/contact links,
- * testimonials, and service packages) live here.
+ * Centralized portfolio configuration & single source of truth.
+ * All mutable site identity, theme accent, availability, social/contact links,
+ * testimonials, and service packages live here.
  */
 
+export interface IdentityConfig {
+  /** Full display name shown in metadata, hero, and footer copyright. */
+  name: string;
+  /** Short monogram shown on the back of the hero portrait card and brand mark. */
+  initials: string;
+  /** Primary professional role/title shown in profile badges and metadata. */
+  role: string;
+  /** Uppercase hero display headline. */
+  title: string;
+  /** Short tagline rendered in page `<title>` and portrait card back. */
+  subtitle: string;
+  /** Concise bio used for meta description and hero card back. */
+  summary: string;
+  /** Primary contact email address. */
+  email: string;
+  /** Country displayed in location/profile metadata. */
+  country: string;
+  /** Home city/region displayed in contact/location info. */
+  homeAddress: string;
+  /** Optional office address (leave empty string if remote/unspecified). */
+  officeAddress: string;
+  /** Path or URL to the hero portrait and Open Graph image. */
+  avatar: string;
+  /** Path or URL to the downloadable CV PDF (empty string hides the "See CV" button). */
+  cvPdf: string;
+}
+
 export interface AvailabilityConfig {
+  /** Whether you are currently accepting new projects (controls status dot color & label). */
   open: boolean;
+  /** Badge text displayed when `open` is true. */
   label: string;
+  /** Badge text displayed when `open` is false. */
   closedLabel: string;
 }
 
 export interface LinksConfig {
+  /** Direct WhatsApp chat URL (e.g. "https://wa.me/628xxxxxxxxxx"); empty hides WhatsApp CTA. */
   whatsapp: string;
+  /** Full LinkedIn profile URL. */
   linkedin: string;
+  /** Contact email address used for `mailto:` links in the hire modal and footer. */
   email: string;
+  /** Full GitHub profile URL. */
   github: string;
+  /** Full Instagram profile URL. */
   instagram: string;
 }
 
 export interface TestimonialItem {
+  /** Unique identifier for list rendering. */
   id: string;
+  /** Client quote text. */
   quote: string;
+  /** Client full name. */
   author: string;
+  /** Client job title or role. */
   role: string;
+  /** Optional client company or organization name. */
   company?: string;
 }
 
 export interface ServicePackage {
+  /** Unique slug identifier for the service package. */
   id: string;
+  /** Display title of the service card. */
   name: string;
   /** Starting price in IDR, or null when pricing depends on scope. */
   price: number | null;
   /** Fallback text rendered when `price` is null. */
   customPriceLabel: string;
+  /** Short one-sentence description of the package outcome. */
   summary: string;
+  /** Bullet list of included deliverables. */
   features: string[];
+  /** Button label on the service card CTA. */
   ctaLabel: string;
 }
 
 export interface SiteConversionConfig {
+  /** Primary brand accent hex color; drives `--site-accent` across the entire site. */
+  accent: string;
+  /** Core personal identity & metadata defaults. */
+  identity: IdentityConfig;
+  /** Project availability indicator shown in the hero. */
   availability: AvailabilityConfig;
+  /** Direct contact and social profile URLs. */
   links: LinksConfig;
+  /** Client testimonials; when empty, the Testimonials section renders nothing. */
   testimonials: TestimonialItem[];
+  /** Service packages; when empty, the Services section renders nothing. */
   services: ServicePackage[];
 }
 
 export const portfolioConfig: SiteConversionConfig = {
+  // Drives `--site-accent` across the entire site (buttons, indicators, focus rings).
+  accent: "#00bc7d",
+
+  identity: {
+    name: "Cezar nareswara respati",
+    initials: "CNR",
+    role: "Full-Stack Architect",
+    title: "CEZAR NARESWARA RESPATI",
+    subtitle: "Code with Passion, Build with Purpose",
+    summary:
+      "Full-Stack Developer & Software Architect based in Indonesia, specializing in high-performance web applications, scalable backend systems, and modern digital platforms.",
+    email: "cezar.nares@gmail.com",
+    country: "Indonesia",
+    homeAddress: "Semarang, Tembalang, Central Java",
+    officeAddress: "",
+    avatar: "/images/avatar-hero.jpg",
+    cvPdf: "/Cezar_Nareswara_Resume.pdf",
+  },
+
   availability: {
     open: true,
     label: "Open for projects",
