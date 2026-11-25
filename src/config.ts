@@ -125,8 +125,7 @@ export const portfolioConfig: SiteConversionConfig = {
   },
 
   links: {
-    // TODO: Fill in your WhatsApp direct link (e.g. "https://wa.me/628xxxxxxxxxx")
-    whatsapp: "",
+    whatsapp: "https://wa.me/628881687265",
     linkedin: "https://www.linkedin.com/in/cezar-nareswara-respati-8b8a55327/",
     email: "cezar.nares@gmail.com",
     github: "https://github.com/cnaresr",
