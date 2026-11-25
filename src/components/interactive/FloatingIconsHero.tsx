@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { AvailabilityConfig } from "@/config";
 import { PulsatingButton } from "./PulsatingButton";
 import { HyperText } from "./HyperText";
 import { BorderBeam } from "./BorderBeam";
@@ -141,6 +142,7 @@ export interface FloatingIconsHeroProps {
   ctaText?: string;
   ctaHref?: string;
   cvPdf?: string;
+  availability?: AvailabilityConfig;
   icons?: FloatingIconItem[];
   className?: string;
 }
@@ -155,6 +157,7 @@ export function FloatingIconsHero({
   ctaText = "Explore Works",
   ctaHref = "#projects",
   cvPdf,
+  availability = { open: true, label: "Open for projects", closedLabel: "Currently unavailable" },
   icons = defaultHeroIcons,
   className,
 }: FloatingIconsHeroProps) {
@@ -198,6 +201,27 @@ export function FloatingIconsHero({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Headline & Summary */}
           <div className="lg:col-span-8 flex flex-col items-start text-left">
+            <div
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs mb-4"
+              role="status"
+              aria-live="polite"
+            >
+              <span className="relative flex size-2" aria-hidden="true">
+                {availability.open && (
+                  <span className="motion-reduce:hidden animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                )}
+                <span
+                  className={cn(
+                    "relative inline-flex rounded-full size-2",
+                    availability.open ? "bg-[#00bc7d]" : "bg-slate-400 dark:bg-slate-500"
+                  )}
+                ></span>
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider font-semibold text-slate-700 dark:text-slate-200">
+                {availability.open ? availability.label : availability.closedLabel}
+              </span>
+            </div>
+
             <HyperText
               as="h1"
               className="font-['Space_Grotesk'] text-4xl sm:text-5xl md:text-6xl lg:text-[54px] xl:text-[62px] font-bold text-slate-950 dark:text-white tracking-tight leading-[1.08] mb-4"
