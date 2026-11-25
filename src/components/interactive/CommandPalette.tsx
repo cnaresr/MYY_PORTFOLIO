@@ -210,6 +210,9 @@ export const CommandPalette: React.FC = () => {
       >
         {/* Modal Window */}
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Command palette"
           className="w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden text-white animate-in zoom-in-95 duration-150"
           onClick={(e) => e.stopPropagation()}
           onKeyDown={handleListKeyDown}

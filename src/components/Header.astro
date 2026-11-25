@@ -8,7 +8,7 @@ import { CommandPalette } from './interactive/CommandPalette';
      and visually complete without JS, and this defers motion + the nav's
      scroll-spy, which would otherwise compete with hydration for the main thread
      during the LCP window. -->
-<FloatingHeader client:idle navLinks={siteConfig.navLinks} />
+<FloatingHeader client:idle navLinks={siteConfig.navLinks} currentPath={Astro.url.pathname} />
 
 <!-- Global Command Palette Island -->
 <CommandPalette client:idle />

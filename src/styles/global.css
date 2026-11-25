@@ -146,6 +146,10 @@
   section {
     scroll-margin-top: 5.5rem;
   }
+
+  main section[id] {
+    scroll-margin-top: 7rem;
+  }
 }
 
 /* Light-mode accent remap - MUST live OUTSIDE @layer base. Tailwind v4

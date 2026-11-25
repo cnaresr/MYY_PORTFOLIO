@@ -7,12 +7,31 @@ type NavLink = { name: string; href: string };
 
 type HeaderNavProps = {
   links: NavLink[];
+  currentPath?: string;
   activeColor?: string;
   activeLabelColor?: string;
   size?: "xs" | "sm" | "md" | "lg";
   /** Extra gap (px) between nav tiles; overrides the size preset. */
   separation?: number;
 };
+
+function getInitialActiveIndex(links: NavLink[], path: string): number {
+  if (path.startsWith("/blog")) {
+    const blogIdx = links.findIndex(
+      (link) => link.href === "/blog" || link.href.startsWith("/blog")
+    );
+    if (blogIdx !== -1) return blogIdx;
+  }
+
+  if (path !== "/" && path !== "") {
+    const routeIdx = links.findIndex(
+      (link) => !link.href.startsWith("#") && path.startsWith(link.href)
+    );
+    if (routeIdx !== -1) return routeIdx;
+  }
+
+  return 0;
+}
 
 /**
  * Mounts the gooey nav as the desktop navigation and drives its active index
@@ -22,13 +41,16 @@ type HeaderNavProps = {
  */
 export function HeaderNav({
   links,
+  currentPath = "/",
   activeColor = "#0f172a",
   activeLabelColor = "#ffffff",
   size = "md",
   separation = 36,
 }: HeaderNavProps) {
-  const [active, setActive] = useState(0);
-  const [pathname, setPathname] = useState("/");
+  const [pathname, setPathname] = useState(currentPath);
+  const [active, setActive] = useState(() =>
+    getInitialActiveIndex(links, currentPath)
+  );
   const navRef = useRef<HTMLDivElement | null>(null);
   const [isDark, setIsDark] = useState(false);
 
@@ -44,26 +66,11 @@ export function HeaderNav({
   }, []);
 
   useEffect(() => {
-    const currentPath = window.location.pathname;
-    setPathname(currentPath);
+    const path = window.location.pathname;
+    setPathname(path);
 
-    if (currentPath.startsWith("/blog")) {
-      const blogIdx = links.findIndex(
-        (link) => link.href === "/blog" || link.href.startsWith("/blog")
-      );
-      if (blogIdx !== -1) {
-        setActive(blogIdx);
-      }
-      return;
-    }
-
-    if (currentPath !== "/" && currentPath !== "") {
-      const routeIdx = links.findIndex(
-        (link) => !link.href.startsWith("#") && currentPath.startsWith(link.href)
-      );
-      if (routeIdx !== -1) {
-        setActive(routeIdx);
-      }
+    if (path.startsWith("/blog") || (path !== "/" && path !== "")) {
+      setActive(getInitialActiveIndex(links, path));
       return;
     }
 

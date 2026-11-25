@@ -18,15 +18,25 @@ export interface NavLink {
 
 export interface FloatingHeaderProps {
   navLinks: NavLink[];
+  currentPath?: string;
   className?: string;
   hideOnTop?: boolean;
 }
 
+function resolveNavHref(href: string, isHome: boolean): string {
+  if (!isHome && href.startsWith("#")) {
+    return href === "#" ? "/" : `/${href}`;
+  }
+  return href;
+}
+
 export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
   navLinks,
+  currentPath = "/",
   className,
   hideOnTop = false,
 }) => {
+  const isHome = currentPath === "/" || currentPath === "";
   const { scrollY, scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(!hideOnTop);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -72,7 +82,7 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
               (public/favicon-512.png), used at its natural size so the layout
               cannot shift while it loads. */}
           <a
-            href="#"
+            href={isHome ? "#" : "/"}
             className="inline-flex shrink-0 items-center rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-4 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950"
             aria-label="Cezar Nareswara Respati — back to top"
           >
@@ -93,7 +103,7 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
 
           {/* Desktop Navigation (gooey spring nav) */}
           <nav className="hidden md:block" aria-label="Primary">
-            <HeaderNav links={navLinks} />
+            <HeaderNav links={navLinks} currentPath={currentPath} />
           </nav>
 
           {/* Right utility controls: Commands + Theme Switcher */}
@@ -148,7 +158,7 @@ export const FloatingHeader: React.FC<FloatingHeaderProps> = ({
             {navLinks.map((link) => (
               <a
                 key={link.name}
-                href={link.href}
+                href={resolveNavHref(link.href, isHome)}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block px-3 py-2 rounded-md text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900"
               >
