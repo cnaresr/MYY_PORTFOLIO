@@ -13,17 +13,15 @@ function statusLabel(status?: string): string {
   }
 }
 
-function defaultMetricsFor(_title?: string): Metric[] {
-  return [
-    { label: 'Availability', value: '99.99%' },
-    { label: 'Latency P99', value: '< 5ms' },
-    { label: 'Scaling', value: 'Horizontal' },
-  ];
-}
-
 export interface Metric {
   label: string;
   value: string;
+}
+
+export interface CaseStudy {
+  problem?: string;
+  process?: string;
+  outcome?: string;
 }
 
 export interface Project {
@@ -38,6 +36,7 @@ export interface Project {
   image: string;
   video?: string;
   abstract: string;
+  caseStudy?: CaseStudy;
   metrics?: Metric[];
 }
 
@@ -119,7 +118,8 @@ export function getLiveProjects(): Project[] {
         image: p.image || p.telemetryImage || '/images/project-veloce.jpg',
         video: p.video || undefined,
         abstract: p.abstract || p.spec?.abstract || p.description || '',
-        metrics: p.metrics || defaultMetricsFor(p.title),
+        caseStudy: p.caseStudy,
+        metrics: Array.isArray(p.metrics) ? p.metrics : [],
       }));
   } catch {
     return defaultProjects;

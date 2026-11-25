@@ -17,20 +17,10 @@
     "image": "/images/projects/univnews.jpg",
     "video": "/UnivNews_Motion_Reel_v4_25s.mp4",
     "abstract": "UnivNews Architecture — Multi-role RBAC authentication, digital editorial CMS pipelines, responsive journalism layout, dan isolated university news catalog.",
-    "metrics": [
-      {
-        "label": "Institutions",
-        "value": "5+ Campuses"
-      },
-      {
-        "label": "Architecture",
-        "value": "Role-Based CMS"
-      },
-      {
-        "label": "Layout",
-        "value": "Mobile-First"
-      }
-    ]
+    "caseStudy": {
+      "process": "Built a Laravel-based multi-campus digital news portal with multi-role RBAC authentication isolation (Public Readers, Authors, Admins), digital editorial CMS pipelines, and an isolated university news catalog. Implemented concurrent multi-campus feed aggregation normalizing RSS and REST sources, stale-while-revalidate client caching, in-memory fuzzy search indexing, and a responsive journalism layout."
+    },
+    "metrics": []
   },
   {
     "id": "app-padi",
@@ -50,20 +40,10 @@
     "githubUrl": "https://github.com/PADi-bang/App_PADi",
     "image": "/images/projects/padi.png",
     "abstract": "App_PADi Architecture — Geofence radius attendance validation, Prisma ORM PostgreSQL transactions, dan cross-platform Flutter mobile UI.",
-    "metrics": [
-      {
-        "label": "Engine",
-        "value": "Flutter + Node"
-      },
-      {
-        "label": "Verification",
-        "value": "Geofencing GPS"
-      },
-      {
-        "label": "Database",
-        "value": "Prisma + Pg"
-      }
-    ]
+    "caseStudy": {
+      "process": "Built an integrated digital attendance system pairing a cross-platform Flutter mobile UI (with optimistic UI updates and local persistence) with a Node.js and Express backend. Implemented mathematical GPS geofence radius boundary validation to prevent mock locations, real-time attendance recaps, and Prisma ORM ACID transactions backed by PostgreSQL relational constraints."
+    },
+    "metrics": []
   },
   {
     "id": "pbl-lsp",
@@ -82,20 +62,10 @@
     "githubUrl": "https://github.com/trktic24/PBL_LSP",
     "image": "/images/projects/pbl-lsp.jpg",
     "abstract": "LSP Polines Architecture — End-to-end competency certification workflow, assessor evaluation ledger, dan automated certificate verification.",
-    "metrics": [
-      {
-        "label": "Institution",
-        "value": "LSP POLINES"
-      },
-      {
-        "label": "Workflow",
-        "value": "BNSP Certified"
-      },
-      {
-        "label": "Modules",
-        "value": "Asesi & Asesor"
-      }
-    ]
+    "caseStudy": {
+      "process": "Digitized the professional competency certification management workflow for Lembaga Sertifikasi Profesi (LSP) Politeknik Negeri Semarang, covering assessee registration through automated certificate verification and issuance. Structured around an end-to-end competency certification workflow, assessor evaluation ledger, real-time competency rubric evaluation matrices, modular REST API and document modeling, and multi-tier role-based access control (RBAC) separating student submissions, assessor evaluations, and institution audits."
+    },
+    "metrics": []
   },
   {
     "id": "weather-prediction-iot",
@@ -114,20 +84,10 @@
     "githubUrl": "https://github.com/bagaskraa/Weather_Predicition-IoT",
     "image": "/images/projects/weather-iot.svg",
     "abstract": "Micro-Local Climate Architecture — Dual ESP32 915MHz LoRa telemetry telemetry array, time-series TensorFlow neural inference, dan cloud PostgreSQL sink.",
-    "metrics": [
-      {
-        "label": "Hardware",
-        "value": "Dual ESP32 LoRa"
-      },
-      {
-        "label": "ML Inference",
-        "value": "TensorFlow (+3h)"
-      },
-      {
-        "label": "Sensors",
-        "value": "BME280 + Rain"
-      }
-    ]
+    "caseStudy": {
+      "process": "Developed a hyperlocal micro-climate weather station using a Dual ESP32 915MHz LoRa-WiFi telemetry array and Arduino sensor arrays with automated drift compensation for continuous atmospheric monitoring. Built an event-driven Python Flask ingestion tier streaming verified sensor packets into a cloud PostgreSQL sink, paired with TensorFlow time-series recurrent regression models for localized barometric, atmospheric, and rain forecasting."
+    },
+    "metrics": []
   },
   {
     "id": "dashboard-web-map-contour",
@@ -147,19 +107,9 @@
     "githubUrl": "https://github.com/Ghufrnainun/Dashboard-Web-Map-Contour",
     "image": "/images/projects/map-contour.svg",
     "abstract": "Web Map Contour Architecture — Topographic contour isoclines calculation, D3.js vector GIS rendering, dan hypsometric elevation color mapping.",
-    "metrics": [
-      {
-        "label": "Domain",
-        "value": "Web GIS & Contour"
-      },
-      {
-        "label": "Layers",
-        "value": "GeoJSON Topo"
-      },
-      {
-        "label": "Rendering",
-        "value": "Leaflet + D3"
-      }
-    ]
+    "caseStudy": {
+      "process": "Built an interactive geospatial visualization platform for mapping topographic terrain contour lines and slope elevation, supporting dynamic GeoJSON/Shapefile layers and web spatial analysis. Implemented vector contour isocline computation with D3.js and hardware-accelerated canvas mapping, an asynchronous spatial geometry parsing pipeline for multi-polygon boundary overlays, and hypsometric elevation color interpolation."
+    },
+    "metrics": []
   }
 ]

@@ -8,11 +8,9 @@ import {
   ExternalLink,
   ChevronLeft,
   ChevronRight,
-  ShieldCheck,
   Zap,
   Activity,
   Cpu,
-  CheckCircle2,
   Layers,
   FileText,
   Sparkles,
@@ -25,7 +23,6 @@ interface SpecModalProps {
 interface ProjectArchProfile {
   badge: string;
   category: string;
-  sla: string;
   innovations: { title: string; desc: string }[];
 }
 
@@ -33,7 +30,6 @@ const PROJECT_ARCH_MAP: Record<string, ProjectArchProfile> = {
   'dashboard-web-map-contour': {
     badge: 'Geospatial Engineering',
     category: 'Topography & Terrain Elevation Mapping',
-    sla: 'Sub-16ms 60 FPS viewport re-render across 50,000+ vector coordinate points',
     innovations: [
       {
         title: 'Vector Contour Isoclines Computation',
@@ -52,7 +48,6 @@ const PROJECT_ARCH_MAP: Record<string, ProjectArchProfile> = {
   'weather-prediction-iot': {
     badge: 'IoT & Machine Learning',
     category: 'Microclimate Sensors & Predictive Modeling',
-    sla: 'Sub-50ms telemetry ingest latency with 99.8% sensor packet transmission reliability',
     innovations: [
       {
         title: 'Multi-Sensor Microcontroller Telemetry',
@@ -71,7 +66,6 @@ const PROJECT_ARCH_MAP: Record<string, ProjectArchProfile> = {
   'pbl-lsp': {
     badge: 'Educational Platform',
     category: 'Project-Based Learning Management System',
-    sla: 'Zero-conflict multi-user state synchronization across active classroom grading sessions',
     innovations: [
       {
         title: 'Real-Time Competency Rubric Engine',
@@ -90,7 +84,6 @@ const PROJECT_ARCH_MAP: Record<string, ProjectArchProfile> = {
   'app-padi': {
     badge: 'Mobile Engineering',
     category: 'Digital Presence & Geofenced Mobile Application',
-    sla: 'Sub-100ms GPS verification with 99.9% check-in transaction settlement guarantee',
     innovations: [
       {
         title: 'High-Integrity GPS Geofence Verification',
@@ -109,7 +102,6 @@ const PROJECT_ARCH_MAP: Record<string, ProjectArchProfile> = {
   'univnews': {
     badge: 'Web Platform',
     category: 'Multi-Campus News Aggregator & Editorial CMS',
-    sla: 'Sub-200ms feed synchronization with zero cumulative layout shift (CLS < 0.01)',
     innovations: [
       {
         title: 'Concurrent Multi-Campus Feed Aggregation',
@@ -134,7 +126,6 @@ function getArchProfile(project: Project): ProjectArchProfile {
   return {
     badge: 'Software Architecture',
     category: project.technologies?.[0] ? `${project.technologies[0]} Application` : 'Software Engineering Platform',
-    sla: 'Sub-100ms average response time with 99.9% uptime SLA across distributed clients',
     innovations: [
       {
         title: 'Modular Full-Stack Architecture',
@@ -479,27 +470,57 @@ export const SpecModal: React.FC<SpecModalProps> = ({ projects }) => {
                 </p>
               </div>
 
-              {/* Performance & SLA Commitment Banner */}
-              <div className="p-4 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200/80 dark:border-emerald-800/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div className="flex items-start sm:items-center gap-3">
-                  <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400 shrink-0">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="font-['Space_Grotesk'] text-xs font-semibold uppercase tracking-wider text-emerald-800 dark:text-emerald-400 block">
-                      Performance &amp; SLA Commitment
-                    </span>
-                    <p className="font-['Hanken_Grotesk'] text-xs sm:text-sm text-slate-700 dark:text-slate-300 mt-0.5">
-                      {profile.sla}
-                    </p>
-                  </div>
+              {/* Structured Case Study Sections */}
+              {activeProject.caseStudy?.problem?.trim() && (
+                <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
+                  <h3 className="font-['Space_Grotesk'] text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-2">
+                    The Problem
+                  </h3>
+                  <p className="font-['Hanken_Grotesk'] text-sm sm:text-[15px] text-slate-800 dark:text-slate-200 leading-relaxed">
+                    {activeProject.caseStudy.problem}
+                  </p>
                 </div>
+              )}
 
-                <div className="shrink-0 flex items-center gap-2 text-xs font-medium text-emerald-700 dark:text-emerald-400 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-emerald-200 dark:border-emerald-800/60">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  <span>Production Ready</span>
+              {activeProject.caseStudy?.process?.trim() && (
+                <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
+                  <h3 className="font-['Space_Grotesk'] text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-2">
+                    The Process
+                  </h3>
+                  <p className="font-['Hanken_Grotesk'] text-sm sm:text-[15px] text-slate-800 dark:text-slate-200 leading-relaxed">
+                    {activeProject.caseStudy.process}
+                  </p>
                 </div>
-              </div>
+              )}
+
+              {activeProject.caseStudy?.outcome?.trim() && (
+                <div className="p-5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80">
+                  <h3 className="font-['Space_Grotesk'] text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400 mb-2">
+                    The Outcome
+                  </h3>
+                  <p className="font-['Hanken_Grotesk'] text-sm sm:text-[15px] text-slate-800 dark:text-slate-200 leading-relaxed">
+                    {activeProject.caseStudy.outcome}
+                  </p>
+                </div>
+              )}
+
+              {activeProject.metrics && activeProject.metrics.length > 0 && (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                  {activeProject.metrics.map((metric) => (
+                    <div
+                      key={metric.label}
+                      className="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80"
+                    >
+                      <span className="font-['Space_Grotesk'] text-xl sm:text-2xl font-bold text-slate-900 dark:text-white block">
+                        {metric.value}
+                      </span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400 font-medium block mt-1">
+                        {metric.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
