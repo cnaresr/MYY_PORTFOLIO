@@ -1,6 +1,8 @@
 ---
 import { siteConfig } from '../data/siteConfig';
 import { portfolioConfig } from '../config';
+import { getLiveProjects } from '../data/projects';
+import { CERTIFICATES } from '../data/certificates';
 import { FloatingHeader } from './interactive/FloatingHeader';
 import { CommandPalette } from './interactive/CommandPalette';
 import { HireModal } from './interactive/HireModal';
@@ -13,5 +15,11 @@ import { HireModal } from './interactive/HireModal';
 <FloatingHeader client:idle navLinks={siteConfig.navLinks} />
 
 <!-- Global Command Palette & Hire Modal Islands -->
-<CommandPalette client:idle />
+<CommandPalette
+  client:idle
+  projects={getLiveProjects()}
+  certificates={CERTIFICATES}
+  services={portfolioConfig.services}
+  email={portfolioConfig.links.email}
+/>
 <HireModal client:idle links={portfolioConfig.links} />
