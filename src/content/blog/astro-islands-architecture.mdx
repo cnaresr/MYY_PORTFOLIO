@@ -1,0 +1,85 @@
+---
+title: "Zero-Overhead Hydration with Astro Islands Architecture"
+description: "How partial hydration, client directives, and strict server/client boundaries keep Largest Contentful Paint fast without sacrificing rich React interactivity."
+pubDate: 2026-11-18
+lang: "en"
+tags: ["astro", "architecture", "performance", "react"]
+draft: false
+---
+
+Modern web applications often ship megabytes of JavaScript just to render static prose, navigation bars, and decorative layouts. **Astro Islands** invert that default: every component renders to pure HTML on the server, and interactivity is opted into per component.
+
+## Why Partial Hydration Matters
+
+In a traditional SPA, the browser downloads, parses, and executes the entire component tree before the page becomes interactive. Even a simple portfolio with a filterable grid, a command palette, and a theme switcher ends up hydrating static sections like footers and typography blocks.
+
+With Astro Islands, we split the page into:
+
+1. **Static HTML shells** rendered at build time or on the server with zero client JS.
+2. **Isolated interactive islands** hydrated independently based on priority.
+
+## Choosing the Right Client Directive
+
+Not every island needs immediate hydration during the initial paint window:
+
+- `client:load` — Use for immediately interactive UI above the fold (such as a filterable catalog or search bar).
+- `client:idle` — Ideal for secondary chrome like floating headers, command palettes, or modals that can wait until the main thread is idle.
+- `client:visible` — Best for heavy widgets further down the page, deferring bundle execution until the user scrolls near them.
+
+```astro
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { BlogFilterGrid } from '../components/interactive/BlogFilterGrid';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+---
+
+<Layout title="Engineering Notes">
+  <Header />
+  <main id="main-content" class="max-w-[1200px] mx-auto px-6 py-20">
+    <BlogFilterGrid client:load posts={posts} />
+  </main>
+</Layout>
+```
+
+## Typed Boundaries Between Server and Client
+
+Keeping server-only concerns (like `astro:content` queries or Node.js file reads) out of `.tsx` islands ensures clean bundle boundaries. Serialize only the minimal props each React island needs:
+
+```ts
+export interface SerializedPost {
+  slug: string;
+  title: string;
+  description: string;
+  pubDate: string;
+  lang: 'en' | 'id';
+  tags: string[];
+  readingTime: number;
+}
+
+export function serializePost(
+  id: string,
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    lang: 'en' | 'id';
+    tags: string[];
+  },
+  readingTime: number
+): SerializedPost {
+  return {
+    slug: id,
+    title: data.title,
+    description: data.description,
+    pubDate: data.pubDate.toISOString(),
+    lang: data.lang,
+    tags: data.tags,
+    readingTime,
+  };
+}
+```
+
+By treating hydration as an explicit budget rather than an automatic tax, you get sub-second First Contentful Paint while still delivering responsive React interfaces where they actually count.

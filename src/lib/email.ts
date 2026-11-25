@@ -118,9 +118,8 @@ function buildHtmlEmail(opts: {
  * SMTP is configured through environment variables:
  *   SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE (default "false").
  *
- * If SMTP is not configured yet, this returns { sent: false, reason } and the
- * inquiry is still saved to content/inquiries.json — so the contact form keeps
- * working even before you plug in real mail credentials.
+ * If SMTP is not configured yet, this returns { sent: false, reason } without
+ * throwing, so the contact endpoint can report delivery status cleanly.
  */
 export async function sendContactEmail(opts: {
   to: string;
@@ -137,7 +136,7 @@ export async function sendContactEmail(opts: {
   if (!host || !user) {
     return {
       sent: false,
-      reason: 'SMTP not configured (env SMTP_HOST / SMTP_USER missing). Inquiry saved locally only.',
+      reason: 'SMTP not configured (env SMTP_HOST / SMTP_USER missing).',
     };
   }
 

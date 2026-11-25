@@ -1,0 +1,93 @@
+---
+export const prerender = true;
+
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { BlogFilterGrid, type BlogPostSummary } from '../../components/interactive/BlogFilterGrid';
+import { getReadingTime } from '../../lib/readingTime';
+import { siteConfig } from '../../data/siteConfig';
+
+const entries = await getCollection('blog', ({ data }) => !data.draft);
+const sortedEntries = [...entries].sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const posts: BlogPostSummary[] = sortedEntries.map((entry) => ({
+  slug: entry.id,
+  title: entry.data.title,
+  description: entry.data.description,
+  pubDate: entry.data.pubDate.toISOString(),
+  lang: entry.data.lang,
+  tags: entry.data.tags,
+  readingTime: getReadingTime(entry.body ?? ''),
+  coverImage: entry.data.coverImage,
+}));
+
+const totalFormatted = posts.length < 10 ? `0${posts.length}` : `${posts.length}`;
+---
+
+<Layout
+  title={`Blog — ${siteConfig.name}`}
+  description="Bilingual engineering notes, system architecture deep-dives, and production lessons in English and Indonesian."
+>
+  <Header />
+
+  <main id="main-content" class="relative w-full flex-1 pt-28 pb-20 overflow-x-hidden">
+    <!-- Subtle Architectural Grid Pattern -->
+    <div class="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] dark:bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:28px_28px] opacity-35 dark:opacity-20 pointer-events-none z-0"></div>
+
+    <div class="relative max-w-[1200px] mx-auto px-6 z-10 space-y-10">
+      <!-- Page Header -->
+      <header class="space-y-6 pb-8 border-b border-slate-200/90 dark:border-slate-800">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
+              <span class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span class="font-mono text-xs uppercase tracking-widest font-bold text-slate-700 dark:text-slate-300">
+                ENGINEERING LOG // EN &amp; ID
+              </span>
+            </div>
+
+            <div class="flex items-baseline gap-3 sm:gap-4 flex-wrap">
+              <h1 class="font-['Space_Grotesk'] text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-none">
+                Blog
+              </h1>
+              <span class="font-mono text-xs sm:text-sm text-slate-400 dark:text-slate-500 font-semibold tracking-wider uppercase">
+                // TECHNICAL NOTES
+              </span>
+            </div>
+
+            <p class="font-['Hanken_Grotesk'] text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+              Deep-dives into web architecture, Node.js tooling, and production engineering—written in English and Bahasa Indonesia.
+            </p>
+          </div>
+
+          <!-- Telemetry Count Pill -->
+          <div class="px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-center gap-3 self-start md:self-auto shrink-0">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500 dark:text-emerald-400 shrink-0">
+              <span class="material-symbols-outlined text-[18px]">article</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-['Space_Grotesk'] text-lg font-bold text-slate-950 dark:text-white leading-tight">
+                {totalFormatted}
+              </span>
+              <span class="font-mono text-[11px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
+                Published Notes
+              </span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Interactive Filterable Grid -->
+      <BlogFilterGrid client:load posts={posts} />
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

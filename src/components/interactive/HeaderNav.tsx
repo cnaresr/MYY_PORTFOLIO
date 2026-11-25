@@ -28,6 +28,7 @@ export function HeaderNav({
   separation = 36,
 }: HeaderNavProps) {
   const [active, setActive] = useState(0);
+  const [pathname, setPathname] = useState("/");
   const navRef = useRef<HTMLDivElement | null>(null);
   const [isDark, setIsDark] = useState(false);
 
@@ -43,9 +44,33 @@ export function HeaderNav({
   }, []);
 
   useEffect(() => {
-    // each link points at a section id; "Overview" uses "#" -> hero/top.
+    const currentPath = window.location.pathname;
+    setPathname(currentPath);
+
+    if (currentPath.startsWith("/blog")) {
+      const blogIdx = links.findIndex(
+        (link) => link.href === "/blog" || link.href.startsWith("/blog")
+      );
+      if (blogIdx !== -1) {
+        setActive(blogIdx);
+      }
+      return;
+    }
+
+    if (currentPath !== "/" && currentPath !== "") {
+      const routeIdx = links.findIndex(
+        (link) => !link.href.startsWith("#") && currentPath.startsWith(link.href)
+      );
+      if (routeIdx !== -1) {
+        setActive(routeIdx);
+      }
+      return;
+    }
+
+    // each anchor link points at a section id; "Overview" uses "#" -> hero/top.
     const targets = links.map((link) => {
-      const id = link.href === "#" ? null : link.href.replace(/^#/, "");
+      if (link.href === "#" || !link.href.startsWith("#")) return null;
+      const id = link.href.replace(/^#/, "");
       return id ? document.getElementById(id) : null;
     });
 
@@ -96,10 +121,19 @@ export function HeaderNav({
     };
   }, [links]);
 
-  const items: GooeyNavItem[] = links.map((link) => ({
-    label: link.name,
-    href: link.href,
-  }));
+  const isHome = pathname === "/" || pathname === "";
+  const items: GooeyNavItem[] = links.map((link) => {
+    const resolvedHref =
+      !isHome && link.href.startsWith("#")
+        ? link.href === "#"
+          ? "/"
+          : `/${link.href}`
+        : link.href;
+    return {
+      label: link.name,
+      href: resolvedHref,
+    };
+  });
 
   return (
     <div ref={navRef}>

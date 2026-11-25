@@ -36,6 +36,7 @@ const defaultSiteConfig: SiteConfig = {
     { name: "About Me", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Certs", href: "#certificates" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "#contact" },
   ],
   socialLinks: [

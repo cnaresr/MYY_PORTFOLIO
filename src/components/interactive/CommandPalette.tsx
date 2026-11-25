@@ -9,6 +9,7 @@ import {
   Terminal,
   ArrowRight,
   X,
+  BookOpen,
 } from 'lucide-react';
 
 interface CommandItem {
@@ -66,8 +67,18 @@ export const CommandPalette: React.FC = () => {
     }
   }, [isOpen]);
 
-  const commands: CommandItem[] = useMemo(
-    () => [
+  const commands: CommandItem[] = useMemo(() => {
+    const navigateToSection = (id: string) => {
+      setIsOpen(false);
+      if (window.location.pathname !== '/') {
+        window.location.href = `/#${id}`;
+        return;
+      }
+      const el = document.getElementById(id);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    return [
       // Navigation
       {
         id: 'nav-projects',
@@ -76,11 +87,7 @@ export const CommandPalette: React.FC = () => {
         subtitle: 'Navigate to project showcase & case studies',
         icon: <FolderGit2 className="w-4 h-4 text-emerald-400" />,
         badge: '#projects',
-        action: () => {
-          setIsOpen(false);
-          const el = document.getElementById('projects');
-          el?.scrollIntoView({ behavior: 'smooth' });
-        },
+        action: () => navigateToSection('projects'),
       },
       {
         id: 'nav-skills',
@@ -89,11 +96,7 @@ export const CommandPalette: React.FC = () => {
         subtitle: 'View languages, frameworks, and runtime capabilities in About Me',
         icon: <Cpu className="w-4 h-4 text-cyan-400" />,
         badge: '#skills',
-        action: () => {
-          setIsOpen(false);
-          const el = document.getElementById('skills');
-          el?.scrollIntoView({ behavior: 'smooth' });
-        },
+        action: () => navigateToSection('skills'),
       },
       {
         id: 'nav-certificates',
@@ -102,10 +105,18 @@ export const CommandPalette: React.FC = () => {
         subtitle: 'View verified accreditations from MikroTik and Oracle Academy',
         icon: <ShieldCheck className="w-4 h-4 text-amber-400" />,
         badge: '#certificates',
+        action: () => navigateToSection('certificates'),
+      },
+      {
+        id: 'nav-blog',
+        category: 'Navigation',
+        title: 'Technical Writing & Blog',
+        subtitle: 'Read architecture notes, engineering essays, and guides',
+        icon: <BookOpen className="w-4 h-4 text-violet-400" />,
+        badge: '/blog',
         action: () => {
           setIsOpen(false);
-          const el = document.getElementById('certificates');
-          el?.scrollIntoView({ behavior: 'smooth' });
+          window.location.href = '/blog';
         },
       },
       {
@@ -115,11 +126,7 @@ export const CommandPalette: React.FC = () => {
         subtitle: 'Transmit message to secure dispatch console',
         icon: <Mail className="w-4 h-4 text-rose-400" />,
         badge: '#contact',
-        action: () => {
-          setIsOpen(false);
-          const el = document.getElementById('contact');
-          el?.scrollIntoView({ behavior: 'smooth' });
-        },
+        action: () => navigateToSection('contact'),
       },
 
       // Actions
@@ -152,9 +159,8 @@ export const CommandPalette: React.FC = () => {
           }
         },
       },
-    ],
-    []
-  );
+    ];
+  }, []);
 
   // Filter commands by search query
   const filteredCommands = useMemo(() => {

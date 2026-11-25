@@ -1,0 +1,57 @@
+---
+title: "Membangun CV Generator dengan Native PDF di Node.js"
+description: "Pendekatan deterministik menghasilkan dokumen PDF langsung dari data terstruktur di Node.js tanpa ketergantungan headless browser yang berat."
+pubDate: 2026-11-10
+lang: "id"
+tags: ["nodejs", "pdf", "architecture", "automation"]
+draft: false
+---
+
+Banyak pipeline pembuatan CV atau laporan otomatis mengandalkan headless browser seperti Puppeteer atau Playwright untuk mencetak HTML ke PDF. Meskipun fleksibel, pendekatan tersebut membutuhkan binary Chromium ratusan megabyte dan sering kali lambat saat dijalankan di lingkungan CI/CD maupun serverless.
+
+## Pendekatan Native PDF Stream
+
+Untuk dokumen dengan struktur yang jelas—seperti CV atau invoice—kita dapat menyusun objek PDF secara langsung atau menggunakan generator ringan berbasis koordinat di Node.js. Keunggulannya sangat terasa:
+
+- **Eksekusi milidetik**: Tidak ada proses cold-start browser.
+- **Layout deterministik**: Posisi tipografi, margin, dan page-break terkontrol penuh.
+- **Zero binary dependency**: Berjalan mulus di pipeline build seperti `node scripts/generate-cv.mjs`.
+
+## Mengelola Koordinat dan Page Wrapping
+
+Salah satu tantangan utama saat menulis generator PDF native adalah menghitung tinggi teks sebelum menggambar ke halaman (karena sistem koordinat PDF dimulai dari kiri-bawah, bukan kiri-atas).
+
+```javascript
+/**
+ * Menghitung pemecahan baris sederhana berdasarkan lebar maksimum karakter
+ * dan mengembalikan posisi Y terbaru setelah teks dirender.
+ */
+export function layoutWrappedLines(text, maxCharsPerLine, startY, lineHeight = 14) {
+  const words = text.trim().split(/\s+/);
+  const lines = [];
+  let currentLine = '';
+
+  for (const word of words) {
+    const candidate = currentLine ? `${currentLine} ${word}` : word;
+    if (candidate.length > maxCharsPerLine && currentLine) {
+      lines.push(currentLine);
+      currentLine = word;
+    } else {
+      currentLine = candidate;
+    }
+  }
+
+  if (currentLine) {
+    lines.push(currentLine);
+  }
+
+  const nextY = startY - lines.length * lineHeight;
+  return { lines, nextY };
+}
+```
+
+## Sinkronisasi dengan Single Source of Truth
+
+Agar CV selalu mutakhir dengan portofolio web, seluruh data profil, pengalaman, dan daftar proyek cukup disimpan dalam satu modul konfigurasi (`siteConfig` dan `projects`). Setiap kali proses `pnpm build` dijalankan, skrip generator membaca data yang sama dan menghasilkan berkas PDF statis di direktori `public/`.
+
+Dengan memisahkan data dari lapisan presentasi, kita mendapatkan dua artefak—halaman web interaktif dan dokumen PDF siap cetak—yang selalu sinkron tanpa duplikasi konten.
