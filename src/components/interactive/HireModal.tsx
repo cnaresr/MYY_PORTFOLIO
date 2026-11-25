@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { X, ArrowUpRight, Mail, MessageSquare, FileText, Github, Instagram, Linkedin } from 'lucide-react';
+import { X, ArrowUpRight, Mail, MessageSquare, FileText, Briefcase } from 'lucide-react';
+import { siGithub, siInstagram } from 'simple-icons';
 import type { LinksConfig } from '@/config';
 
 interface HireModalProps {
@@ -177,7 +178,7 @@ export const HireModal: React.FC<HireModalProps> = ({ links }) => {
               className="flex items-center justify-between w-full px-4 py-3.5 rounded-xl bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/90 dark:border-slate-800 text-slate-950 dark:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00bc7d]"
             >
               <span className="flex items-center gap-3">
-                <Linkedin className="size-4 text-slate-700 dark:text-slate-300" aria-hidden="true" />
+                <Briefcase className="size-4 text-slate-700 dark:text-slate-300" aria-hidden="true" />
                 <span className="text-left">
                   <span className="font-['Space_Grotesk'] text-sm font-bold block">LinkedIn</span>
                   <span className="font-['Hanken_Grotesk'] text-xs text-slate-600 dark:text-slate-400 block">
@@ -224,7 +225,9 @@ export const HireModal: React.FC<HireModalProps> = ({ links }) => {
                   title="GitHub"
                   className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00bc7d]"
                 >
-                  <Github className="size-4" aria-hidden="true" />
+                  <svg className="size-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={siGithub.path} />
+                  </svg>
                 </a>
               )}
               {hasInstagram && (
@@ -236,7 +239,9 @@ export const HireModal: React.FC<HireModalProps> = ({ links }) => {
                   title="Instagram"
                   className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00bc7d]"
                 >
-                  <Instagram className="size-4" aria-hidden="true" />
+                  <svg className="size-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d={siInstagram.path} />
+                  </svg>
                 </a>
               )}
             </div>
